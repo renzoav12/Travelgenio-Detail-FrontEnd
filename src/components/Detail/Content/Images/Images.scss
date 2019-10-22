@@ -1,0 +1,68 @@
+@import "../../../../styles/global.scss";
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+.image-gallery button:focus {
+  outline: none;
+}
+
+.otravo-detail-image {
+  @media (orientation:landscape) {
+    height: 87vh;
+  }
+
+  @media (orientation:portrait) {
+    height: 50vh;
+  }
+
+  overflow: hidden;
+}
+
+.otravo-detail-image img{
+  @media (orientation:landscape) {
+    height: 100vh;
+  }
+
+  @media (orientation:portrait) {
+    width: 100vh;
+  }
+}
+
+.fullscreen .otravo-detail-image {
+  height: 100vh !important;
+}
+
+.otravo-detail-image-thumbnail {
+  height: 100px;
+  overflow: hidden;
+}
+
+.fullscreen .otravo-detail-image-thumbnail {
+  height: unset;
+}
+
+.otravo-detail-images figure {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.otravo-detail-images-main-image {
+  @media (min-width: $screen-md) {
+    padding-right: 20px !important;
+  }
+
+  @media (max-width: $screen-md) {
+    padding-bottom: 20px !important;
+  }
+}
+
+
+.otravo-detail-images-second-image {
+  @media (min-width: $screen-md) {
+    padding-bottom: 20px !important;
+  }
+
+  @media (max-width: $screen-md) {
+    padding-right: 20px !important;
+  }
+}
+
