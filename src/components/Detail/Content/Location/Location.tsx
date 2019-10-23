@@ -12,11 +12,28 @@ export interface LocationProps {
 }
 
 export interface AddressProps {
-  street: string;
-  streetNumber: string;
-  city: string;
-  state: string;
-  country: string;
+  readonly country: CountryProps;
+  readonly state: StateProps;
+  readonly city: CityProps;
+  readonly street: StreetProps;
+  readonly zipCode: string;
+}
+
+export interface CountryProps {
+  readonly name: string;
+}
+
+export interface StateProps {
+  readonly name: string;
+}
+
+export interface CityProps {
+  readonly name: string;
+}
+
+export interface StreetProps {
+  readonly name: string;
+  readonly number: string;
 }
 
 export interface GeoPositionProps {
@@ -26,7 +43,7 @@ export interface GeoPositionProps {
 
 const Location = (props: Location) => {
     return <Grid item xs={12}>
-        <LocationOnIcon fontSize="small"/> {props.location.address.street} {props.location.address.streetNumber}, {props.location.address.city}
+        <LocationOnIcon fontSize="small"/> {props.location.address.street.name} {props.location.address.street.number}, {props.location.address.city.name}
       </Grid>;
 }
 

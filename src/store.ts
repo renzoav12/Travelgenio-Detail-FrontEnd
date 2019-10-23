@@ -1,25 +1,29 @@
-import { createStore, combineReducers, applyMiddleware, /* compose */ } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import reduxThunk, { ThunkMiddleware } from 'redux-thunk';
-//import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { detailReducer } from './reducers/detailReducer';
-import { DetailAction } from './actions/search/detail.action';
 
 import { Detail } from './model/search';
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+import { history } from './history';
+import { RootAction } from './actions/action';
 
 export interface RootState {
     readonly detail: Detail;
+    readonly router: any;
 }
 
 const rootReducer = combineReducers<RootState>({
-    detail: detailReducer
+    detail: detailReducer,
+    router: connectRouter(history),
 });
-
-export type RootActions = DetailAction;
 
 export const store = createStore(
     rootReducer,
-    //composeWithDevTools(
-        applyMiddleware(reduxThunk as ThunkMiddleware<RootState, RootActions>)
-    //)
+    compose(
+        applyMiddleware(
+            routerMiddleware(history),
+            reduxThunk as ThunkMiddleware<RootState, RootAction>
+        )
+    )
 );

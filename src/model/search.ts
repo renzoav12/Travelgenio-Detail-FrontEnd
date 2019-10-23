@@ -1,5 +1,7 @@
+import { AccommodationProps } from "../components/Detail/Content/Accommodation";
 
 export interface Search {
+    accommodationId: string;
     stay: Stay;
     occupancy: string;
 }
@@ -9,20 +11,9 @@ export interface Stay {
     to: string;
 }
 
-export interface Accommodation {
-    readonly id: string;
-    readonly name: string;
-    readonly images: Image[];
-}
-
-export interface Image {
-    readonly url: string
-}
-
 export interface Room {
     readonly id: string;
     readonly name: string;
-    readonly images: Image[];
     readonly rates: Rate[];
 }
 
@@ -32,7 +23,7 @@ export interface Rate {
 
 export interface Detail {
     search: Search;
-    accommodation: Accommodation;
+    accommodation: AccommodationProps;
     rooms: Room[];
     accommodationLoading: boolean;
     roomsLoading: boolean;

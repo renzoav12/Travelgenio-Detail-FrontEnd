@@ -1,3 +1,3 @@
-import Content from './Content'
+import Accommodation from './Accommodation'
 
-export default Content;
+export default Accommodation;
