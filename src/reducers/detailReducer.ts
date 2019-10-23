@@ -1,11 +1,18 @@
 import _ from 'lodash';
 import { Reducer } from 'redux';
 import { Detail } from '../model/search';
-import { DetailActionTypes } from '../actions/search/detail.actionTypes';
-import { DetailAction } from '../actions/search/detail.action';
+import {
+    ACCOMMODATION_UPDATE,
+    ACCOMMODATION_FETCH_SUCCESS,
+    ACCOMMODATION_FETCH_FAILED,
+    ACCOMMODATION_FETCH_START 
+} from '../actions/catalog/catalog.actionTypes';
+import { RootAction } from '../actions/action';
+import { SEARCH_UPDATE_PARAMS } from '../actions/detail/detail.actionTypes';
 
 const initialState: Detail = {
     search: {
+        accommodationId: '10344566',
         stay: {
             from: '2019-11-20',
             to: '2019-11-21'
@@ -13,9 +20,50 @@ const initialState: Detail = {
         occupancy: '2'
     },
     accommodation: {
-        id: '1000',
         name: 'Faena',
-        images: [{url: 'asd'}]
+        images: [
+            {"url": "https://i.travelapi.com/hotels/1000000/570000/565000/564911/946c5610_z.jpg"},
+            {"url": "https://i.travelapi.com/hotels/1000000/570000/565000/564911/72a2a331_z.jpg"},
+            {"url": "https://i.travelapi.com/hotels/1000000/570000/565000/564911/9aea1d21_z.jpg"}
+        ],
+        amenities: new Array(),
+        location: {
+            address: {
+                country: {
+                    name: ''
+                },
+                state: {
+                    name: ''                    
+                },
+                city: {
+                    name: ''
+                },
+                street: {
+                    name: '',
+                    number: ''
+                },
+                zipCode: ''
+            },
+            geoPosition: {
+                latitude: 0,
+                longitude: 0
+            }
+        },
+        category: {
+            id: '',
+            code: '3'
+        },
+        checkInOut: {
+            checkIn: {
+                beginTime: '14:00',
+                endTime: '20:00'
+            },
+            checkOut: {
+                time: '10:00'
+            },
+            instructions: ''
+        },
+        description: ''
     },
     rooms: [],
     accommodationLoading: false,
@@ -23,18 +71,21 @@ const initialState: Detail = {
     error: null
 };
 
-export const detailReducer: Reducer<Detail, DetailAction> = (
+export const detailReducer: Reducer<Detail, RootAction> = (
     state = initialState, 
     action
 ) => {
     switch (action.type) {
-
-        case DetailActionTypes.CONTENT_FETCH_START:
-            return { ...state, loading: true };
-        case DetailActionTypes.CONTENT_FETCH_FAILED:
-            return { ...state, loading: false };
-        case DetailActionTypes.CONTENT_FETCH_SUCCESS:
-            return {...state, loading: false };
+        case ACCOMMODATION_FETCH_START:
+            return { ...state, accommodationLoading: true };
+        case ACCOMMODATION_FETCH_FAILED:
+            return { ...state, accommodationLoading: false };
+        case ACCOMMODATION_FETCH_SUCCESS:
+            return {...state, accommodationLoading: false };
+        case SEARCH_UPDATE_PARAMS:
+            return {...state, search: action.search};
+        case ACCOMMODATION_UPDATE:
+            return {...state, accommodation: action.accommodation};                        
         default:
             return state;
     }

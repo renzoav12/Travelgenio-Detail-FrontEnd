@@ -1,15 +1,17 @@
 import React from 'react'
-import { Route } from 'react-router'
+import { Route, Switch } from 'react-router'
 
 import {
-  ROUTE_DETAIL
+  ROUTE_SEARCH_CATALOG,
+  ROUTE_SEARCH_PRICE,
 } from './root.routes.constants'
-import Detail from '../Detail/Detail'
-
-const EmptyComponent = () => <div />
+import DetailContainer from '../../containers/Detail'
 
 export const getRoutes = () => (
   <div>
-    <Route path={ROUTE_DETAIL} component={Detail} />
+    <Switch>
+      <Route path={ROUTE_SEARCH_CATALOG} component={DetailContainer} />
+      <Route path={ROUTE_SEARCH_PRICE} component={DetailContainer} />
+    </Switch>
   </div>
 )
