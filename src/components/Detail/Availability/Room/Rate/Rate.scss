@@ -1,0 +1,27 @@
+@import "../../../../../styles/global.scss";
+
+.otravo-rate {
+  padding: 20px !important;
+  margin-bottom: 20px !important;
+  background-color: $backgroundColor;
+  border-radius: $boxBorderRadius;
+
+}
+
+.otravo-rate-mealplan div p {
+  font-weight: bold;
+}
+
+.otravo-rate-price {
+  text-align: right !important;
+  padding-right: 20px;
+  color: $primaryColor;
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+.otravo-rate-conditions {
+  text-align: right !important;
+  padding-right: 20px;
+  font-size: 10pt;
+}

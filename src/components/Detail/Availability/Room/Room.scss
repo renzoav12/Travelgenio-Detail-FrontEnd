@@ -1,0 +1,10 @@
+@import "../../../../styles/global.scss";
+
+.otravo-room-name {
+  border-bottom: 1px solid $boxBorderColor;
+  font-weight: bold;
+}
+
+.otravo-room-description {
+  padding-top: 20px;
+}
