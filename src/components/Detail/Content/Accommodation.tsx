@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import Header from './Header';
+import React from 'react';
+import { Grid } from '@material-ui/core';
 import Images from './Images';
 import Amenities from './Amenities';
-import { LocationProps } from './Location/Location';
 import { AmenityProps } from './Amenities/Amenities';
-import { CategoryProps } from './Header/Header';
 import { ImageProps } from './Images/Images';
 import CheckInOut from './CheckInOut';
+import Category from '../../Category';
+import Location, { LocationProps } from './Location/Location';
+import { CheckInOutProps } from './CheckInOut/CheckInOut';
+import Description from '../../Description';
 
 import './Accommodation.scss';
-import { CheckInOutProps } from './CheckInOut/CheckInOut';
 
 export interface AccommodationProps {
   name: string;
@@ -22,18 +22,29 @@ export interface AccommodationProps {
   checkInOut: CheckInOutProps;
 }
 
+export interface CategoryProps {
+  id: string;
+  code: string;
+}
+
 const Accommodation = (accommodation: AccommodationProps) => {
 
-/*   const description = accommodation.description
-    .split("\n")
-    .map((paragraph, index) => <Typography paragraph={true} align="justify" key={index}>{paragraph}</Typography>); */
+  const description = <Description text={accommodation.description}/>;
 
-  return <Grid container item spacing={2} xs={12}>
-    <Grid container item xs={12} className="otravo-content-section"><Header {...accommodation}/></Grid>
-    <Grid item xs={12} className="otravo-content-section"><Images {...accommodation}/></Grid>
+  return <Grid container item xs={12}>
+    <Grid container item xs={12} alignItems="flex-start">
+      <div className="otravo-title otravo-accommodation-name">{accommodation.name}</div>
+      <Category stars={parseInt(accommodation.category.code)}/>
+    </Grid>
+    <Grid item xs={12}>
+      <Location location = {accommodation.location}/>
+    </Grid>      
+    <Grid item xs={12} className="otravo-content-section">
+      <Images {...accommodation}/>
+    </Grid>
     <Grid item container spacing={2} xs={12} className="otravo-content-section">
       <Grid item xs={12} className="otravo-title">Información</Grid>
-      <Grid item xs={12}>{accommodation.description}</Grid>
+      <Grid item xs={12}>{description}</Grid>
     </Grid>
     <Grid container item xs={12} className="otravo-content-section otravo-content-section-border">
       <Amenities amenities={accommodation.amenities}/>

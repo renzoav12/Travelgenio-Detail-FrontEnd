@@ -42,8 +42,11 @@ export interface GeoPositionProps {
 }
 
 const Location = (props: Location) => {
+    const street = props.location.address.street.name + " " + props.location.address.street.number;
+    const city = (street.length > 1 ? ", ": "") + props.location.address.city.name;
+
     return <Grid item xs={12}>
-        <LocationOnIcon fontSize="small"/> {props.location.address.street.name} {props.location.address.street.number}, {props.location.address.city.name}
+        <LocationOnIcon fontSize="small"/> {street} {city}
       </Grid>;
 }
 

@@ -6,6 +6,7 @@ import Accommodation, { AccommodationProps } from '../../components/Detail/Conte
 import './DetailContainer.scss';
 import { thunkSearchUpdate } from '../../actions/detail/detail.action';
 import { Search } from '../../model/search';
+import Detail from '../../components/Detail';
 
 
 interface DetailContainerProps {
@@ -25,7 +26,7 @@ class DetailContainer extends Component<DetailContainerProps> {
   }
 
   render() {
-    return <Accommodation {...this.props.accommodation}/>;
+    return <Detail {...this.props}/>;
   }
 }
 

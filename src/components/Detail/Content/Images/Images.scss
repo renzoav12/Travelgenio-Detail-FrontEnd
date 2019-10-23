@@ -31,38 +31,38 @@
   height: 100vh !important;
 }
 
-.otravo-detail-image-thumbnail {
-  height: 100px;
-  overflow: hidden;
-}
-
-.fullscreen .otravo-detail-image-thumbnail {
-  height: unset;
-}
-
-.otravo-detail-images figure {
-  width: 100% !important;
-  height: 100% !important;
-}
-
 .otravo-detail-images-main-image {
   @media (min-width: $screen-md) {
-    padding-right: 20px !important;
+    padding-right: 10px !important;
   }
 
   @media (max-width: $screen-md) {
-    padding-bottom: 20px !important;
+    padding-bottom: 10px !important;
   }
 }
 
 
 .otravo-detail-images-second-image {
   @media (min-width: $screen-md) {
-    padding-bottom: 20px !important;
+    padding-bottom: 10px !important;
   }
 
   @media (max-width: $screen-md) {
-    padding-right: 20px !important;
+    padding-right: 10px !important;
+  }
+}
+
+.otravo-fullscreen-button {
+  cursor: pointer;
+  position: absolute;
+  z-index: 4;
+  height: 20px;
+  width: 200px !important;
+  bottom: 10px;
+  right: 10px;
+
+  &:hover {
+    transform: scale(0.9);
   }
 }
 
