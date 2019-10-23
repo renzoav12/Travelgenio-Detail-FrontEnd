@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { typography } from '@material-ui/system';
 import './CheckInOut.scss';
+import Description from '../../../Description';
 
 export interface CheckInOutProps {
   readonly checkIn: CheckInProps;
@@ -19,25 +20,31 @@ export interface CheckOutProps {
 }
 const CheckInCheckOut = (checkInOutProps: CheckInOutProps) => {
 
-/*   const instructions = checkInOutProps.instructions
-    .map((instruction, index) => <Typography key={index}>{instruction}</Typography>); */
+  const instructions = <Description text={checkInOutProps.instructions}/>;
+
+  const checkInEndTime =(checkInOutProps.checkIn.endTime != undefined
+    && checkInOutProps.checkIn.endTime != null
+    && checkInOutProps.checkIn.endTime != checkInOutProps.checkIn.beginTime ) 
+    ? "a " + checkInOutProps.checkIn.endTime + " Hs." : "";
+
+  const checkInHour = <div> A partir de {checkInOutProps.checkIn.beginTime} Hs. {checkInEndTime}</div>;
 
   return <Grid container item spacing={2} alignItems="flex-start">
     <Grid item xs={12} className="otravo-title">Condiciones</Grid>
-    <Grid item xs={3} md={2} lg={1} xl={1} className="otravo-check-in">
+    <Grid item xs={3} md={2} lg={1}className="otravo-check-in">
       Check In:
     </Grid>
-    <Grid item xs={9} md={4} lg={3} xl={2}>
-      A partir de las {checkInOutProps.checkIn.beginTime} Hs.
+    <Grid item xs={9} md={10} lg={11}>
+      {checkInHour}
     </Grid>
-    <Grid item xs={3} md={2} lg={1} xl={1} className="otravo-check-out">
+    <Grid item xs={3} md={2} lg={1} className="otravo-check-out">
       Check Out:
     </Grid>
-    <Grid item xs={9} md={4} lg={3} xl={2}>
+    <Grid item xs={9} md={10} lg={11}>
       Hasta las {checkInOutProps.checkOut.time} Hs.
     </Grid>
     <Grid item xs={12}>
-      {checkInOutProps.instructions}
+      {instructions}
     </Grid>
   </Grid>;
 }

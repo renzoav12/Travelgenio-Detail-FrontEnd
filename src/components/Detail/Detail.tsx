@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { Grid } from '@material-ui/core';
-import './Detail.scss';
 import Accommodation, { AccommodationProps } from './Content/Accommodation';
+import './Detail.scss';
 
 export interface DetailProps {
   accommodation: AccommodationProps;
 }
 
 const Detail = (detail: DetailProps) => {
-
-  return <Grid container justify="space-around" alignItems="flex-start" className="otravo-box otravo-detail">
-          <Grid item container xs={12}>
+  return <Grid container>
+          <Grid item container xs={12} className="otravo-box otravo-detail">
             <Accommodation {...detail.accommodation}/>
           </Grid>
         </Grid>;
