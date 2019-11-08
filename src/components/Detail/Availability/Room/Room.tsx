@@ -1,27 +1,50 @@
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
-import Rate, { RateProps } from './Rate/Rate';
+import Pricing, { PricingProps } from './Pricing/Pricing';
 import './Room.scss';
 
 
 export interface RoomProps {
+  content: RoomContent;
+  pricing: Array<PricingProps>;
+}
+
+export interface RoomContent {
+  id: string;
   name: string;
   description: string;
-  rates: Array<RateProps>;
+  amenities: Array<Amenity>;
+  beds: Array<Bed>;
+  images: Array<Image>;
 }
+
+export interface Amenity {
+  id: string;
+  name: string;
+}
+
+export interface Bed {
+  name: string;
+  quantity: number;
+}
+
+export interface Image {
+  url: string;
+}
+
 
 const Room = (room: RoomProps) => {
 
-  const description = room.description
+  const description = room.content.description
     .split("\n")
     .map((paragraph, index) => <Typography paragraph={true} align="justify" key={index}>{paragraph}</Typography>);
 
-  const rates = room.rates.map((rate, index) => <Rate {...rate} key={index}/>);
+  const pricing = room.pricing.map((pricing, index) => <Pricing {...pricing} key={index}/>);
   
   return <Grid container item xs={12}>
-    <Grid item xs={12} className="otravo-room-name">{room.name}</Grid>
+    <Grid item xs={12} className="otravo-room-name">{room.content.name}</Grid>
     <Grid item xs={12} className="otravo-room-description">{description}</Grid>
-    <Grid item xs={12}>{rates}</Grid>
+    <Grid item xs={12}>{pricing}</Grid>
   </Grid>;
 }
 

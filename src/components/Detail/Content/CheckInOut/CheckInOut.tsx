@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import { typography } from '@material-ui/system';
+import React from 'react';
+import { Grid } from '@material-ui/core';
 import './CheckInOut.scss';
 import Description from '../../../Description';
 
@@ -22,10 +21,9 @@ const CheckInCheckOut = (checkInOutProps: CheckInOutProps) => {
 
   const instructions = <Description text={checkInOutProps.instructions}/>;
 
-  const checkInEndTime =(checkInOutProps.checkIn.endTime != undefined
-    && checkInOutProps.checkIn.endTime != null
-    && checkInOutProps.checkIn.endTime != checkInOutProps.checkIn.beginTime ) 
-    ? "a " + checkInOutProps.checkIn.endTime + " Hs." : "";
+  const checkInEndTime =checkInOutProps.checkIn.endTime
+    && checkInOutProps.checkIn.endTime !== checkInOutProps.checkIn.beginTime  
+    ? `a ${checkInOutProps.checkIn.endTime} Hs.` : "";
 
   const checkInHour = <div> A partir de {checkInOutProps.checkIn.beginTime} Hs. {checkInEndTime}</div>;
 

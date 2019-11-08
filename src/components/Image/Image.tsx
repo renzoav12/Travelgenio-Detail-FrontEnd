@@ -7,7 +7,7 @@ export interface ImageProps {
 
 const Image = (props: ImageProps) => {
   return <div className="otravo-image">
-      <img src={props.url}/>
+      <img alt={""} src={props.url}/>
   </div>;
 };
 

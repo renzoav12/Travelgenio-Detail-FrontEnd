@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import './Amenities.scss';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
