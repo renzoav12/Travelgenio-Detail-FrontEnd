@@ -6,9 +6,15 @@ import {
     ACCOMMODATION_FETCH_SUCCESS,
     ACCOMMODATION_FETCH_FAILED,
     ACCOMMODATION_FETCH_START 
-} from '../actions/catalog/catalog.actionTypes';
+} from '../actions/accommodation/accommodation.actionTypes';
 import { RootAction } from '../actions/action';
 import { SEARCH_UPDATE_PARAMS } from '../actions/detail/detail.actionTypes';
+import {
+    ROOM_FETCH_START,
+    ROOM_FETCH_FAILED,
+    ROOM_FETCH_SUCCESS,
+    ROOM_UPDATE
+} from '../actions/room/room.actionTypes';
 
 const initialState: Detail = {
     search: {
@@ -85,7 +91,15 @@ export const detailReducer: Reducer<Detail, RootAction> = (
         case SEARCH_UPDATE_PARAMS:
             return {...state, search: action.search};
         case ACCOMMODATION_UPDATE:
-            return {...state, accommodation: action.accommodation};                        
+            return {...state, accommodation: action.accommodation};
+        case ROOM_FETCH_START:
+            return { ...state, roomsLoading: true };
+        case ROOM_FETCH_FAILED:
+            return { ...state, roomsLoading: false };
+        case ROOM_FETCH_SUCCESS:
+            return {...state, roomsLoading: false };
+        case ROOM_UPDATE:
+            return {...state, rooms: action.rooms};
         default:
             return state;
     }

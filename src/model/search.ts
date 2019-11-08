@@ -1,4 +1,5 @@
 import { AccommodationProps } from "../components/Detail/Content/Accommodation";
+import { RoomProps } from "../components/Detail/Availability/Room/Room";
 
 export interface Search {
     accommodationId: string;
@@ -24,7 +25,7 @@ export interface Rate {
 export interface Detail {
     search: Search;
     accommodation: AccommodationProps;
-    rooms: Room[];
+    rooms: Array<RoomProps>;
     accommodationLoading: boolean;
     roomsLoading: boolean;
     error: String | null

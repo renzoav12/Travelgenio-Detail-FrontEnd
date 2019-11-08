@@ -7,9 +7,8 @@ interface AvailabilityProps {
   rooms: Array<RoomProps>;
 }
 
-const Availability = (availability: AvailabilityProps) => {
-  const rooms = availability.rooms
-    .map((room, index) => 
+const Availability = ({rooms}: AvailabilityProps) => {
+  rooms.map((room, index) => 
       <Grid container item xs={12} key={index} className="otravo-room">
         <Room {...room}/>
       </Grid>);
