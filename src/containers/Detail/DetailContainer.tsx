@@ -7,11 +7,13 @@ import './DetailContainer.scss';
 import { thunkSearchUpdate } from '../../actions/detail/detail.action';
 import { Search } from '../../model/search';
 import Detail from '../../components/Detail';
+import { RoomProps } from '../../components/Detail/Availability/Room/Room';
 
 
 interface DetailContainerProps {
   search: Search;
   accommodation: AccommodationProps;
+  rooms: Array<RoomProps>;
   searchUpdate: (search: Search) => void;
 }
 
@@ -21,18 +23,15 @@ class DetailContainer extends Component<DetailContainerProps> {
     this.props.searchUpdate(this.props.search);
   }
 
-  componentDidUpdate (prevProps) {
-    //this.props.updateSearch(this.props.search);
-  }
-
   render() {
-    return <Detail {...this.props}/>;
+    return <Detail accommodation= {this.props.accommodation} rooms={this.props.rooms}/>;
   }
 }
 
 const mapStateToProps = (rootState: RootState, ownProps) => {
   return {
       accommodation: rootState.detail.accommodation,
+      rooms: rootState.detail.rooms,
       search: {
         accommodationId: ownProps.match.params.accommodationId,
         stay: {

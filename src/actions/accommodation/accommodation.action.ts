@@ -1,10 +1,16 @@
 
-import { AccommodationFetchStartAction, AccommodationFetchFailedAction, AccommodationFetchSuccessAction, AccommodationUpdateAction, ACCOMMODATION_FETCH_START, CatalogActionTypes, ACCOMMODATION_FETCH_FAILED, ACCOMMODATION_FETCH_SUCCESS, ACCOMMODATION_UPDATE } from './catalog.actionTypes';
+import { 
+    CatalogActionTypes, 
+    ACCOMMODATION_FETCH_START,
+    ACCOMMODATION_FETCH_FAILED,
+    ACCOMMODATION_FETCH_SUCCESS,
+    ACCOMMODATION_UPDATE 
+} from './accommodation.actionTypes';
 import { RootState } from '../../store';
-import { push, getSearch } from 'connected-react-router';
+import { push } from 'connected-react-router';
 import { AccommodationProps } from '../../components/Detail/Content/Accommodation';
 import { AxiosResponse } from 'axios';
-import accommodation from '../../api/catalog/accommodation';
+import accommodation from '../../api/accommodation/accommodation';
 
 export function accommodationFetchStart() : CatalogActionTypes {
     return {
@@ -30,13 +36,21 @@ export function accommodationUpdate(accommodation: AccommodationProps) : Catalog
         accommodation: accommodation
     }
 }
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        break;
+      }
+    }
+  }
 
 export const accommodationFetch = (action: (accommodation: AccommodationProps) => void) => async (
     dispatch,
     getState: () => RootState
 ) => {
     dispatch(accommodationFetchStart());
-    console.log(getState().detail.search);
+    
     try {
         const response: AxiosResponse<AccommodationProps> = await accommodation.get(
             '/accommodation/' + getState().detail.search.accommodationId,
