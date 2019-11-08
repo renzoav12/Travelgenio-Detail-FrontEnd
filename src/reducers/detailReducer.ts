@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { Reducer } from 'redux';
 import { Detail } from '../model/search';
 import {
@@ -32,7 +31,7 @@ const initialState: Detail = {
             {"url": "https://i.travelapi.com/hotels/1000000/570000/565000/564911/72a2a331_z.jpg"},
             {"url": "https://i.travelapi.com/hotels/1000000/570000/565000/564911/9aea1d21_z.jpg"}
         ],
-        amenities: new Array(),
+        amenities: [],
         location: {
             address: {
                 country: {

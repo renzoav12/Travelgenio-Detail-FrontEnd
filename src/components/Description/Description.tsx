@@ -8,7 +8,7 @@ export interface DescriptionProps {
 const Description = (props: DescriptionProps) => {
   let description: JSX.Element | Array<JSX.Element>;
 
-  if(props.text === undefined || props.text === null || props.text.indexOf("\n") == -1) {
+  if(!props.text || props.text.indexOf("\n") === -1) {
     description = <Typography paragraph={true} align="justify">{props.text}</Typography>;
   } else {
     description = props.text

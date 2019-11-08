@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { RootState } from '../../store';
 import { connect } from 'react-redux';
-import Accommodation, { AccommodationProps } from '../../components/Detail/Content/Accommodation';
+import { AccommodationProps } from '../../components/Detail/Content/Accommodation';
 
 import './DetailContainer.scss';
 import { thunkSearchUpdate } from '../../actions/detail/detail.action';
