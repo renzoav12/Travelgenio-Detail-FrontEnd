@@ -1,11 +1,11 @@
-import React from 'react';
-import { Typography } from '@material-ui/core';
+import React, { SFC } from 'react';
+import { Typography, Box } from '@material-ui/core';
 
 export interface DescriptionProps {
   readonly text: string;
 }
 
-const Description = (props: DescriptionProps) => {
+const Description: SFC<DescriptionProps> = props => {
   let description: JSX.Element | Array<JSX.Element>;
 
   if(!props.text || props.text.indexOf("\n") === -1) {
@@ -16,7 +16,7 @@ const Description = (props: DescriptionProps) => {
       .map((paragraph, index) => <div><Typography paragraph={true} align="justify" key={index}>{paragraph}</Typography></div>)
   }
   
-  return <div>{description}</div>;
+  return <Box>{description}</Box>;
 }
 
 export default Description;

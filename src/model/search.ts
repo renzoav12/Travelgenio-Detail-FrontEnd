@@ -1,5 +1,5 @@
-import { AccommodationProps } from "../components/Detail/Content/Accommodation";
-import { RoomProps } from "../components/Detail/Availability/Room/Room";
+import { AccommodationProps } from "../components/Detail/Accommodation/Accommodation";
+import { RoomDetail } from "../components/Detail/Availability/Room/Room";
 
 export interface Search {
     accommodationId: string;
@@ -25,7 +25,7 @@ export interface Rate {
 export interface Detail {
     search: Search;
     accommodation: AccommodationProps;
-    rooms: Array<RoomProps>;
+    rooms: Array<RoomDetail>;
     accommodationLoading: boolean;
     roomsLoading: boolean;
     error: String | null

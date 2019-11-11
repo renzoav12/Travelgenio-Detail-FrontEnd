@@ -1,22 +1,26 @@
-import React from 'react';
-import { Grid } from '@material-ui/core';
-import Room, { RoomProps } from './Room/Room';
-import './Availability.scss';
+import React, {SFC} from 'react';
+import { Grid, Paper, Typography } from '@material-ui/core';
+import Room, { RoomDetail } from './Room/Room';
 
 interface AvailabilityProps {
-  rooms: Array<RoomProps>;
+  rooms: Array<RoomDetail>;
+  onReserve: (id: string) => void;
 }
 
-const Availability = (props: AvailabilityProps) => {
+const Availability: SFC<AvailabilityProps> = props => {
   const rooms = props.rooms.map((room, index) => 
-      <Grid container item xs={12} key={index} className="otravo-room">
-        <Room {...room}/>
+      <Grid item xs={12} key={index}>
+        <Room room={room} onReserve={props.onReserve}/>
       </Grid>);
   
-  return <Grid container item xs={12}>
-    <Grid item xs={12} className="otravo-title">Habitaciones</Grid>
-    {rooms}
-  </Grid>;
+  return <Paper>
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <Typography variant="h1">Habitaciones</Typography>
+      </Grid>
+      {rooms}
+    </Grid>
+  </Paper>;
 }
 
 export default Availability;

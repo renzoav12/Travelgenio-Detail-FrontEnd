@@ -1,23 +1,22 @@
-import React from 'react';
+import React, {SFC} from 'react';
 import { Grid } from '@material-ui/core';
-import Accommodation, { AccommodationProps } from './Content/Accommodation';
+import Accommodation, { AccommodationProps } from './Accommodation/Accommodation';
 import Availability from './Availability';
-import './Detail.scss';
-import { RoomProps } from './Availability/Room/Room';
-
+import { RoomDetail } from './Availability/Room/Room';
 
 export interface DetailProps {
   accommodation: AccommodationProps;
-  rooms: Array<RoomProps>;
+  rooms: Array<RoomDetail>;
+  onReserve: (id: string) => void;
 }
 
-const Detail = (props: DetailProps) => {
-  return <Grid container className="otravo-detail">
-          <Grid item container xs={12} className="otravo-box">
+const Detail: SFC<DetailProps> = props => {
+  return <Grid container>
+           <Grid item xs={12}>
             <Accommodation {...props.accommodation}/>
           </Grid>
-          <Grid item container xs={12} className="otravo-box otravo-availability">
-            <Availability rooms={props.rooms}/>
+          <Grid item xs={12}>
+            <Availability rooms={props.rooms} onReserve={props.onReserve}/>
           </Grid>
         </Grid>;
 }
