@@ -8,7 +8,7 @@ import {
 } from './accommodation.actionTypes';
 import { RootState } from '../../store';
 import { push } from 'connected-react-router';
-import { AccommodationProps } from '../../components/Detail/Content/Accommodation';
+import { AccommodationProps } from '../../components/Detail/Accommodation/Accommodation';
 import { AxiosResponse } from 'axios';
 import accommodation from '../../api/accommodation/accommodation';
 

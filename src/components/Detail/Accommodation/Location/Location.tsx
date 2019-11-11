@@ -1,6 +1,5 @@
-import React from 'react';
+import React, {SFC} from 'react';
 import { Grid } from '@material-ui/core';
-import './Location.scss';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 export interface Location {
@@ -41,7 +40,7 @@ export interface GeoPositionProps {
   longitude: number;
 }
 
-const Location = (props: Location) => {
+const Location: SFC<Location> = props => {
     const street = props.location.address.street.name + " " + props.location.address.street.number;
     const city = (street.length > 1 ? ", ": "") + props.location.address.city.name;
 

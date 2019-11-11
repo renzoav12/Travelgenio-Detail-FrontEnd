@@ -1,9 +1,10 @@
-import React from 'react';
-import { Grid } from '@material-ui/core';
+import React, {SFC} from 'react';
+import { Grid, Button } from '@material-ui/core';
 import ImageGallery from 'react-image-gallery';
-import './Images.scss';
 import Image from '../../../Image';
 import Hidden from '@material-ui/core/Hidden';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import './Images.scss';
 
 export interface ImagesProps {
   images: Array<ImageProps>;
@@ -13,8 +14,20 @@ export interface ImageProps {
   url:string;
 }
 
-const Images = (props: ImagesProps) => {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    fullScreenButton: {
+      position: "absolute",
+      zIndex: 4,
+      bottom: 10,
+      right: 10
+    }
+  }),
+);
 
+const Images: SFC<ImagesProps> = props => {
+  const classes = useStyles();
+  
   const images = props.images.map(image => {
     return {
       original: image.url,
@@ -25,12 +38,11 @@ const Images = (props: ImagesProps) => {
   });
 
   const fullscreenButton = (onClick, isFullscreen) => (
-    <button
-        type="button"
-        className="otravo-button otravo-fullscreen-button"
+    <Button
+        variant="contained" color="primary"     
         onClick={onClick}
-        aria-label="Open Fullscreen"
-      >{(isFullscreen) ? "Volver" : "Ver Galería"}</button>
+        className={classes.fullScreenButton}
+      >{(isFullscreen) ? "Volver" : "Ver Galería"}</Button>
   );
 
   const imageGallery = <ImageGallery 

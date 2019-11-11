@@ -1,12 +1,19 @@
-import React from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import Pricing, { PricingProps } from './Pricing/Pricing';
-import './Room.scss';
-
+import React, {SFC} from 'react';
+import { Grid, Typography, Box } from '@material-ui/core';
+import Pricing, { Rate } from './Pricing/Pricing';
+import Description from '../../../Description';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import RoomImages from './RoomImages';
+import Amenities from '../../Amenities';
 
 export interface RoomProps {
+  room: RoomDetail;
+  onReserve: (id:string) => void;
+}
+
+export interface RoomDetail {
   content: RoomContent;
-  pricing: Array<PricingProps>;
+  pricing: Array<Rate>;
 }
 
 export interface RoomContent {
@@ -32,18 +39,39 @@ export interface Image {
   url: string;
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    roomName: {
+      marginTop: 20,
+      borderBottomWidth: "1px",
+      borderBottomStyle: "solid",
+      borderBottomColor: theme.palette.divider
+    },
+    pricing: {
+      marginTop: 20
+    }
+  }),
+);
 
-const Room = (room: RoomProps) => {
+const Room: SFC<RoomProps> = props => {
 
-  const description = room.content.description
-    .split("\n")
-    .map((paragraph, index) => <Typography paragraph={true} align="justify" key={index}>{paragraph}</Typography>);
+  const classes = useStyles();
 
-  const pricing = room.pricing.map((pricing, index) => <Pricing {...pricing} key={index}/>);
+  const pricing = props.room.pricing.map((rate, index) => <Box className={classes.pricing}><Pricing rate={rate} onReserve={props.onReserve} key={index}/></Box>);
   
-  return <Grid container item xs={12}>
-    <Grid item xs={12} className="otravo-room-name">{room.content.name}</Grid>
-    <Grid item xs={12} className="otravo-room-description">{description}</Grid>
+  return <Grid container spacing={2}>
+    <Grid item xs={12} className={classes.roomName}>
+      <Typography variant="h1">{props.room.content.name}</Typography>
+    </Grid>
+    <Grid item xs={12}>
+      <RoomImages images={props.room.content.images}/>
+    </Grid>
+    <Grid item xs={12}>
+      <Description text={props.room.content.description}></Description>
+    </Grid>
+    <Grid item xs={12}>
+      <Amenities amenities={props.room.content.amenities} title="Servicios"/>
+    </Grid>
     <Grid item xs={12}>{pricing}</Grid>
   </Grid>;
 }

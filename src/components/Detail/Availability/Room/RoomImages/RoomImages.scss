@@ -1,0 +1,35 @@
+@import "../../../../../styles/global.scss";
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+.image-gallery button:focus {
+  outline: none;
+}
+
+.otravo-detail-room-image {
+  @media (orientation:landscape) {
+    height: 87vh;
+  }
+
+  @media (orientation:portrait) {
+    height: 50vh;
+  }
+
+  overflow: hidden;
+}
+
+.otravo-detail-room-image img{
+  @media (orientation:landscape) {
+    height: 100vh;
+  }
+
+  @media (orientation:portrait) {
+    width: 100vh;
+  }
+}
+
+.fullscreen .otravo-detail-room-image {
+  height: 100vh !important;
+}
+
+
+

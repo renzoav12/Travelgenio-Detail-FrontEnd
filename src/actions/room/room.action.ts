@@ -8,7 +8,7 @@ import {
 } from './room.actionTypes';
 import { RootState } from '../../store';
 import { AxiosResponse } from 'axios';
-import { RoomProps } from '../../components/Detail/Availability/Room/Room';
+import { RoomDetail } from '../../components/Detail/Availability/Room/Room';
 import rooms from '../../api/rooms/rooms';
 
 export function roomsFetchStart() : RoomActionTypes {
@@ -29,21 +29,20 @@ export function roomsFetchFailed() : RoomActionTypes {
     }
 }
 
-export function roomsUpdate(rooms: RoomProps[]) : RoomActionTypes {
+export function roomsUpdate(rooms: RoomDetail[]) : RoomActionTypes {
     return {
         type: ROOM_UPDATE,
         rooms: rooms
     }
 }
 
-export const roomsFetch = (action: (rooms: RoomProps[]) => void) => async (
+export const roomsFetch = (action: (rooms: RoomDetail[]) => void) => async (
     dispatch,
     getState: () => RootState
 ) => {
     dispatch(roomsFetchStart());
-    console.log(getState().detail.search);
     try {
-        const response: AxiosResponse<Array<RoomProps>> = await rooms.get(
+        const response: AxiosResponse<Array<RoomDetail>> = await rooms.get(
             '/rooms',
             { 
                 params: {

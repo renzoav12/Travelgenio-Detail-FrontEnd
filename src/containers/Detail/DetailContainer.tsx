@@ -1,30 +1,36 @@
 import React, { Component } from 'react';
 import { RootState } from '../../store';
 import { connect } from 'react-redux';
-import { AccommodationProps } from '../../components/Detail/Content/Accommodation';
-
-import './DetailContainer.scss';
+import { AccommodationProps } from '../../components/Detail/Accommodation/Accommodation';
 import { thunkSearchUpdate } from '../../actions/detail/detail.action';
 import { Search } from '../../model/search';
 import Detail from '../../components/Detail';
-import { RoomProps } from '../../components/Detail/Availability/Room/Room';
+import { RoomDetail } from '../../components/Detail/Availability/Room/Room';
 
 
 interface DetailContainerProps {
   search: Search;
   accommodation: AccommodationProps;
-  rooms: Array<RoomProps>;
+  rooms: Array<RoomDetail>;
   searchUpdate: (search: Search) => void;
 }
 
 class DetailContainer extends Component<DetailContainerProps> {
+  constructor(props) {
+    super(props);
+    this.onReserve.bind(this);
+  }
 
   componentDidMount() {
     this.props.searchUpdate(this.props.search);
   }
 
+  onReserve = (id:string):void => {
+    console.info("RESERVE " + id);
+  }
+
   render() {
-    return <Detail accommodation= {this.props.accommodation} rooms={this.props.rooms}/>;
+    return <Detail accommodation= {this.props.accommodation} rooms={this.props.rooms} onReserve={this.onReserve}/>;
   }
 }
 

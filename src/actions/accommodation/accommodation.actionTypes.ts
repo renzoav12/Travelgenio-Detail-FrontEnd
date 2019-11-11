@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { AccommodationProps } from "../../components/Detail/Content/Accommodation";
+import { AccommodationProps } from "../../components/Detail/Accommodation/Accommodation";
 
 export const ACCOMMODATION_FETCH_START = 'CATALOG_FETCH_START'
 export const ACCOMMODATION_FETCH_SUCCESS = 'CATALOG_FETCH_SUCCESS'
