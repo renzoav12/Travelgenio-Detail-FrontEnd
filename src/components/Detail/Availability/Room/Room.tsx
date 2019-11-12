@@ -8,7 +8,7 @@ import Amenities from '../../Amenities';
 
 export interface RoomProps {
   room: RoomDetail;
-  onReserve: (id:string) => void;
+  onSelect: (id:string) => void;
 }
 
 export interface RoomDetail {
@@ -57,7 +57,7 @@ const Room: SFC<RoomProps> = props => {
 
   const classes = useStyles();
 
-  const pricing = props.room.pricing.map((rate, index) => <Box className={classes.pricing}><Pricing rate={rate} onReserve={props.onReserve} key={index}/></Box>);
+  const pricing = props.room.pricing.map((rate, index) => <Box className={classes.pricing}><Pricing rate={rate} onSelect={props.onSelect} key={index}/></Box>);
   
   return <Grid container spacing={2}>
     <Grid item xs={12} className={classes.roomName}>

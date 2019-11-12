@@ -6,31 +6,23 @@ import { thunkSearchUpdate } from '../../actions/detail/detail.action';
 import { Search } from '../../model/search';
 import Detail from '../../components/Detail';
 import { RoomDetail } from '../../components/Detail/Availability/Room/Room';
-
+import { thunkRoomSelect } from '../../actions/room/room.action';
 
 interface DetailContainerProps {
   search: Search;
   accommodation: AccommodationProps;
   rooms: Array<RoomDetail>;
-  searchUpdate: (search: Search) => void;
+  onSearch: (search: Search) => void;
+  onSelect: (id: string) => void;
 }
 
 class DetailContainer extends Component<DetailContainerProps> {
-  constructor(props) {
-    super(props);
-    this.onReserve.bind(this);
-  }
-
   componentDidMount() {
-    this.props.searchUpdate(this.props.search);
-  }
-
-  onReserve = (id:string):void => {
-    console.info("RESERVE " + id);
+    this.props.onSearch(this.props.search);
   }
 
   render() {
-    return <Detail accommodation= {this.props.accommodation} rooms={this.props.rooms} onReserve={this.onReserve}/>;
+    return <Detail accommodation= {this.props.accommodation} rooms={this.props.rooms} onSelect={this.props.onSelect}/>;
   }
 }
 
@@ -52,6 +44,7 @@ const mapStateToProps = (rootState: RootState, ownProps) => {
 export default connect(
   mapStateToProps,
   {
-    searchUpdate: thunkSearchUpdate
+    onSearch: thunkSearchUpdate,
+    onSelect: thunkRoomSelect
   }
 )(DetailContainer);

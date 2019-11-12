@@ -4,13 +4,13 @@ import Room, { RoomDetail } from './Room/Room';
 
 interface AvailabilityProps {
   rooms: Array<RoomDetail>;
-  onReserve: (id: string) => void;
+  onSelect: (id: string) => void;
 }
 
 const Availability: SFC<AvailabilityProps> = props => {
   const rooms = props.rooms.map((room, index) => 
       <Grid item xs={12} key={index}>
-        <Room room={room} onReserve={props.onReserve}/>
+        <Room room={room} onSelect={props.onSelect}/>
       </Grid>);
   
   return <Paper>
