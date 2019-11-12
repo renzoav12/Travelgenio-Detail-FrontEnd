@@ -7,7 +7,7 @@ import { RoomDetail } from './Availability/Room/Room';
 export interface DetailProps {
   accommodation: AccommodationProps;
   rooms: Array<RoomDetail>;
-  onReserve: (id: string) => void;
+  onSelect: (id: string) => void;
 }
 
 const Detail: SFC<DetailProps> = props => {
@@ -16,7 +16,7 @@ const Detail: SFC<DetailProps> = props => {
             <Accommodation {...props.accommodation}/>
           </Grid>
           <Grid item xs={12}>
-            <Availability rooms={props.rooms} onReserve={props.onReserve}/>
+            <Availability rooms={props.rooms} onSelect={props.onSelect}/>
           </Grid>
         </Grid>;
 }

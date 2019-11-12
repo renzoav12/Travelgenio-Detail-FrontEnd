@@ -6,7 +6,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 export interface PricingProps {
   rate: Rate;
-  onReserve: (id: string) => void;
+  onSelect: (id: string) => void;
 }
 export interface Rate {
   id: string;
@@ -67,7 +67,7 @@ const Pricing: SFC<PricingProps> = props => {
       <Grid container item xs={12} justify="flex-end" className={classes.priceDescription}>{props.rate.nights} noches<br/> Incluye impuestos</Grid>
     </Grid>
     <Grid item xs={12} sm={4} md={2}>
-      <Button variant="contained" color="primary" fullWidth onClick={(event) => props.onReserve(props.rate.id)}>Reservar</Button>
+      <Button variant="contained" color="primary" fullWidth onClick={(event) => props.onSelect(props.rate.id)}>Reservar</Button>
     </Grid>
   </Grid>
 }
