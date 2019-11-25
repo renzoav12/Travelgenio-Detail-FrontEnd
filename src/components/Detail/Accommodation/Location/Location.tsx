@@ -44,7 +44,7 @@ const Location: SFC<Location> = props => {
     const street = props.location.address.street.name + " " + props.location.address.street.number;
     const city = (street.length > 1 ? ", ": "") + props.location.address.city.name;
 
-    return <Grid item xs={12}>
+    return <Grid container item xs={12} alignItems="center">
         <LocationOnIcon fontSize="small"/> {street} {city}
       </Grid>;
 }

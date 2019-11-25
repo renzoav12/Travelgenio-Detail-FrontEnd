@@ -45,7 +45,7 @@ const Accommodation: SFC<AccommodationProps> = props => {
 
   return <Paper>
     <Grid container spacing={2}>
-      <Grid container item xs={12} alignItems="flex-start" spacing={2}>
+      <Grid container item xs={12} alignItems="center" spacing={2}>
         <Grid item>
           <Typography variant="h1">{props.name}</Typography>
         </Grid>

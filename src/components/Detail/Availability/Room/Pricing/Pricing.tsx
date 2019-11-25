@@ -31,12 +31,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     cancelPolicy: {
       '& p': {
-        fontWeight: "bold"
+        fontWeight: "600"
       }
     },
     price: {
       color: theme.palette.primary.main,
-      fontSize: 30,
+      fontSize: 20,
       fontWeight: "bold",
       paddingRight: 20
     },

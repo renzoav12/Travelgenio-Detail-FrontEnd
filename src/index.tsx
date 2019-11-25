@@ -15,7 +15,10 @@ const theme = createMuiTheme({
         contrastText: "#FFFFFF",
     },
     background: {
-      default: "#ECEEF2"
+      default: "#E5E5E5"
+    },
+    text: {
+      primary: "#3D4355"
     },
     divider: "#C0C6D1"
   },
@@ -23,12 +26,12 @@ const theme = createMuiTheme({
     fontFamily: "Open Sans",
     fontSize: 14,
     h1: {
-      fontSize: 22,
+      fontSize: 18,
       fontWeight: "bold"
     },
     h2: {
-      fontSize: 17,
-      fontWeight: "bold"
+      fontSize: 16,
+      fontWeight: 600
     }
   },
   overrides: {
@@ -37,7 +40,13 @@ const theme = createMuiTheme({
         padding: 20,
         marginTop: 20,
         marginLeft: 20,
-        marginRight: 20
+        marginRight: 20,
+        borderStyle: "solid",
+        border: "1px",
+        borderColor: "#C0C6D1"
+      },
+      elevation1: {
+        boxShadow: "none"
       }
     }
   }

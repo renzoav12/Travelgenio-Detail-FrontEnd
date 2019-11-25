@@ -5,31 +5,12 @@
   outline: none;
 }
 
-.otravo-detail-room-image {
-  @media (orientation:landscape) {
-    height: 87vh;
-  }
-
-  @media (orientation:portrait) {
-    height: 50vh;
-  }
-
-  overflow: hidden;
+.image-gallery-right-nav {
+  padding: 0;
+  padding-right: 15px;
 }
 
-.otravo-detail-room-image img{
-  @media (orientation:landscape) {
-    height: 100vh;
-  }
-
-  @media (orientation:portrait) {
-    width: 100vh;
-  }
+.image-gallery-right-left {
+  padding: 0;
+  padding-left: 15px;
 }
-
-.fullscreen .otravo-detail-room-image {
-  height: 100vh !important;
-}
-
-
-
