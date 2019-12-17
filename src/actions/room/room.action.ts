@@ -37,7 +37,7 @@ export function roomsUpdate(rooms: RoomDetail[]) : RoomActionTypes {
 }
 
 export const thunkRoomSelect = (roomId: string) => async () => {
-    window.location.replace("http://d32dyws017lio2.cloudfront.net/" + roomId);
+    window.location.replace("/hotels/checkout/" + roomId);
   };
 
 export const roomsFetch = (action: (rooms: RoomDetail[]) => void) => async (
