@@ -41,7 +41,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deployTG": "aws s3 sync build/ s3://hotels-fe-dev/detail/ --profile otravo --delete",
+    "deploy": "aws s3 sync build/ s3://hotels-fe-dev/detail/ --profile otravo --delete",
     "deployLB": "aws s3 sync build/ s3://otravo/detail/ --profile my --delete --acl public-read",
     "deployCF": "aws s3 sync build/ s3://otravo-hotels-site/detail/ --profile my --delete --acl public-read"
   },
