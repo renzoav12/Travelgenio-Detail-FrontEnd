@@ -18,7 +18,7 @@ const Detail: SFC<DetailProps> = props => {
             <Accommodation accommodation={props.accommodation} loading={props.accommodationLoading}/>
           </Grid>
           <Grid item xs={12}>
-            <Availability rooms={props.rooms} onSelect={props.onSelect}/>
+            <Availability rooms={props.rooms} loading={props.roomsLoading} onSelect={props.onSelect}/>
           </Grid>
         </Grid>;
 }
