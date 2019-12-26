@@ -67,10 +67,7 @@ const Accommodation: SFC<Props> = props => {
       <Grid item xs={12}>
         <Images {...props.accommodation}/>
       </Grid>
-      {props.loading ? 
-      <Grid item xs={12}><LinearProgress></LinearProgress></Grid> 
-      :
-      <Grid item container xs={12}  spacing={2}>
+      {!props.loading && <Grid item container xs={12}  spacing={2}>
         <Grid item xs={12}>
         <Typography variant="h1">Información</Typography>
         </Grid>

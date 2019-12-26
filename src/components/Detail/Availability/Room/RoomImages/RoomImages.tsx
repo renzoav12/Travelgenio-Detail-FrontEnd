@@ -31,7 +31,9 @@ const Images: SFC<RoomImagesProps> = props => {
   const images = props.images.map(image => {
     return {
       original: image.url,
-      thumbnail: image.url
+      thumbnail: image.url,
+      originalClass: 'otravo-detail-room-image',
+      thumbnailClass: 'otravo-detail-room-image-thumbnail'
     };
   });
 
