@@ -12,6 +12,8 @@ interface DetailContainerProps {
   search: Search;
   accommodation: AccommodationProps;
   rooms: Array<RoomDetail>;
+  accommodationLoading: boolean;
+  roomsLoading: boolean;
   onSearch: (search: Search) => void;
   onSelect: (id: string) => void;
 }
@@ -20,9 +22,13 @@ class DetailContainer extends Component<DetailContainerProps> {
   componentDidMount() {
     this.props.onSearch(this.props.search);
   }
-
   render() {
-    return <Detail accommodation= {this.props.accommodation} rooms={this.props.rooms} onSelect={this.props.onSelect}/>;
+    return <Detail 
+        accommodation= {this.props.accommodation} 
+        rooms={this.props.rooms} 
+        accommodationLoading = {this.props.accommodationLoading} 
+        roomsLoading = {this.props.roomsLoading} 
+        onSelect={this.props.onSelect}/>;
   }
 }
 
@@ -37,7 +43,9 @@ const mapStateToProps = (rootState: RootState, ownProps) => {
           to: ownProps.match.params.stayTo
         },
         occupancy: ownProps.match.params.occupancy
-      }
+      },
+      accommodationLoading: rootState.detail.accommodationLoading,
+      roomsLoading: rootState.detail.roomsLoading
   };
 };
 
