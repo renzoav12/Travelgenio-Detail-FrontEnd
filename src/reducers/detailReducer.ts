@@ -14,23 +14,20 @@ import {
     ROOM_FETCH_SUCCESS,
     ROOM_UPDATE
 } from '../actions/room/room.actionTypes';
+import loadingImage from '../assets/images/loadingHotel.jpg';
 
 const initialState: Detail = {
     search: {
-        accommodationId: '10344566',
+        accommodationId: '',
         stay: {
-            from: '2019-11-20',
-            to: '2019-11-21'
+            from: '',
+            to: ''
         },
-        occupancy: '2'
+        occupancy: ''
     },
     accommodation: {
-        name: 'Faena',
-        images: [
-            {"url": "https://i.travelapi.com/hotels/1000000/570000/565000/564911/946c5610_z.jpg"},
-            {"url": "https://i.travelapi.com/hotels/1000000/570000/565000/564911/72a2a331_z.jpg"},
-            {"url": "https://i.travelapi.com/hotels/1000000/570000/565000/564911/9aea1d21_z.jpg"}
-        ],
+        name: '',
+        images: [{url:loadingImage}, {url:loadingImage}, {url:loadingImage}],
         amenities: [],
         location: {
             address: {
@@ -56,23 +53,23 @@ const initialState: Detail = {
         },
         category: {
             id: '',
-            code: '3'
+            code: ''
         },
         checkInOut: {
             checkIn: {
-                beginTime: '14:00',
-                endTime: '20:00'
+                beginTime: '',
+                endTime: ''
             },
             checkOut: {
-                time: '10:00'
+                time: ''
             },
             instructions: ''
         },
         description: ''
     },
     rooms: [],
-    accommodationLoading: false,
-    roomsLoading: false,
+    accommodationLoading: true,
+    roomsLoading: true,
     error: null
 };
 

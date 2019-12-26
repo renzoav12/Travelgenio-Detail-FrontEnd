@@ -59,10 +59,10 @@ const Images: SFC<ImagesProps> = props => {
           <Hidden only={['xs', 'sm']}>
             <Grid container item md={4}>
               <Grid container item md={12} className="otravo-detail-images-second-image">
-                <Image url={props.images[1].url}/>
+                <Image url={props.images.length > 1 ? props.images[1].url: ''}/>
               </Grid>
               <Grid container item md={12}>
-                <Image url={props.images[2].url}/>
+                <Image url={props.images.length > 2 ? props.images[2].url : ''}/>
               </Grid>
             </Grid>
           </Hidden>
