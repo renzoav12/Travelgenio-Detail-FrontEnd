@@ -1,8 +1,6 @@
 import React, {SFC} from 'react';
-import { Grid, Button} from '@material-ui/core';
-import Description from '../../../../Description';
+import { Grid, Button, Box} from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-
 
 export interface PricingProps {
   rate: Rate;
@@ -51,12 +49,12 @@ const useStyles = makeStyles((theme: Theme) =>
 const Pricing: SFC<PricingProps> = props => {
   const classes = useStyles();
 
-  const cancelPolicies = props.rate.cancelPolicy.map((cancelPolicy, index) => <Description text={cancelPolicy} key={index}></Description>);
+  const cancelPolicies = props.rate.cancelPolicy.map((cancelPolicy, index) => <Box key={index}>{cancelPolicy}</Box>);
 
   return <Grid container className={classes.priceSection}>
     <Grid container item xs={12} sm={12} md={6}>
       <Grid item xs={12}>
-        <Description text={props.rate.mealPlan}/>
+        {props.rate.mealPlan}
       </Grid>
       <Grid item xs={12} className={classes.cancelPolicy}>
         {cancelPolicies}

@@ -67,7 +67,7 @@ const Room: SFC<RoomProps> = props => {
       <RoomImages images={props.room.content.images}/>
     </Grid>
     <Grid item xs={12} sm={6} md={8} lg={9}>
-      <Description text={props.room.content.description}></Description>
+      <Description text={props.room.content.description}/>
     </Grid>
     <Grid item xs={12}>
       <Amenities amenities={props.room.content.amenities} title="Servicios"/>
