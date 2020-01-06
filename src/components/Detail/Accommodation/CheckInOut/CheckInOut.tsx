@@ -41,7 +41,7 @@ const CheckInCheckOut: SFC<CheckInOutProps> = props => {
 
   return <Grid container item spacing={2} alignItems="flex-start">
     <Grid item xs={12} className="otravo-title">
-      <Typography variant="h1">Condiciones</Typography>
+      <Typography variant="h1">Condiciones del alojamiento</Typography>
     </Grid>
     <Grid item xs={3} md={2} lg={1} className={classes.CheckIn}>
       Check In:
