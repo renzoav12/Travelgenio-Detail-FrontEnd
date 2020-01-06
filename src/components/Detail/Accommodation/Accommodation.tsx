@@ -1,4 +1,4 @@
-import React, {SFC} from 'react';
+import React, {FunctionComponent} from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import Images from './Images';
 import Amenities from '../Amenities';
@@ -35,24 +35,27 @@ export interface CategoryProps {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     section: {
-      marginTop: 20
+      marginTop: 18,
+      marginBottom: 18,
     },
     sectionBorder: {
       borderTopWidth: "1px",
       borderTopStyle: "solid",
-      borderTopColor: theme.palette.divider
+      borderTopColor: theme.palette.divider,
+      paddingTop: "36px !important",
+      paddingBottom: "36px !important",
     }
   }),
 );
 
-const Accommodation: SFC<Props> = props => {
+const Accommodation: FunctionComponent<Props> = props => {
   const classes = useStyles();
   return <Paper>
     <Grid container spacing={2}>
       {props.loading ? 
       <Grid item xs={12}><LinearProgress></LinearProgress></Grid> 
       :
-      <Grid container item xs={12} alignItems="center" spacing={2}>
+      <Grid container item xs={12} alignItems="center" spacing={1}>
         <Grid item>
           <Typography variant="h1">{props.accommodation.name}</Typography>
         </Grid>
@@ -67,9 +70,9 @@ const Accommodation: SFC<Props> = props => {
       <Grid item xs={12}>
         <Images {...props.accommodation}/>
       </Grid>
-      {!props.loading && <Grid item container xs={12}  spacing={2}>
+      {!props.loading && <Grid item container xs={12} spacing={2} className={classes.section}>
         <Grid item xs={12}>
-        <Typography variant="h1">Información</Typography>
+          <Typography variant="h1">Información</Typography>
         </Grid>
         <Grid item xs={12}>
           <Description text={props.accommodation.description}/>

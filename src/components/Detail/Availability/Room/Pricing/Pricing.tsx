@@ -1,6 +1,7 @@
-import React, {SFC} from 'react';
+import React, {FunctionComponent} from 'react';
 import { Grid, Button, Box} from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import MealPlan from '../../../../MealPlan/MealPlan';
 
 export interface PricingProps {
   rate: Rate;
@@ -28,9 +29,8 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: theme.shape.borderRadius
     },
     cancelPolicy: {
-      '& p': {
-        fontWeight: "600"
-      }
+      paddingTop: 20,
+      fontWeight: 600
     },
     price: {
       color: theme.palette.primary.main,
@@ -41,12 +41,13 @@ const useStyles = makeStyles((theme: Theme) =>
     priceDescription: {
       paddingRight: 20,
       textAlign: "right"
-    }
+    },
+
 
   }),
 );
 
-const Pricing: SFC<PricingProps> = props => {
+const Pricing: FunctionComponent<PricingProps> = props => {
   const classes = useStyles();
 
   const cancelPolicies = props.rate.cancelPolicy.map((cancelPolicy, index) => <Box key={index}>{cancelPolicy}</Box>);
@@ -54,7 +55,7 @@ const Pricing: SFC<PricingProps> = props => {
   return <Grid container className={classes.priceSection}>
     <Grid container item xs={12} sm={12} md={6}>
       <Grid item xs={12}>
-        {props.rate.mealPlan}
+        <MealPlan code="all_inclusive" description="¡All Inclusive!"/>
       </Grid>
       <Grid item xs={12} className={classes.cancelPolicy}>
         {cancelPolicies}

@@ -1,4 +1,4 @@
-import React, {SFC} from 'react';
+import React, {FunctionComponent} from 'react';
 import { Grid, Typography, Box } from '@material-ui/core';
 import Pricing, { Rate } from './Pricing/Pricing';
 import Description from '../../../Description';
@@ -43,17 +43,21 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     roomName: {
       marginTop: 20,
+      marginBottom: 15,
       borderBottomWidth: "1px",
       borderBottomStyle: "solid",
       borderBottomColor: theme.palette.divider
     },
     pricing: {
       marginTop: 20
+    },
+    amenities: {
+      marginTop: 20
     }
   }),
 );
 
-const Room: SFC<RoomProps> = props => {
+const Room: FunctionComponent<RoomProps> = props => {
 
   const classes = useStyles();
 
@@ -69,9 +73,11 @@ const Room: SFC<RoomProps> = props => {
     <Grid item xs={12} sm={6} md={8} lg={9}>
       <Description text={props.room.content.description}/>
     </Grid>
-    <Grid item xs={12}>
+    {(props.room.content.amenities.length > 0) ?
+    <Grid item xs={12} className={classes.amenities}>
       <Amenities amenities={props.room.content.amenities} title="Servicios"/>
     </Grid>
+    : null}
     <Grid item xs={12}>{pricing}</Grid>
   </Grid>;
 }
