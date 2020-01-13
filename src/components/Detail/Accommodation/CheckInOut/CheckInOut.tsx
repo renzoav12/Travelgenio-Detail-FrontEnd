@@ -1,62 +1,75 @@
-import React, {SFC} from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import Description from '../../../Description';
+import React, {FunctionComponent} from 'react';
+import { Grid, Typography, Box } from '@material-ui/core';
+import Description from '../../../Description/Description';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Skeleton from 'react-loading-skeleton';
+
+
+export interface CheckInOutLoadingProps {
+  checkInOut: CheckInOutProps;
+  loading: boolean;
+}
 
 export interface CheckInOutProps {
-  readonly checkIn: CheckInProps;
-  readonly checkOut: CheckOutProps;
-  readonly instructions: string;
+  checkIn: CheckInProps;
+  checkOut: CheckOutProps;
+  instructions: string;
 }
 
 export interface CheckInProps {
-  readonly beginTime: string;
-  readonly endTime: string;
+  beginTime: string;
+  endTime: string;
 }
 
 export interface CheckOutProps {
-  readonly time: string;
+  time: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    CheckIn: {
+    checkIn: {
       fontWeight: "bold"
     },
-    CheckOut: {
+    checkOut: {
       fontWeight: "bold"
+    }, 
+    skeleton: {
+      '& span': {
+        marginTop: 10
+      }
     }
   }),
 );
 
-const CheckInCheckOut: SFC<CheckInOutProps> = props => {
+const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = props => {
 
   const classes = useStyles();
 
-  const checkInEndTime =props.checkIn.endTime
-    && props.checkIn.endTime !== props.checkIn.beginTime  
-    ? `a ${props.checkIn.endTime} Hs.` : "";
+  const checkInEndTime =props.checkInOut.checkIn.endTime
+    && props.checkInOut.checkIn.endTime !== props.checkInOut.checkIn.beginTime  
+    ? `a ${props.checkInOut.checkIn.endTime} Hs.` : "";
 
-  const checkInHour = <div> A partir de {props.checkIn.beginTime} Hs. {checkInEndTime}</div>;
+  const checkInHour = () => <div> {props.checkInOut.checkIn.beginTime ? `A partir de ${props.checkInOut.checkIn.beginTime} Hs.` : ""} {checkInEndTime}</div>;
+  const checkOutHour = () => <div> {props.checkInOut.checkOut.time ? `Hasta las ${props.checkInOut.checkOut.time} Hs.` : ""}</div>;
 
   return <Grid container item spacing={2} alignItems="flex-start">
     <Grid item xs={12} className="otravo-title">
       <Typography variant="h1">Condiciones del alojamiento</Typography>
     </Grid>
-    <Grid item xs={3} md={2} lg={1} className={classes.CheckIn}>
+    <Grid item xs={3} md={2} lg={1} className={classes.checkIn}>
       Check In:
     </Grid>
     <Grid item xs={9} md={10} lg={11}>
-      {checkInHour}
+      {props.loading ? <Skeleton height={20}/> : checkInHour()}
     </Grid>
-    <Grid item xs={3} md={2} lg={1} className={classes.CheckOut}>
+    <Grid item xs={3} md={2} lg={1} className={classes.checkOut}>
       Check Out:
     </Grid>
     <Grid item xs={9} md={10} lg={11}>
-      Hasta las {props.checkOut.time} Hs.
+      {props.loading ? <Skeleton height={20}/> : checkOutHour()}
     </Grid>
     <Grid item xs={12}>
-      <Description text={props.instructions}/>
+      {props.loading ? <Box className={classes.skeleton}><Skeleton height={20} count={3}/></Box> : <Description text={props.checkInOut.instructions}/>}
     </Grid>
   </Grid>;
 }
