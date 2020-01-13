@@ -1,7 +1,7 @@
 import React, {SFC} from 'react';
 import { Grid } from '@material-ui/core';
 import Accommodation, { AccommodationProps } from './Accommodation/Accommodation';
-import Availability from './Availability';
+import Availability from './Availability/Availability';
 import { RoomDetail } from './Availability/Room/Room';
 
 export interface DetailProps {

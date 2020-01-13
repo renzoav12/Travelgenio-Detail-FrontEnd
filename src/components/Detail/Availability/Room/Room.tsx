@@ -1,14 +1,17 @@
 import React, {FunctionComponent} from 'react';
 import { Grid, Typography, Box } from '@material-ui/core';
 import Pricing, { Rate } from './Pricing/Pricing';
-import Description from '../../../Description';
+import Description from '../../../Description/Description';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import RoomImages from './RoomImages';
-import Amenities from '../../Amenities';
+import RoomImages from './RoomImages/RoomImages';
+import Amenities from '../../Amenities/Amenities';
+import Skeleton from 'react-loading-skeleton';
+import loadingImage from '../../../../assets/images/loadingHotel.jpg'
 
 export interface RoomProps {
-  room: RoomDetail;
-  onSelect: (id:string) => void;
+  room?: RoomDetail;
+  onSelect?: (id:string) => void;
+  loading?: boolean;
 }
 
 export interface RoomDetail {
@@ -53,6 +56,16 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     amenities: {
       marginTop: 20
+    },
+    skeletonDescription: {
+      '& span': {
+        marginBottom: 15
+      }
+    },
+    skeletonPrices: {
+      '& span': {
+        marginTop: 20
+      }
     }
   }),
 );
@@ -61,21 +74,27 @@ const Room: FunctionComponent<RoomProps> = props => {
 
   const classes = useStyles();
 
-  const pricing = props.room.pricing.map((rate, index) => <Box className={classes.pricing} key={index}><Pricing rate={rate} onSelect={props.onSelect}/></Box>);
+  const pricing = props.room 
+    ? props.room.pricing.map((rate, index) => <Box className={classes.pricing} key={index}><Pricing rate={rate} onSelect={props.onSelect ? props.onSelect : (id: string)=>{}}/></Box>)
+    : <Box className={classes.skeletonPrices}><Skeleton height={120} count={2}/></Box>;
   
   return <Grid container spacing={2}>
     <Grid item xs={12} className={classes.roomName}>
-      <Typography variant="h1">{props.room.content.name}</Typography>
+      {props.room 
+        ? <Typography variant="h1">{props.room.content.name}</Typography>
+        : <Skeleton height={30}/>}
     </Grid>
     <Grid item xs={12} sm={6} md={4} lg={3}>
-      <RoomImages images={props.room.content.images}/>
+      <RoomImages images={props.room ? props.room.content.images : [{url:loadingImage}]}/>
     </Grid>
     <Grid item xs={12} sm={6} md={8} lg={9}>
-      <Description text={props.room.content.description}/>
+    {props.room 
+        ? <Description text={props.room.content.description}/>
+        : <Box className={classes.skeletonDescription}><Skeleton height={30} count={8}/></Box>}
     </Grid>
-    {(props.room.content.amenities.length > 0) ?
+    {(props.room && props.room.content.amenities.length > 0) ?
     <Grid item xs={12} className={classes.amenities}>
-      <Amenities amenities={props.room.content.amenities} title="Servicios"/>
+      <Amenities amenities={props.room.content.amenities} loading={props.loading ? props.loading : true} title="Servicios"/>
     </Grid>
     : null}
     <Grid item xs={12}>{pricing}</Grid>

@@ -1,8 +1,6 @@
 import React, {SFC} from 'react';
-import { Grid, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import ImageGallery from 'react-image-gallery';
-import Image from '../../../../Image';
-import Hidden from '@material-ui/core/Hidden';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import './RoomImages.scss';
 

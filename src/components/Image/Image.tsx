@@ -8,7 +8,7 @@ export interface ImageProps {
 };
 
 const loadingComponent = () => (
-  <img className="otravo-loading-image" src={loadingImage}/>
+  <img alt="" className="otravo-loading-image" src={loadingImage}/>
 )
 
 const Image = (props: ImageProps) => {

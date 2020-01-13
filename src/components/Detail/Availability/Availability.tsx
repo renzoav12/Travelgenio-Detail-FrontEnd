@@ -1,7 +1,6 @@
-import React, {SFC} from 'react';
+import React, {FunctionComponent} from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import Room, { RoomDetail } from './Room/Room';
-import LinearProgress from '@material-ui/core/LinearProgress';
 
 interface AvailabilityProps {
   rooms: Array<RoomDetail>;
@@ -9,26 +8,19 @@ interface AvailabilityProps {
   onSelect: (id: string) => void;
 }
 
-const Availability: SFC<AvailabilityProps> = props => {
-  const rooms = props.rooms.map((room, index) => 
+const Availability: FunctionComponent<AvailabilityProps> = props => {
+  const rooms = () => (props.rooms && props.rooms.length > 0) ? props.rooms.map((room, index) => 
       <Grid item xs={12} key={index}>
-        <Room room={room} onSelect={props.onSelect}/>
-      </Grid>);
+        <Room room={room} onSelect={props.onSelect} loading={props.loading}/>
+      </Grid>) : <Grid item xs={12}><Room/></Grid>;
   
   return <Paper>
-    {props.loading ?
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <LinearProgress/>
-      </Grid>
-    </Grid>
-    :
     <Grid container spacing={2}>
       <Grid item xs={12}>
         <Typography variant="h1">Habitaciones</Typography>
       </Grid>
-      {rooms}
-    </Grid>}
+      {rooms()}
+    </Grid>
   </Paper>;
 }
 

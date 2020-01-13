@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { AccommodationProps } from '../../components/Detail/Accommodation/Accommodation';
 import { thunkSearchUpdate } from '../../actions/detail/detail.action';
 import { Search } from '../../model/search';
-import Detail from '../../components/Detail';
+import Detail from '../../components/Detail/Detail';
 import { RoomDetail } from '../../components/Detail/Availability/Room/Room';
 import { thunkRoomSelect } from '../../actions/room/room.action';
 
