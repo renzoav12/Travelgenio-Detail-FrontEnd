@@ -41,8 +41,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = props => {
-  const begin24Hours = "0:00";
+  const begin24Hours = "00:00";
   const end24Hours = "23:59";
+  const noneCheckinHour = "El alojamiento no informa sobre hora de checkin.";
+  const noneCheckoutHour = "El alojamiento no informa sobre hora de checkout.";
 
   const classes = useStyles();
 
@@ -56,11 +58,14 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = props => {
     } else if(props.checkInOut.checkIn.endTime) {
       return <Box>Hasta las {props.checkInOut.checkIn.endTime} Hs.</Box>
     } else {
-      return <Box></Box>;
+      return <Box>{noneCheckinHour}</Box>;
     }
   }
   
-  const checkOutHour = () => <Box> {props.checkInOut.checkOut.time ? `Hasta las ${props.checkInOut.checkOut.time} Hs.` : ""}</Box>;
+  const checkOutHour = () => {
+    let checkoutTime = props.checkInOut.checkOut && props.checkInOut.checkOut.time ? `Hasta las ${props.checkInOut.checkOut.time} Hs.` : noneCheckoutHour;
+    return <Box>{checkoutTime}</Box>;
+  }
 
   return <Grid container item spacing={2} alignItems="flex-start">
     <Grid item xs={12} className="otravo-title">
