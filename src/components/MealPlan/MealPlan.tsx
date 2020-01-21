@@ -8,7 +8,8 @@ import classNames from 'classnames';
 
 export interface MealPlanProps {
   code: string;
-  description: string;
+  name: string;
+  type: string;
 };
 
 interface MealPlanType {
@@ -38,6 +39,10 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: "#028A51",
       color: "white"
     },
+    onlyRoom: {
+      backgroundColor: "white",
+      paddingLeft:15
+    },
     mealPlanIcon: {
       width: 30,
       height: 30,
@@ -58,17 +63,18 @@ const MealPlan: FunctionComponent<MealPlanProps> = props => {
     ["all_inclusive", {icon: <AllInclusive className={classes.mealPlanIcon}/>, class: classes.allInclusive}],
     ["half_board", {icon: <Meal className={classes.mealPlanIcon}/>, class: classes.mealPlan}],
     ["full_board", {icon: <Meal className={classes.mealPlanIcon}/>, class: classes.mealPlan}],
-    ["breakfast", {icon: <Breakfast className={classes.mealPlanIcon}/>, class: classes.mealPlan}]
+    ["breakfast", {icon: <Breakfast className={classes.mealPlanIcon}/>, class: classes.mealPlan}],
+    ["room_only", {icon: null, class: classes.onlyRoom}]
   ]);
   
-  const mealPlanType: MealPlanType | undefined = mealPlanTypes.get(props.code);
+  const mealPlanType: MealPlanType | undefined = mealPlanTypes.get("room_only"/*props.type*/);
 
   if(mealPlanType) {
     return <Box className={classes.container}>
       <Box className={classNames(classes.mealPlanBox, mealPlanType.class)}>
         {mealPlanType.icon}
         <Box className={classes.mealPlanDescription}>
-          {props.description}
+          {props.name}
         </Box>
       </Box>
     </Box>

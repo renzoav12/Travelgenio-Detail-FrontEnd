@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import { Grid, Button, Box} from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import MealPlan from '../../../../MealPlan/MealPlan';
+import MealPlan, { MealPlanProps } from '../../../../MealPlan/MealPlan';
 
 export interface PricingProps {
   rate: Rate;
@@ -9,7 +9,7 @@ export interface PricingProps {
 }
 export interface Rate {
   id: string;
-  mealPlan: string;
+  mealPlan: MealPlanProps;
   cancelPolicy: Array<string>;
   nights: number;
   nightlyPrice: Price;
@@ -55,7 +55,7 @@ const Pricing: FunctionComponent<PricingProps> = props => {
   return <Grid container className={classes.priceSection}>
     <Grid container item xs={12} sm={12} md={6}>
       <Grid item xs={12}>
-        <MealPlan code="all_inclusive" description="¡All Inclusive!"/>
+        <MealPlan {...props.rate.mealPlan}/>
       </Grid>
       <Grid item xs={12} className={classes.cancelPolicy}>
         {cancelPolicies}
