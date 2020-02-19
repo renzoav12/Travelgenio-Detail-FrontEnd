@@ -49,9 +49,9 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = props => {
   const classes = useStyles();
 
   const checkInHour = () => {
-    if(props.checkInOut.checkIn.beginTime == begin24Hours && props.checkInOut.checkIn.endTime == end24Hours) {
+    if(props.checkInOut.checkIn.beginTime === begin24Hours && props.checkInOut.checkIn.endTime === end24Hours) {
       return <Box> Las 24 Hs.</Box>;  
-    } else if(props.checkInOut.checkIn.beginTime && props.checkInOut.checkIn.endTime && props.checkInOut.checkIn.beginTime != props.checkInOut.checkIn.endTime) {
+    } else if(props.checkInOut.checkIn.beginTime && props.checkInOut.checkIn.endTime && props.checkInOut.checkIn.beginTime !== props.checkInOut.checkIn.endTime) {
       return <Box>A partir de {props.checkInOut.checkIn.beginTime} Hs. a {props.checkInOut.checkIn.endTime} Hs.</Box>;
     } else if(props.checkInOut.checkIn.beginTime) {
       return <Box>A partir de {props.checkInOut.checkIn.beginTime} Hs.</Box>
