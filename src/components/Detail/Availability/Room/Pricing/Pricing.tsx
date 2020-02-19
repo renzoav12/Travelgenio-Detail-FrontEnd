@@ -2,6 +2,7 @@ import React, {FunctionComponent} from 'react';
 import { Grid, Button, Box} from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import MealPlan, { MealPlanProps } from '../../../../MealPlan/MealPlan';
+import ExtraCharges, { ExtraChargesProps } from './ExtraCharges/ExtraCharges';
 
 export interface PricingProps {
   rate: Rate;
@@ -14,6 +15,7 @@ export interface Rate {
   nights: number;
   nightlyPrice: Price;
   stayPrice: Price;
+  extraCharges: ExtraChargesProps;
 }
 
 export interface Price {
@@ -48,6 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Pricing: FunctionComponent<PricingProps> = props => {
+
   const classes = useStyles();
 
   const cancelPolicies = props.rate.cancelPolicy.map((cancelPolicy, index) => <Box key={index}>{cancelPolicy}</Box>);
@@ -64,6 +67,7 @@ const Pricing: FunctionComponent<PricingProps> = props => {
     <Grid container item xs={12} sm={8} md={4} justify="flex-end">
       <Grid container item xs={12} justify="flex-end" className={classes.price}>{props.rate.stayPrice.amount} {props.rate.stayPrice.currency}</Grid>
       <Grid container item xs={12} justify="flex-end" className={classes.priceDescription}>{props.rate.nights} noches<br/> Incluye impuestos</Grid>
+      <Grid container item xs={12} justify="flex-end" className={classes.priceDescription}><ExtraCharges {...props.rate.extraCharges}/></Grid>
     </Grid>
     <Grid item xs={12} sm={4} md={2}>
       <Button variant="contained" color="primary" fullWidth onClick={(event) => props.onSelect(props.rate.id)}>Reservar</Button>
