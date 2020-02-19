@@ -60,14 +60,13 @@ const MealPlan: FunctionComponent<MealPlanProps> = props => {
   const classes = useStyles();
 
   const mealPlanTypes: Map<String, MealPlanType> = new Map([
-    ["all_inclusive", {icon: <AllInclusive className={classes.mealPlanIcon}/>, class: classes.allInclusive}],
-    ["half_board", {icon: <Meal className={classes.mealPlanIcon}/>, class: classes.mealPlan}],
-    ["full_board", {icon: <Meal className={classes.mealPlanIcon}/>, class: classes.mealPlan}],
-    ["breakfast", {icon: <Breakfast className={classes.mealPlanIcon}/>, class: classes.mealPlan}],
-    ["room_only", {icon: null, class: classes.onlyRoom}]
+    ["ALL_INCLUSIVE", {icon: <AllInclusive className={classes.mealPlanIcon}/>, class: classes.allInclusive}],
+    ["OTHER", {icon: <Meal className={classes.mealPlanIcon}/>, class: classes.mealPlan}],
+    ["BREAKFAST", {icon: <Breakfast className={classes.mealPlanIcon}/>, class: classes.mealPlan}],
+    ["", {icon: null, class: classes.onlyRoom}]
   ]);
   
-  const mealPlanType: MealPlanType | undefined = mealPlanTypes.get("room_only"/*props.type*/);
+  const mealPlanType: MealPlanType | undefined = mealPlanTypes.get(""/*props.type*/);
 
   if(mealPlanType) {
     return <Box className={classes.container}>
