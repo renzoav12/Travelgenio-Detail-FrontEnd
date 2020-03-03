@@ -1,9 +1,8 @@
 import React, {FunctionComponent} from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
-import Images from './Images/Images';
+import Images, { ImageProps } from './Images/Images';
 import Amenities from '../Amenities/Amenities';
 import { AmenityProps } from '../Amenities/Amenities';
-import { ImageProps } from './Images/Images';
 import CheckInOut from './CheckInOut/CheckInOut';
 import Category from '../../Category/Category';
 import Location, { LocationProps } from './Location/Location';
@@ -71,7 +70,7 @@ const Accommodation: FunctionComponent<Props> = props => {
           <Location location = {props.accommodation.location}/>
         </Grid>}
       <Grid item xs={12}>
-        <Images {...props.accommodation}/>
+        <Images images={props.accommodation.images} loading={props.loading}/>
       </Grid>
       <Grid item container xs={12} spacing={2} className={classes.section}>
         <Grid item xs={12}>

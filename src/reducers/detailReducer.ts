@@ -14,7 +14,6 @@ import {
     ROOM_FETCH_SUCCESS,
     ROOM_UPDATE
 } from '../actions/room/room.actionTypes';
-import loadingImage from '../assets/images/loadingHotel.jpg';
 
 const initialState: Detail = {
     search: {
@@ -27,7 +26,7 @@ const initialState: Detail = {
     },
     accommodation: {
         name: '',
-        images: [{url:loadingImage}, {url:loadingImage}, {url:loadingImage}],
+        images: [],
         amenities: [],
         location: {
             address: {

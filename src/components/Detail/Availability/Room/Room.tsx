@@ -3,10 +3,9 @@ import { Grid, Typography, Box } from '@material-ui/core';
 import Pricing, { Rate } from './Pricing/Pricing';
 import Description from '../../../Description/Description';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import RoomImages from './RoomImages/RoomImages';
 import Amenities from '../../Amenities/Amenities';
 import Skeleton from 'react-loading-skeleton';
-import loadingImage from '../../../../assets/images/loadingHotel.jpg'
+import Gallery from '../../../Gallery/Gallery';
 
 export interface RoomProps {
   room?: RoomDetail;
@@ -51,6 +50,9 @@ const useStyles = makeStyles((theme: Theme) =>
       borderBottomStyle: "solid",
       borderBottomColor: theme.palette.divider
     },
+    images: {
+      height: 350
+    },
     pricing: {
       marginTop: 20
     },
@@ -84,10 +86,10 @@ const Room: FunctionComponent<RoomProps> = props => {
         ? <Typography variant="h1">{props.room.content.name}</Typography>
         : <Skeleton height={30}/>}
     </Grid>
-    <Grid item xs={12} sm={6} md={4} lg={3}>
-      <RoomImages images={props.room ? props.room.content.images : [{url:loadingImage}]}/>
+    <Grid item xs={12} sm={6} md={5} lg={4} className={classes.images}>
+      <Gallery images={props.room ? props.room.content.images : []} loading={props.loading !== undefined ? props.loading : true}/>
     </Grid>
-    <Grid item xs={12} sm={6} md={8} lg={9}>
+    <Grid item xs={12} sm={6} md={7} lg={8}>
     {props.room 
         ? <Description text={props.room.content.description}/>
         : <Box className={classes.skeletonDescription}><Skeleton height={30} count={8}/></Box>}
