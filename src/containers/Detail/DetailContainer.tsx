@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { RootState } from '../../store';
 import { connect } from 'react-redux';
 import { AccommodationProps } from '../../components/Detail/Accommodation/Accommodation';
@@ -7,6 +7,7 @@ import { Search } from '../../model/search';
 import Detail from '../../components/Detail/Detail';
 import { RoomDetail } from '../../components/Detail/Availability/Room/Room';
 import { thunkRoomSelect } from '../../actions/room/room.action';
+import { Container } from "@material-ui/core";
 
 interface DetailContainerProps {
   search: Search;
@@ -18,18 +19,20 @@ interface DetailContainerProps {
   onSelect: (id: string) => void;
 }
 
-class DetailContainer extends Component<DetailContainerProps> {
-  componentDidMount() {
-    this.props.onSearch(this.props.search);
-  }
-  render() {
-    return <Detail 
-        accommodation= {this.props.accommodation} 
-        rooms={this.props.rooms} 
-        accommodationLoading = {this.props.accommodationLoading} 
-        roomsLoading = {this.props.roomsLoading} 
-        onSelect={this.props.onSelect}/>;
-  }
+const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
+  useEffect(() => {
+    props.onSearch(props.search);
+  }, []);
+
+
+  return <Container maxWidth="lg">
+    <Detail 
+      accommodation= {props.accommodation} 
+      rooms={props.rooms} 
+      accommodationLoading = {props.accommodationLoading} 
+      roomsLoading = {props.roomsLoading} 
+      onSelect={props.onSelect}/>
+  </Container>;
 }
 
 const mapStateToProps = (rootState: RootState, ownProps) => {
