@@ -4,8 +4,8 @@ const dev = {
 };
 
 const prod = {
-    ACCOMMODATION_API: "https://hotels-shopping-detail.travelagency.tech",
-    ROOMS_API: "https://hotels-shopping-detail.travelagency.tech"
+    ACCOMMODATION_API: "https://" + window.location.hostname + "/hotels/api/",
+    ROOMS_API: "https://" + window.location.hostname + "/hotels/api/"
 };
 
 const config = process.env.REACT_APP_STAGE === 'prod'
