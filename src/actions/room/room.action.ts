@@ -51,12 +51,12 @@ export const roomsFetch = (action: (rooms: RoomDetail[]) => void) => async (
             { 
                 params: {
                     occupancy: getState().detail.search.occupancy,
-                    locale: 'en-US',
+                    locale: 'es-ES',
                     checkIn: getState().detail.search.stay.from,
                     checkOut: getState().detail.search.stay.to,
                     accommodationId: getState().detail.search.accommodationId,
-                    country: 'US',
-                    language: 'en'
+                    country: 'ES',
+                    language: 'es'
                 }
             }
         );
