@@ -3,6 +3,7 @@ import { Grid, Button, Box} from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import MealPlan, { MealPlanProps } from '../../../../MealPlan/MealPlan';
 import ExtraCharges, { ExtraChargesProps } from './ExtraCharges/ExtraCharges';
+import { ROUTE_SEARCH_PRICE } from '../../../../Root/root.routes.constants';
 
 export interface PricingProps {
   rate: Rate;
@@ -16,8 +17,13 @@ export interface Rate {
   nightlyPrice: Price;
   stayPrice: Price;
   extraCharges: ExtraChargesProps;
+  breakdown: Breakdown;
 }
 
+export interface Breakdown {
+  tax: Price;
+  payWithoutTax: Price;
+}
 export interface Price {
   amount: string;
   currency: string;
@@ -66,7 +72,7 @@ const Pricing: FunctionComponent<PricingProps> = props => {
     </Grid>
     <Grid container item xs={12} sm={8} md={4} justify="flex-end">
       <Grid container item xs={12} justify="flex-end" className={classes.price}>{props.rate.stayPrice.amount} {props.rate.stayPrice.currency}</Grid>
-      <Grid container item xs={12} justify="flex-end" className={classes.priceDescription}>{props.rate.nights} noches<br/> Incluye impuestos</Grid>
+      <Grid container item xs={12} justify="flex-end" className={classes.priceDescription}>{props.rate.nights} noches {props.rate.breakdown.payWithoutTax.amount} {props.rate.breakdown.payWithoutTax.currency}<br/> Impuestos {props.rate.breakdown.tax.amount} {props.rate.breakdown.tax.currency}</Grid>
       <Grid container item xs={12} justify="flex-end" className={classes.priceDescription}><ExtraCharges {...props.rate.extraCharges}/></Grid>
     </Grid>
     <Grid item xs={12} sm={4} md={2}>
