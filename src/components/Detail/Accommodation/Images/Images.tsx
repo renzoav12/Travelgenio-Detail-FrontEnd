@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '100%'
     },
     galleryImages: {
-      height: 420,
+      height: 530,
       [theme.breakpoints.up('md')]: {
         paddingRight: 10
       }
