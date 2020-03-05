@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: 20
     },
     availabilities: {
-      marginTop: 20
+      marginTop: 20,
+      marginBottom: 20
     }
   }),
 );
