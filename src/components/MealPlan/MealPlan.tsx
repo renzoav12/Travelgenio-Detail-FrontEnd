@@ -66,7 +66,7 @@ const MealPlan: FunctionComponent<MealPlanProps> = props => {
     ["", {icon: null, class: classes.onlyRoom}]
   ]);
   
-  const mealPlanType: MealPlanType | undefined = mealPlanTypes.get(""/*props.type*/);
+  const mealPlanType: MealPlanType | undefined = mealPlanTypes.get(props.type);
 
   if(mealPlanType) {
     return <Box className={classes.container}>
