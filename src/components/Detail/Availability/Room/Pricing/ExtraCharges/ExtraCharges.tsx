@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useState} from 'react';
-import { Box, Typography } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Price } from '../Pricing';
 import Popover from '@material-ui/core/Popover';

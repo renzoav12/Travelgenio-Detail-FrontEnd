@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: 30,
       height: 30,
       marginLeft: 18,
-      marginTop:-20
+      marginTop:-8
     },
     mealPlanDescription: {
       paddingLeft: 10,

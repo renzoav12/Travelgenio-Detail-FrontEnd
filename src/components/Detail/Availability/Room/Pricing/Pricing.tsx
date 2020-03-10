@@ -3,7 +3,6 @@ import { Grid, Button, Box} from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import MealPlan, { MealPlanProps } from '../../../../MealPlan/MealPlan';
 import ExtraCharges, { ExtraChargesProps } from './ExtraCharges/ExtraCharges';
-import { ROUTE_SEARCH_PRICE } from '../../../../Root/root.routes.constants';
 
 export interface PricingProps {
   rate: Rate;
