@@ -22,7 +22,7 @@ interface DetailContainerProps {
 const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
   useEffect(() => {
     props.onSearch(props.search);
-  });
+  }, []);
 
 
   return <Container maxWidth="lg">
