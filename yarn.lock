@@ -1195,10 +1195,10 @@
     redux-thunk "2.3.0"
     typescript "~3.7.2"
 
-"@hotels/search-box@0.0.4":
-  version "0.0.4"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.4.tgz#3f8fef3a266a0fa2766588d0d995f2799f4eb13d"
-  integrity sha512-RGSPHK9kCz0PPzDBleYHrzdQEtzwDcTweWyx4LMQQZOMRaXq94VJbubWzwSmSU+LaUwNR0gsk/O04jeIv2VmHA==
+"@hotels/search-box@0.0.5":
+  version "0.0.5"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.5.tgz#39336fee41a1e707f7839062dcfbfc2569e1eb0a"
+  integrity sha512-G2KZ4JYLLIOBWIotiRmIHyxsWZGOOHSp5Aa5eUvx6D0j6gdBqsVdHsc6ap5PljBNPHCP6hl2uL378537JUhzNQ==
   dependencies:
     "@material-ui/core" "^4.9.5"
     "@material-ui/icons" "^4.9.1"
