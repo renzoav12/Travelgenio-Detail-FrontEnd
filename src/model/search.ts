@@ -28,5 +28,6 @@ export interface Detail {
     rooms: Array<RoomDetail>;
     accommodationLoading: boolean;
     roomsLoading: boolean;
-    error: String | null
+    error: String | null;
+    roomsOn: boolean;
 }

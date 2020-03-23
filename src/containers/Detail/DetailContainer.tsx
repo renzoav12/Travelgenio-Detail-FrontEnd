@@ -14,6 +14,7 @@ import { RoomDetail } from '../../components/Detail/Availability/Room/Room';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { fetchSuggestionSearch, fetchSuggestionSearchName, SearchNameSuggestionParameters } from '../../actions/suggestion/suggestion.action';
 import { thunkSearchBoxChange } from '../../actions/searchBox/searchBox.action';
+import  Message from '@hotels/message';
 
 interface DetailContainerProps {
   search: Search;
@@ -28,6 +29,7 @@ interface DetailContainerProps {
   onChangeSuggestionHint: (suggestionHint: SuggestionHint) => void;
   searchSuggestionName: (params: SearchNameSuggestionParameters) => void;
   onSearchBoxChange: (state: SearchBoxState) => void;
+  roomsOn: boolean;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -63,6 +65,9 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
   }, []);
 
   const classes = useStyles();
+  
+  const messageNoAvailability =  "No existe disponibilidad para la fecha de ingreso " +
+        props.search.stay.from + " y fecha de salida " + props.search.stay.to;
 
   return <Container maxWidth="lg">
     <Box className = {classes.searchBox}>
@@ -83,12 +88,14 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
         horizontal = {true}
         suggestions = {props.suggestions}/>
     </Box>
+    {!props.roomsOn ? <Message type="info" message={messageNoAvailability}></Message>: null}
     <Detail 
       accommodation= {props.accommodation} 
       rooms={props.rooms} 
       accommodationLoading = {props.accommodationLoading} 
       roomsLoading = {props.roomsLoading} 
-      onSelect={props.onSelect}/>
+      onSelect={props.onSelect}
+      roomsOn={props.roomsOn}/>
   </Container>;
 }
 
@@ -107,7 +114,8 @@ const mapStateToProps = (rootState: RootState, ownProps) => {
       accommodationLoading: rootState.detail.accommodationLoading,
       roomsLoading: rootState.detail.roomsLoading,
       suggestions: rootState.searchSuggestion.suggestions,
-      suggestionName: rootState.searchSuggestion.suggestionName      
+      suggestionName: rootState.searchSuggestion.suggestionName,
+      roomsOn: rootState.detail.roomsOn      
   };
 };
 

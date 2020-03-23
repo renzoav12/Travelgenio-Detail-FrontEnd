@@ -4,6 +4,7 @@ import {
     ROOM_FETCH_START,
     ROOM_FETCH_FAILED,
     ROOM_FETCH_SUCCESS,
+    ROOM_FETCH_EMPTY,
     ROOM_UPDATE 
 } from './room.actionTypes';
 import { RootState } from '../../store';
@@ -36,6 +37,12 @@ export function roomsUpdate(rooms: RoomDetail[]) : RoomActionTypes {
     }
 }
 
+export function roomsEmpty() : RoomActionTypes {
+     return {
+         type: ROOM_FETCH_EMPTY
+     }
+}
+
 export const thunkRoomSelect = (roomId: string) => async () => {
     window.location.replace("/hotels/checkout/" + roomId);
   };
@@ -60,9 +67,13 @@ export const roomsFetch = (action: (rooms: RoomDetail[]) => void) => async (
                 }
             }
         );
-        dispatch(action(response.data));
+        if (response.data.length > 0) {
+            dispatch(action(response.data));
+            dispatch(roomsFetchSuccess());
+        }else {
+            dispatch(roomsEmpty());
+        }
     } catch (e) {
         dispatch(roomsFetchFailed());
-    }
-    dispatch(roomsFetchSuccess());
+    }  
 };

@@ -12,7 +12,8 @@ import {
     ROOM_FETCH_START,
     ROOM_FETCH_FAILED,
     ROOM_FETCH_SUCCESS,
-    ROOM_UPDATE
+    ROOM_UPDATE,
+    ROOM_FETCH_EMPTY
 } from '../actions/room/room.actionTypes';
 
 const initialState: Detail = {
@@ -69,7 +70,8 @@ const initialState: Detail = {
     rooms: [],
     accommodationLoading: true,
     roomsLoading: true,
-    error: null
+    error: null,
+    roomsOn: true,
 };
 
 export const detailReducer: Reducer<Detail, RootAction> = (
@@ -88,13 +90,15 @@ export const detailReducer: Reducer<Detail, RootAction> = (
         case ACCOMMODATION_UPDATE:
             return {...state, accommodation: action.accommodation};
         case ROOM_FETCH_START:
-            return { ...state, roomsLoading: true };
+            return { ...state, roomsLoading: true, roomsOn: true };
         case ROOM_FETCH_FAILED:
             return { ...state, roomsLoading: false };
         case ROOM_FETCH_SUCCESS:
-            return {...state, roomsLoading: false };
+            return {...state, roomsLoading: false, roomsOn: true };
         case ROOM_UPDATE:
             return {...state, rooms: action.rooms};
+        case ROOM_FETCH_EMPTY:
+             return {...state, roomsLoading:false, roomsOn: false};
         default:
             return state;
     }

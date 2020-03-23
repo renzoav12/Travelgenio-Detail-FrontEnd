@@ -6,6 +6,7 @@ interface AvailabilityProps {
   rooms: Array<RoomDetail>;
   loading: boolean;
   onSelect: (id: string) => void;
+  roomsOn: boolean;
 }
 
 const Availability: FunctionComponent<AvailabilityProps> = props => {
