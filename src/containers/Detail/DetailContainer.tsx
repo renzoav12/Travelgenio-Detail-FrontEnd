@@ -5,7 +5,6 @@ import { AccommodationProps } from '../../components/Detail/Accommodation/Accomm
 import { thunkSearchUpdate } from '../../actions/detail/detail.action';
 import SearchBox, {SearchBoxState, SearchBoxOccupancyState, SearchBoxStayState} from '@hotels/search-box';
 import { SuggestionHint, SuggestionEntry } from '@hotels/search-box/dist/Autocomplete/Autocomplete';
-import moment from 'moment';
 import { Search } from '../../model/search';
 import { thunkRoomSelect } from '../../actions/room/room.action';
 import { Container, Box } from "@material-ui/core";
@@ -15,6 +14,8 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { fetchSuggestionSearch, fetchSuggestionSearchName, SearchNameSuggestionParameters } from '../../actions/suggestion/suggestion.action';
 import { thunkSearchBoxChange } from '../../actions/searchBox/searchBox.action';
 import SearchEmpty from '@hotels/search-empty';
+import { parseOccupancy } from '../../components/OccupancyDistribution/OccupancyDistribution';
+import { parseStay } from '../../utils/stay';
 
 interface DetailContainerProps {
   search: Search;
@@ -40,24 +41,6 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const parseOccupancy = (searchOccupancy: string): SearchBoxOccupancyState => {
-  let rooms = searchOccupancy.split("!")
-      .map(room => {
-        let guests = room.split("-"); 
-        return {
-          adults: parseInt(guests[0]),
-          childrenAges: guests.slice(1,guests.length).map(age => parseInt(age))
-        };
-      });
-  return { rooms };
-}
-
-const parseStay = (from: string, to: string): SearchBoxStayState => {
-  return {
-      from: moment(from, "YYYY-MM-DD"),
-      to: moment(to, "YYYY-MM-DD")
-  };
-}
 const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
   useEffect(() => {
     props.onSearch(props.search);
@@ -88,7 +71,8 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
     {!props.roomsOn ? <SearchEmpty type="info" dates={props.search.stay}></SearchEmpty>: null}
     <Detail 
       accommodation= {props.accommodation} 
-      rooms={props.rooms} 
+      rooms={props.rooms}
+      occupancy={parseOccupancy(props.search.occupancy)}
       accommodationLoading = {props.accommodationLoading} 
       roomsLoading = {props.roomsLoading} 
       onSelect={props.onSelect}

@@ -6,9 +6,11 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Amenities from '../../Amenities/Amenities';
 import Skeleton from 'react-loading-skeleton';
 import Gallery from '../../../Gallery/Gallery';
+import { SearchBoxOccupancyState } from '@hotels/search-box';
 
 export interface RoomProps {
   room?: RoomDetail;
+  occupancy: SearchBoxOccupancyState;
   onSelect?: (id:string) => void;
   loading?: boolean;
 }
@@ -23,8 +25,9 @@ export interface RoomContent {
   name: string;
   description: string;
   amenities: Array<Amenity>;
-  beds: Array<Bed>;
+  bedGroup: BedGroup;
   images: Array<Image>;
+  surfaceArea: SurfaceArea;
 }
 
 export interface Amenity {
@@ -32,9 +35,20 @@ export interface Amenity {
   name: string;
 }
 
+export interface BedGroup {
+  description: string;
+  beds: Array<Bed>;
+}
+
 export interface Bed {
   name: string;
+  type: string;
   quantity: number;
+}
+
+export interface SurfaceArea {
+  value: string;
+  unit: string;
 }
 
 export interface Image {
@@ -73,11 +87,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Room: FunctionComponent<RoomProps> = props => {
-
   const classes = useStyles();
 
   const pricing = props.room 
-    ? props.room.pricing.map((rate, index) => <Box className={classes.pricing} key={index}><Pricing rate={rate} onSelect={props.onSelect ? props.onSelect : (id: string)=>{}}/></Box>)
+? props.room.pricing.map((rate, index) => {
+      const bedGroup = props.room ? props.room.content.bedGroup : {description:"", beds:[]};
+      return <Box className={classes.pricing} key={index}><Pricing rate={rate} occupancy={props.occupancy} bedGroup={bedGroup} onSelect={props.onSelect ? props.onSelect : (id: string)=>{}}/></Box>;
+    })
     : <Box className={classes.skeletonPrices}><Skeleton height={120} count={2}/></Box>;
   
   return <Grid container spacing={2}>

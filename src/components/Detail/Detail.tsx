@@ -4,10 +4,12 @@ import Accommodation, { AccommodationProps } from './Accommodation/Accommodation
 import Availability from './Availability/Availability';
 import { RoomDetail } from './Availability/Room/Room';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { SearchBoxOccupancyState } from '@hotels/search-box';
 
 export interface DetailProps {
   accommodation: AccommodationProps;
   rooms: Array<RoomDetail>;
+  occupancy: SearchBoxOccupancyState;
   accommodationLoading: boolean;
   roomsLoading: boolean;
   roomsOn: boolean;
@@ -36,7 +38,7 @@ const Detail: FunctionComponent<DetailProps> = props => {
 
   const availability = props.roomsOn ? 
          <Grid item xs={12} className={classes.availabilities}>
-            <Availability roomsOn={props.roomsOn} rooms={props.rooms} loading={props.roomsLoading} onSelect={props.onSelect}/>
+            <Availability rooms={props.rooms} occupancy={props.occupancy} loading={props.roomsLoading} onSelect={props.onSelect}/>
           </Grid> : null;
   
   return <Grid container>
