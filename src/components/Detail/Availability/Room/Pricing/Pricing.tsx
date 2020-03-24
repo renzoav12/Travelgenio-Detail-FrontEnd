@@ -3,9 +3,14 @@ import { Grid, Button, Box} from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import MealPlan, { MealPlanProps } from '../../../../MealPlan/MealPlan';
 import ExtraCharges, { ExtraChargesProps } from './ExtraCharges/ExtraCharges';
+import OccupancyDistribution from '../../../../OccupancyDistribution/OccupancyDistribution';
+import { SearchBoxOccupancyState } from '@hotels/search-box';
+import { BedGroup } from '../Room';
 
 export interface PricingProps {
   rate: Rate;
+  occupancy: SearchBoxOccupancyState;
+  bedGroup: BedGroup;
   onSelect: (id: string) => void;
 }
 export interface Rate {
@@ -34,6 +39,9 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.default,
       padding: 20,
       borderRadius: theme.shape.borderRadius
+    },
+    occupancy: {
+      paddingTop: 20
     },
     cancelPolicy: {
       paddingTop: 20,
@@ -65,11 +73,14 @@ const Pricing: FunctionComponent<PricingProps> = props => {
       <Grid item xs={12}>
         <MealPlan {...props.rate.mealPlan}/>
       </Grid>
+      <Grid item xs={12} className={classes.occupancy}>
+        <OccupancyDistribution {...props}/>
+      </Grid>
       <Grid item xs={12} className={classes.cancelPolicy}>
         {cancelPolicies}
       </Grid>
     </Grid>
-    <Grid container item xs={12} sm={8} md={4} justify="flex-end">
+    <Grid container item xs={12} sm={8} md={4} justify="flex-end" alignContent="flex-start">
       <Grid container item xs={12} justify="flex-end" className={classes.price}>{props.rate.stayPrice.amount} {props.rate.stayPrice.currency}</Grid>
       <Grid container item xs={12} justify="flex-end" className={classes.priceDescription}>{props.rate.nights} noches {props.rate.breakdown.payWithoutTax.amount} {props.rate.breakdown.payWithoutTax.currency}<br/> Impuestos {props.rate.breakdown.tax.amount} {props.rate.breakdown.tax.currency}</Grid>
       <Grid container item xs={12} justify="flex-end" className={classes.priceDescription}><ExtraCharges {...props.rate.extraCharges}/></Grid>
