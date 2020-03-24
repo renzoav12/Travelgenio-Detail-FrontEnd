@@ -14,7 +14,7 @@ import { RoomDetail } from '../../components/Detail/Availability/Room/Room';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { fetchSuggestionSearch, fetchSuggestionSearchName, SearchNameSuggestionParameters } from '../../actions/suggestion/suggestion.action';
 import { thunkSearchBoxChange } from '../../actions/searchBox/searchBox.action';
-import  Message from '@hotels/message';
+import SearchEmpty from '@hotels/search-empty';
 
 interface DetailContainerProps {
   search: Search;
@@ -66,9 +66,6 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
 
   const classes = useStyles();
   
-  const messageNoAvailability =  "No existe disponibilidad para la fecha de ingreso " +
-        props.search.stay.from + " y fecha de salida " + props.search.stay.to;
-
   return <Container maxWidth="lg">
     <Box className = {classes.searchBox}>
       <SearchBox
@@ -88,7 +85,7 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
         horizontal = {true}
         suggestions = {props.suggestions}/>
     </Box>
-    {!props.roomsOn ? <Message type="info" message={messageNoAvailability}></Message>: null}
+    {!props.roomsOn ? <SearchEmpty type="info" dates={props.search.stay}></SearchEmpty>: null}
     <Detail 
       accommodation= {props.accommodation} 
       rooms={props.rooms} 
