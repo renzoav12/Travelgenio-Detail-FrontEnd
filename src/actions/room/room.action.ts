@@ -67,7 +67,7 @@ export const roomsFetch = (action: (rooms: RoomDetail[]) => void) => async (
                 }
             }
         );
-        if (response.data.length > 0) {
+        if (response.data.length > 5) {
             dispatch(action(response.data));
             dispatch(roomsFetchSuccess());
         }else {

@@ -34,16 +34,16 @@ const Detail: FunctionComponent<DetailProps> = props => {
 
   const classes = useStyles();
 
-  const roomsOff = props.roomsOn ? 
+  const availability = props.roomsOn ? 
          <Grid item xs={12} className={classes.availabilities}>
             <Availability roomsOn={props.roomsOn} rooms={props.rooms} loading={props.roomsLoading} onSelect={props.onSelect}/>
-          </Grid> : <Grid></Grid>;
+          </Grid> : null;
   
   return <Grid container>
            <Grid item xs={12} className={props.roomsOn? classes.accommodation : classes.roomsEmpty}>
             <Accommodation accommodation={props.accommodation} loading={props.accommodationLoading}/>
           </Grid>
-          {roomsOff}
+          {availability}
         </Grid>;
 }
 
