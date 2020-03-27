@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import Map, { Place } from '../../../../Map/Map';
+import Map, { Place } from '@hotels/map';
 import { LocationProps } from '../Location';
 
 export interface LocationMapProps {
