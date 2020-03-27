@@ -1,6 +1,7 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, {FunctionComponent} from 'react';
 import { Grid } from '@material-ui/core';
 import Accommodation, { AccommodationProps } from './Accommodation/Accommodation';
+import Map from './Map/Map';
 import Availability from './Availability/Availability';
 import { RoomDetail } from './Availability/Room/Room';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -20,6 +21,9 @@ const useStyles = makeStyles((theme: Theme) =>
     accommodation: {
       marginTop: 20
     },
+    map: {
+      marginTop: 20
+    },
     availabilities: {
       marginTop: 20,
       marginBottom: 20
@@ -37,11 +41,15 @@ const Detail: FunctionComponent<DetailProps> = props => {
     </Grid> : null;
 
   return <Grid container>
-    <Grid item xs={12} className={classes.accommodation}>
-      <Accommodation accommodation={props.accommodation} loading={props.accommodationStatus} />
-    </Grid>
-    {availability}
-  </Grid>;
+
+           <Grid item xs={12} className={classes.accommodation}>
+            <Accommodation accommodation={props.accommodation} loading={props.accommodationStatus}/>
+          </Grid>
+          <Grid item xs={12} className={classes.map}>
+            <Map accommodation={props.accommodation} loading={props.accommodationStatus}/>
+          </Grid>
+          {availability}
+        </Grid>;
 }
 
 export default Detail;

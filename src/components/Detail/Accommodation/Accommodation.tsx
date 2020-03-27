@@ -10,6 +10,7 @@ import { CheckInOutProps } from './CheckInOut/CheckInOut';
 import Description from '../../Description/Description';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Skeleton from 'react-loading-skeleton';
+import classNames from 'classnames';
 
 export interface Props {
   accommodation: AccommodationProps;
@@ -43,7 +44,8 @@ const useStyles = makeStyles((theme: Theme) =>
       borderTopColor: theme.palette.divider,
       paddingTop: "36px !important",
       paddingBottom: "36px !important",
-    }, skeleton: {
+    },
+    skeleton: {
       '& span': {
         marginTop: 17
       }
@@ -67,7 +69,7 @@ const Accommodation: FunctionComponent<Props> = props => {
       </Grid>}
       {props.loading === 'loading' ? <Grid item xs={12}><Skeleton height={20}/></Grid> :
         <Grid item xs={12}>
-          <Location location = {props.accommodation.location}/>
+          <Location location = {props.accommodation.location} accommodationName={props.accommodation.name}/>
         </Grid>}
       <Grid item xs={12}>
         <Images images={props.accommodation.images} loading={props.loading}/>
