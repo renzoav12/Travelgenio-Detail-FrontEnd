@@ -26,8 +26,7 @@ export interface Detail {
     search: Search;
     accommodation: AccommodationProps;
     rooms: Array<RoomDetail>;
-    accommodationLoading: boolean;
-    roomsLoading: boolean;
+    accommodationStatus: string;
+    roomsStatus: string;
     error: String | null;
-    roomsOn: boolean;
 }

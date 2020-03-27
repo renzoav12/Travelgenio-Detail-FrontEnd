@@ -12,8 +12,7 @@ import {
     ROOM_FETCH_START,
     ROOM_FETCH_FAILED,
     ROOM_FETCH_SUCCESS,
-    ROOM_UPDATE,
-    ROOM_FETCH_EMPTY
+    ROOM_UPDATE
 } from '../actions/room/room.actionTypes';
 
 const initialState: Detail = {
@@ -68,10 +67,9 @@ const initialState: Detail = {
         description: ''
     },
     rooms: [],
-    accommodationLoading: true,
-    roomsLoading: true,
-    error: null,
-    roomsOn: true,
+    accommodationStatus: 'loading',
+    roomsStatus: 'loading',
+    error: null
 };
 
 export const detailReducer: Reducer<Detail, RootAction> = (
@@ -80,25 +78,23 @@ export const detailReducer: Reducer<Detail, RootAction> = (
 ) => {
     switch (action.type) {
         case ACCOMMODATION_FETCH_START:
-            return { ...state, accommodationLoading: true };
+            return { ...state, accommodationStatus: 'loading' };
         case ACCOMMODATION_FETCH_FAILED:
-            return { ...state, accommodationLoading: false };
+            return { ...state, accommodationStatus: 'empty' };
         case ACCOMMODATION_FETCH_SUCCESS:
-            return {...state, accommodationLoading: false };
+            return {...state, accommodationStatus: 'success' };
         case SEARCH_UPDATE_PARAMS:
             return {...state, search: action.search};
         case ACCOMMODATION_UPDATE:
             return {...state, accommodation: action.accommodation};
         case ROOM_FETCH_START:
-            return { ...state, roomsLoading: true, roomsOn: true };
+            return { ...state, roomsStatus: 'loading'};
         case ROOM_FETCH_FAILED:
-            return { ...state, roomsLoading: false };
+            return { ...state, roomsStatus: 'empty' };
         case ROOM_FETCH_SUCCESS:
-            return {...state, roomsLoading: false, roomsOn: true };
+            return {...state, roomsStatus: 'success' };
         case ROOM_UPDATE:
             return {...state, rooms: action.rooms};
-        case ROOM_FETCH_EMPTY:
-             return {...state, roomsLoading:false, roomsOn: false};
         default:
             return state;
     }

@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Grid } from '@material-ui/core';
 import Accommodation, { AccommodationProps } from './Accommodation/Accommodation';
 import Availability from './Availability/Availability';
@@ -10,9 +10,8 @@ export interface DetailProps {
   accommodation: AccommodationProps;
   rooms: Array<RoomDetail>;
   occupancy: SearchBoxOccupancyState;
-  accommodationLoading: boolean;
-  roomsLoading: boolean;
-  roomsOn: boolean;
+  accommodationStatus: string;
+  roomsStatus: string;
   onSelect: (id: string) => void;
 }
 
@@ -21,12 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
     accommodation: {
       marginTop: 20
     },
-    roomsEmpty: {
-      marginTop: 20,
-      marginBottom: 20 
-    },
     availabilities: {
-      marginTop: 20,
       marginBottom: 20
     }
   }),
@@ -36,17 +30,17 @@ const Detail: FunctionComponent<DetailProps> = props => {
 
   const classes = useStyles();
 
-  const availability = props.roomsOn ? 
-         <Grid item xs={12} className={classes.availabilities}>
-            <Availability rooms={props.rooms} occupancy={props.occupancy} loading={props.roomsLoading} onSelect={props.onSelect}/>
-          </Grid> : null;
-  
+  const availability = props.roomsStatus !== 'empty' ?
+    <Grid item xs={12} className={classes.availabilities}>
+      <Availability rooms={props.rooms} occupancy={props.occupancy} loading={props.roomsStatus} onSelect={props.onSelect} />
+    </Grid> : null;
+
   return <Grid container>
-           <Grid item xs={12} className={props.roomsOn? classes.accommodation : classes.roomsEmpty}>
-            <Accommodation accommodation={props.accommodation} loading={props.accommodationLoading}/>
-          </Grid>
-          {availability}
-        </Grid>;
+    <Grid item xs={12} className={classes.accommodation}>
+      <Accommodation accommodation={props.accommodation} loading={props.accommodationStatus} />
+    </Grid>
+    {availability}
+  </Grid>;
 }
 
 export default Detail;

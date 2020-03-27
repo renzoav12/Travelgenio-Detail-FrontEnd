@@ -10,7 +10,7 @@ import Image from '../Image/Image';
 
 export interface GalleryProps {
   images: Array<Image>;
-  loading: boolean;
+  loading: string;
 }
 
 export interface Image {
@@ -158,7 +158,7 @@ const Gallery: FunctionComponent<GalleryProps> = props => {
     />;
   
   return <Box className={classes.gallery}>
-      {props.loading ? loadingImage : gallery}
+      {(props.loading === 'loading') ? loadingImage : gallery}
     </Box>;
 }
 

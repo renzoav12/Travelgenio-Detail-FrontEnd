@@ -9,7 +9,7 @@ import Gallery from '../../../Gallery/Gallery';
 
 export interface ImagesProps {
   images: Array<ImageProps>;
-  loading: boolean;
+  loading: string; 
 }
 
 export interface ImageProps {
@@ -46,10 +46,10 @@ const Images: FunctionComponent<ImagesProps> = props => {
     <Hidden only={['xs', 'sm']}>
       <Grid container item md={4}>
         <Grid container item md={12} className={classes.secondImage}>
-          {props.loading ? loadingImage : <Image url={props.images.length > 1 ? props.images[1].url : ''}/>}
+          {(props.loading === 'loading') ? loadingImage : <Image url={props.images.length > 1 ? props.images[1].url : ''}/>}
         </Grid>
         <Grid container item md={12}>
-          {props.loading ? loadingImage : <Image url={props.images.length > 2 ? props.images[2].url : ''}/>}
+          {(props.loading === 'loading') ? loadingImage : <Image url={props.images.length > 2 ? props.images[2].url : ''}/>}
         </Grid>
       </Grid>
     </Hidden>

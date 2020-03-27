@@ -13,7 +13,7 @@ import Skeleton from 'react-loading-skeleton';
 
 export interface Props {
   accommodation: AccommodationProps;
-  loading: boolean;
+  loading: string;
 }
 
 export interface AccommodationProps {
@@ -56,7 +56,7 @@ const Accommodation: FunctionComponent<Props> = props => {
 
   return <Paper>
     <Grid container spacing={2}>
-      {props.loading ? <Grid item xs={12}><Skeleton height={30}/></Grid> :
+      {props.loading === 'loading' ? <Grid item xs={12}><Skeleton height={30}/></Grid> :
       <Grid container item xs={12} alignItems="center" spacing={1}>
         <Grid item>
           <Typography variant="h1">{props.accommodation.name}</Typography>
@@ -65,7 +65,7 @@ const Accommodation: FunctionComponent<Props> = props => {
           <Category stars={parseInt(props.accommodation.category.code)}/>
         </Grid>
       </Grid>}
-      {props.loading ? <Grid item xs={12}><Skeleton height={20}/></Grid> :
+      {props.loading === 'loading' ? <Grid item xs={12}><Skeleton height={20}/></Grid> :
         <Grid item xs={12}>
           <Location location = {props.accommodation.location}/>
         </Grid>}
@@ -76,7 +76,7 @@ const Accommodation: FunctionComponent<Props> = props => {
         <Grid item xs={12}>
           <Typography variant="h1">Información</Typography>
         </Grid>
-        {props.loading ? <Grid item xs={12} className = {classes.skeleton}><Skeleton count={5} height={50}/></Grid> :
+        {props.loading === 'loading' ? <Grid item xs={12} className = {classes.skeleton}><Skeleton count={5} height={50}/></Grid> :
         <Grid item xs={12}>
           <Description text={props.accommodation.description}/>
         </Grid>}

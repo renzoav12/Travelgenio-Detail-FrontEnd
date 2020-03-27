@@ -6,7 +6,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 export interface Amenities {
   amenities: Array<AmenityProps>;
   title: string;
-  loading: boolean;
+  loading: string;
 }
 
 export interface AmenityProps {
@@ -32,7 +32,7 @@ const Amenities: FunctionComponent<Amenities> = props => {
 
   return <Grid container justify="flex-start" spacing={2}>
       <Grid item xs={12}><Typography variant="h1">{props.title}</Typography></Grid>
-      {props.loading ? <Grid item xs={12} className = {classes.skeleton}><Skeleton height={30} count={3}/></Grid> : amenities}
+      {props.loading === 'loading' ? <Grid item xs={12} className = {classes.skeleton}><Skeleton height={30} count={3}/></Grid> : amenities}
     </Grid>;
 }
 

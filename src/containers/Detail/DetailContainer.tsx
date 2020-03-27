@@ -21,8 +21,8 @@ interface DetailContainerProps {
   search: Search;
   accommodation: AccommodationProps;
   rooms: Array<RoomDetail>;
-  accommodationLoading: boolean;
-  roomsLoading: boolean;
+  accommodationStatus: string;
+  roomsStatus: string;
   onSearch: (search: Search) => void;
   onSelect: (id: string) => void;
   suggestionName: string;
@@ -30,7 +30,6 @@ interface DetailContainerProps {
   onChangeSuggestionHint: (suggestionHint: SuggestionHint) => void;
   searchSuggestionName: (params: SearchNameSuggestionParameters) => void;
   onSearchBoxChange: (state: SearchBoxState) => void;
-  roomsOn: boolean;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -48,7 +47,7 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
   }, []);
 
   const classes = useStyles();
-  
+    
   return <Container maxWidth="lg">
     <Box className = {classes.searchBox}>
       <SearchBox
@@ -68,15 +67,14 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
         horizontal = {true}
         suggestions = {props.suggestions}/>
     </Box>
-    {!props.roomsOn ? <SearchEmpty type="info" dates={props.search.stay}></SearchEmpty>: null}
+    {props.rooms.length === 0 && props.roomsStatus === 'success' ? <SearchEmpty type="info" dates={props.search.stay}></SearchEmpty>: null}
     <Detail 
       accommodation= {props.accommodation} 
       rooms={props.rooms}
       occupancy={parseOccupancy(props.search.occupancy)}
-      accommodationLoading = {props.accommodationLoading} 
-      roomsLoading = {props.roomsLoading} 
-      onSelect={props.onSelect}
-      roomsOn={props.roomsOn}/>
+      accommodationStatus = {props.accommodationStatus} 
+      roomsStatus = {props.roomsStatus} 
+      onSelect={props.onSelect}/>
   </Container>;
 }
 
@@ -92,11 +90,10 @@ const mapStateToProps = (rootState: RootState, ownProps) => {
         },
         occupancy: ownProps.match.params.occupancy
       },
-      accommodationLoading: rootState.detail.accommodationLoading,
-      roomsLoading: rootState.detail.roomsLoading,
+      accommodationStatus: rootState.detail.accommodationStatus,
+      roomsStatus: rootState.detail.roomsStatus,
       suggestions: rootState.searchSuggestion.suggestions,
       suggestionName: rootState.searchSuggestion.suggestionName,
-      roomsOn: rootState.detail.roomsOn      
   };
 };
 
