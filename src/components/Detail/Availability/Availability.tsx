@@ -6,7 +6,7 @@ import { SearchBoxOccupancyState } from '@hotels/search-box';
 interface AvailabilityProps {
   rooms: Array<RoomDetail>;
   occupancy: SearchBoxOccupancyState;
-  loading: string;
+  roomStatus: string;
   onSelect: (id: string) => void;
 }
 
@@ -14,9 +14,9 @@ const Availability: FunctionComponent<AvailabilityProps> = props => {
   const rooms = () => (props.rooms && props.rooms.length > 0) 
       ? props.rooms.map((room, index) => 
           <Grid item xs={12} key={index}>
-            <Room room={room} occupancy={props.occupancy} onSelect={props.onSelect} loading={props.loading}/>
+            <Room room={room} occupancy={props.occupancy} onSelect={props.onSelect} status={props.roomStatus}/>
           </Grid>) 
-      : <Room occupancy={props.occupancy} loading={props.loading}/>;
+      : <Room occupancy={props.occupancy} status={props.roomStatus}/>;
   
   return <Paper>
     <Grid container spacing={2}>

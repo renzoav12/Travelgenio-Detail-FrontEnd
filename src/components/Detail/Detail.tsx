@@ -37,16 +37,16 @@ const Detail: FunctionComponent<DetailProps> = props => {
 
   const availability = props.roomsStatus !== 'empty' ?
     <Grid item xs={12} className={classes.availabilities}>
-      <Availability rooms={props.rooms} occupancy={props.occupancy} loading={props.roomsStatus} onSelect={props.onSelect} />
+      <Availability rooms={props.rooms} occupancy={props.occupancy} roomStatus={props.roomsStatus} onSelect={props.onSelect} />
     </Grid> : null;
 
   return <Grid container>
 
            <Grid item xs={12} className={classes.accommodation}>
-            <Accommodation accommodation={props.accommodation} loading={props.accommodationStatus}/>
+            <Accommodation accommodation={props.accommodation} accommodationStatus={props.accommodationStatus}/>
           </Grid>
           <Grid item xs={12} className={classes.map}>
-            <Map accommodation={props.accommodation} loading={props.accommodationStatus}/>
+            <Map accommodation={props.accommodation} status={props.accommodationStatus}/>
           </Grid>
           {availability}
         </Grid>;

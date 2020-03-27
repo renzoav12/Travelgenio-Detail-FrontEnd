@@ -12,7 +12,7 @@ export interface RoomProps {
   room?: RoomDetail;
   occupancy: SearchBoxOccupancyState;
   onSelect?: (id: string) => void;
-  loading?: string;
+  status?: string;
 }
 
 export interface RoomDetail {
@@ -96,7 +96,7 @@ const Room: FunctionComponent<RoomProps> = props => {
     : <Box className={classes.skeletonPrices}><Skeleton height={120} count={2} /></Box>;
 
   return (
-    props.loading === 'loading' || props.room ?
+    props.status === 'loading' || props.room ?
       <Grid container spacing={2}>
         <Grid item xs={12} className={classes.roomName}>
           {props.room
@@ -104,7 +104,7 @@ const Room: FunctionComponent<RoomProps> = props => {
             : <Skeleton height={30} />}
         </Grid>
         <Grid item xs={12} sm={6} md={5} lg={4} className={classes.images}>
-          <Gallery images={props.room ? props.room.content.images : []} loading={props.loading !== undefined ? props.loading : 'loading'} />
+          <Gallery images={props.room ? props.room.content.images : []} loading={props.status !== undefined ? props.status : 'loading'} />
         </Grid>
         <Grid item xs={12} sm={6} md={7} lg={8}>
           {props.room
@@ -113,7 +113,7 @@ const Room: FunctionComponent<RoomProps> = props => {
         </Grid>
         {(props.room && props.room.content.amenities.length > 0) ?
           <Grid item xs={12} className={classes.amenities}>
-            <Amenities amenities={props.room.content.amenities} loading={props.loading ? props.loading : 'loading'} title="Servicios" />
+            <Amenities amenities={props.room.content.amenities} status={props.status ? props.status : 'loading'} title="Servicios" />
           </Grid>
           : null}
         <Grid item xs={12}>{pricing}</Grid>

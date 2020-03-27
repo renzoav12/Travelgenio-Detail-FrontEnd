@@ -10,11 +10,10 @@ import { CheckInOutProps } from './CheckInOut/CheckInOut';
 import Description from '../../Description/Description';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Skeleton from 'react-loading-skeleton';
-import classNames from 'classnames';
 
 export interface Props {
   accommodation: AccommodationProps;
-  loading: string;
+  accommodationStatus: string;
 }
 
 export interface AccommodationProps {
@@ -58,7 +57,7 @@ const Accommodation: FunctionComponent<Props> = props => {
 
   return <Paper>
     <Grid container spacing={2}>
-      {props.loading === 'loading' ? <Grid item xs={12}><Skeleton height={30}/></Grid> :
+      {props.accommodationStatus === 'loading' ? <Grid item xs={12}><Skeleton height={30}/></Grid> :
       <Grid container item xs={12} alignItems="center" spacing={1}>
         <Grid item>
           <Typography variant="h1">{props.accommodation.name}</Typography>
@@ -67,27 +66,27 @@ const Accommodation: FunctionComponent<Props> = props => {
           <Category stars={parseInt(props.accommodation.category.code)}/>
         </Grid>
       </Grid>}
-      {props.loading === 'loading' ? <Grid item xs={12}><Skeleton height={20}/></Grid> :
+      {props.accommodationStatus === 'loading' ? <Grid item xs={12}><Skeleton height={20}/></Grid> :
         <Grid item xs={12}>
           <Location location = {props.accommodation.location} accommodationName={props.accommodation.name}/>
         </Grid>}
       <Grid item xs={12}>
-        <Images images={props.accommodation.images} loading={props.loading}/>
+        <Images images={props.accommodation.images} loading={props.accommodationStatus}/>
       </Grid>
       <Grid item container xs={12} spacing={2} className={classes.section}>
         <Grid item xs={12}>
           <Typography variant="h1">Información</Typography>
         </Grid>
-        {props.loading === 'loading' ? <Grid item xs={12} className = {classes.skeleton}><Skeleton count={5} height={50}/></Grid> :
+        {props.accommodationStatus === 'loading' ? <Grid item xs={12} className = {classes.skeleton}><Skeleton count={5} height={50}/></Grid> :
         <Grid item xs={12}>
           <Description text={props.accommodation.description}/>
         </Grid>}
       </Grid>
       <Grid item xs={12} className={classes.sectionBorder}>
-        <Amenities amenities={props.accommodation.amenities} loading={props.loading} title="Servicios más populares"/>
+        <Amenities amenities={props.accommodation.amenities} status={props.accommodationStatus} title="Servicios más populares"/>
       </Grid>
       <Grid item xs={12} className={classes.sectionBorder}>
-        <CheckInOut checkInOut={props.accommodation.checkInOut} loading={props.loading}/>
+        <CheckInOut checkInOut={props.accommodation.checkInOut} status={props.accommodationStatus}/>
       </Grid>
     </Grid>
   </Paper>;
