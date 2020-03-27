@@ -2,11 +2,12 @@ import React, {FunctionComponent} from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import Room, { RoomDetail } from './Room/Room';
 import { SearchBoxOccupancyState } from '@hotels/search-box';
+import { Status } from '../../../model/search';
 
 interface AvailabilityProps {
   rooms: Array<RoomDetail>;
   occupancy: SearchBoxOccupancyState;
-  roomStatus: string;
+  roomStatus: Status;
   onSelect: (id: string) => void;
 }
 

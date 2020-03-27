@@ -22,11 +22,17 @@ export interface Rate {
     readonly id: string;
 }
 
+export enum Status {
+    EMPTY = 'Empty',
+    LOADING = 'Loading',
+    SUCCESS = 'Succes'
+}
+
 export interface Detail {
     search: Search;
     accommodation: AccommodationProps;
     rooms: Array<RoomDetail>;
-    accommodationStatus: string;
-    roomsStatus: string;
+    accommodationStatus: Status;
+    roomsStatus: Status;
     error: String | null;
 }

@@ -6,13 +6,14 @@ import Availability from './Availability/Availability';
 import { RoomDetail } from './Availability/Room/Room';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { SearchBoxOccupancyState } from '@hotels/search-box';
+import { Status } from '../../model/search';
 
 export interface DetailProps {
   accommodation: AccommodationProps;
   rooms: Array<RoomDetail>;
   occupancy: SearchBoxOccupancyState;
-  accommodationStatus: string;
-  roomsStatus: string;
+  accommodationStatus: Status;
+  roomsStatus: Status;
   onSelect: (id: string) => void;
 }
 
@@ -35,7 +36,7 @@ const Detail: FunctionComponent<DetailProps> = props => {
 
   const classes = useStyles();
 
-  const availability = props.roomsStatus !== 'empty' ?
+  const availability = props.roomsStatus !== Status.EMPTY ?
     <Grid item xs={12} className={classes.availabilities}>
       <Availability rooms={props.rooms} occupancy={props.occupancy} roomStatus={props.roomsStatus} onSelect={props.onSelect} />
     </Grid> : null;

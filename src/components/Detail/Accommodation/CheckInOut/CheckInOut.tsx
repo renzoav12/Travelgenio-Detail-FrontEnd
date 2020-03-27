@@ -3,10 +3,11 @@ import { Grid, Typography, Box } from '@material-ui/core';
 import Description from '../../../Description/Description';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Skeleton from 'react-loading-skeleton';
+import { Status } from '../../../../model/search';
 
 export interface CheckInOutLoadingProps {
   checkInOut: CheckInOutProps;
-  status: string;
+  status: Status;
 }
 
 export interface CheckInOutProps {
@@ -75,16 +76,16 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = props => {
       Check In:
     </Grid>
     <Grid item xs={9} md={10} lg={11}>
-      {props.status === 'loading' ? <Skeleton height={20}/> : checkInHour()}
+      {props.status === Status.LOADING ? <Skeleton height={20}/> : checkInHour()}
     </Grid>
     <Grid item xs={3} md={2} lg={1} className={classes.checkOut}>
       Check Out:
     </Grid>
     <Grid item xs={9} md={10} lg={11}>
-      {props.status === 'loading' ? <Skeleton height={20}/> : checkOutHour()}
+      {props.status === Status.LOADING ? <Skeleton height={20}/> : checkOutHour()}
     </Grid>
     <Grid item xs={12}>
-      {props.status === 'loading' ? <Box className={classes.skeleton}><Skeleton height={20} count={3}/></Box> : <Description text={props.checkInOut.instructions}/>}
+      {props.status === Status.LOADING ? <Box className={classes.skeleton}><Skeleton height={20} count={3}/></Box> : <Description text={props.checkInOut.instructions}/>}
     </Grid>
   </Grid>;
 }

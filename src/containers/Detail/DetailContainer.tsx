@@ -5,7 +5,7 @@ import { AccommodationProps } from '../../components/Detail/Accommodation/Accomm
 import { thunkSearchUpdate } from '../../actions/detail/detail.action';
 import SearchBox, {SearchBoxState, SearchBoxOccupancyState, SearchBoxStayState} from '@hotels/search-box';
 import { SuggestionHint, SuggestionEntry } from '@hotels/search-box/dist/Autocomplete/Autocomplete';
-import { Search } from '../../model/search';
+import { Search, Status } from '../../model/search';
 import { thunkRoomSelect } from '../../actions/room/room.action';
 import { Container, Box } from "@material-ui/core";
 import Detail from '../../components/Detail/Detail';
@@ -21,8 +21,8 @@ interface DetailContainerProps {
   search: Search;
   accommodation: AccommodationProps;
   rooms: Array<RoomDetail>;
-  accommodationStatus: string;
-  roomsStatus: string;
+  accommodationStatus: Status;
+  roomsStatus: Status;
   onSearch: (search: Search) => void;
   onSelect: (id: string) => void;
   suggestionName: string;
@@ -67,7 +67,7 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
         horizontal = {true}
         suggestions = {props.suggestions}/>
     </Box>
-    {props.rooms.length === 0 && props.roomsStatus === 'success' ? <SearchEmpty type="info" dates={props.search.stay}></SearchEmpty>: null}
+    {props.rooms.length === 0 && props.roomsStatus === Status.SUCCESS ? <SearchEmpty type="info" dates={props.search.stay}></SearchEmpty>: null}
     <Detail 
       accommodation= {props.accommodation} 
       rooms={props.rooms}
