@@ -10,7 +10,6 @@ import { CheckInOutProps } from './CheckInOut/CheckInOut';
 import Description from '../../Description/Description';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Skeleton from 'react-loading-skeleton';
-import LocationMap from './Location/LocationMap/LocationMap';
 import classNames from 'classnames';
 
 export interface Props {
@@ -45,9 +44,6 @@ const useStyles = makeStyles((theme: Theme) =>
       borderTopColor: theme.palette.divider,
       paddingTop: "36px !important",
       paddingBottom: "36px !important",
-    },
-    sectionMap: {
-      height: '90vh'
     },
     skeleton: {
       '& span': {
@@ -86,9 +82,6 @@ const Accommodation: FunctionComponent<Props> = props => {
         <Grid item xs={12}>
           <Description text={props.accommodation.description}/>
         </Grid>}
-      </Grid>
-      <Grid item xs={12} className={classNames(classes.sectionBorder, classes.sectionMap)}>
-        <LocationMap location={props.accommodation.location} zoom={16}/>
       </Grid>
       <Grid item xs={12} className={classes.sectionBorder}>
         <Amenities amenities={props.accommodation.amenities} loading={props.loading} title="Servicios más populares"/>
