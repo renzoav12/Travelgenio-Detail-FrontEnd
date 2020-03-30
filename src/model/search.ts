@@ -25,7 +25,7 @@ export interface Rate {
 export enum Status {
     EMPTY = 'Empty',
     LOADING = 'Loading',
-    SUCCESS = 'Succes'
+    SUCCESS = 'Success'
 }
 
 export interface Detail {
