@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import { Grid } from '@material-ui/core';
 import Accommodation, { AccommodationProps } from './Accommodation/Accommodation';
-import Map from './Map/Map';
+import AccommodationMap from './AccommodationMap/AccommodationMap';
 import Availability from './Availability/Availability';
 import { RoomDetail } from './Availability/Room/Room';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -47,7 +47,7 @@ const Detail: FunctionComponent<DetailProps> = props => {
             <Accommodation accommodation={props.accommodation} accommodationStatus={props.accommodationStatus}/>
           </Grid>
           <Grid item xs={12} className={classes.map}>
-            <Map accommodation={props.accommodation} status={props.accommodationStatus}/>
+            <AccommodationMap accommodation={props.accommodation} status={props.accommodationStatus}/>
           </Grid>
           {availability}
         </Grid>;
