@@ -6,10 +6,11 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import loadingHotelImage from '../../../../assets/images/loadingHotel.jpg';
 import Img from 'react-image';
 import Gallery from '../../../Gallery/Gallery';
+import { Status } from '../../../../model/search';
 
 export interface ImagesProps {
   images: Array<ImageProps>;
-  loading: boolean;
+  loading: Status; 
 }
 
 export interface ImageProps {
@@ -46,10 +47,10 @@ const Images: FunctionComponent<ImagesProps> = props => {
     <Hidden only={['xs', 'sm']}>
       <Grid container item md={4}>
         <Grid container item md={12} className={classes.secondImage}>
-          {props.loading ? loadingImage : <Image url={props.images.length > 1 ? props.images[1].url : ''}/>}
+          {(props.loading === Status.LOADING) ? loadingImage : <Image url={props.images.length > 1 ? props.images[1].url : ''}/>}
         </Grid>
         <Grid container item md={12}>
-          {props.loading ? loadingImage : <Image url={props.images.length > 2 ? props.images[2].url : ''}/>}
+          {(props.loading === Status.LOADING) ? loadingImage : <Image url={props.images.length > 2 ? props.images[2].url : ''}/>}
         </Grid>
       </Grid>
     </Hidden>

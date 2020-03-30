@@ -5,7 +5,7 @@ import { AccommodationProps } from '../../components/Detail/Accommodation/Accomm
 import { thunkSearchUpdate } from '../../actions/detail/detail.action';
 import SearchBox, {SearchBoxState, SearchBoxOccupancyState, SearchBoxStayState} from '@hotels/search-box';
 import { SuggestionHint, SuggestionEntry } from '@hotels/search-box/dist/Autocomplete/Autocomplete';
-import { Search } from '../../model/search';
+import { Search, Status } from '../../model/search';
 import { thunkRoomSelect } from '../../actions/room/room.action';
 import { Container, Box } from "@material-ui/core";
 import Detail from '../../components/Detail/Detail';
@@ -13,6 +13,7 @@ import { RoomDetail } from '../../components/Detail/Availability/Room/Room';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { fetchSuggestionSearch, fetchSuggestionSearchName, SearchNameSuggestionParameters } from '../../actions/suggestion/suggestion.action';
 import { thunkSearchBoxChange } from '../../actions/searchBox/searchBox.action';
+import SearchEmpty from '@hotels/search-empty';
 import { parseOccupancy } from '../../components/OccupancyDistribution/OccupancyDistribution';
 import { parseStay } from '../../utils/stay';
 
@@ -20,8 +21,8 @@ interface DetailContainerProps {
   search: Search;
   accommodation: AccommodationProps;
   rooms: Array<RoomDetail>;
-  accommodationLoading: boolean;
-  roomsLoading: boolean;
+  accommodationStatus: Status;
+  roomsStatus: Status;
   onSearch: (search: Search) => void;
   onSelect: (id: string) => void;
   suggestionName: string;
@@ -46,7 +47,7 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
   }, []);
 
   const classes = useStyles();
-
+    
   return <Container maxWidth="lg">
     <Box className = {classes.searchBox}>
       <SearchBox
@@ -66,12 +67,13 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
         horizontal = {true}
         suggestions = {props.suggestions}/>
     </Box>
+    {props.rooms.length === 0 && props.roomsStatus === Status.SUCCESS ? <SearchEmpty type="info" dates={props.search.stay}></SearchEmpty>: null}
     <Detail 
       accommodation= {props.accommodation} 
       rooms={props.rooms}
       occupancy={parseOccupancy(props.search.occupancy)}
-      accommodationLoading = {props.accommodationLoading} 
-      roomsLoading = {props.roomsLoading} 
+      accommodationStatus = {props.accommodationStatus} 
+      roomsStatus = {props.roomsStatus} 
       onSelect={props.onSelect}/>
   </Container>;
 }
@@ -88,10 +90,10 @@ const mapStateToProps = (rootState: RootState, ownProps) => {
         },
         occupancy: ownProps.match.params.occupancy
       },
-      accommodationLoading: rootState.detail.accommodationLoading,
-      roomsLoading: rootState.detail.roomsLoading,
+      accommodationStatus: rootState.detail.accommodationStatus,
+      roomsStatus: rootState.detail.roomsStatus,
       suggestions: rootState.searchSuggestion.suggestions,
-      suggestionName: rootState.searchSuggestion.suggestionName      
+      suggestionName: rootState.searchSuggestion.suggestionName,
   };
 };
 

@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { Detail } from '../model/search';
+import { Detail, Status } from '../model/search';
 import {
     ACCOMMODATION_UPDATE,
     ACCOMMODATION_FETCH_SUCCESS,
@@ -14,6 +14,8 @@ import {
     ROOM_FETCH_SUCCESS,
     ROOM_UPDATE
 } from '../actions/room/room.actionTypes';
+
+
 
 const initialState: Detail = {
     search: {
@@ -67,8 +69,8 @@ const initialState: Detail = {
         description: ''
     },
     rooms: [],
-    accommodationLoading: true,
-    roomsLoading: true,
+    accommodationStatus: Status.LOADING,
+    roomsStatus: Status.LOADING,
     error: null
 };
 
@@ -78,21 +80,21 @@ export const detailReducer: Reducer<Detail, RootAction> = (
 ) => {
     switch (action.type) {
         case ACCOMMODATION_FETCH_START:
-            return { ...state, accommodationLoading: true };
+            return { ...state, accommodationStatus: Status.LOADING};
         case ACCOMMODATION_FETCH_FAILED:
-            return { ...state, accommodationLoading: false };
+            return { ...state, accommodationStatus: Status.EMPTY};
         case ACCOMMODATION_FETCH_SUCCESS:
-            return {...state, accommodationLoading: false };
+            return {...state, accommodationStatus: Status.SUCCESS};
         case SEARCH_UPDATE_PARAMS:
             return {...state, search: action.search};
         case ACCOMMODATION_UPDATE:
             return {...state, accommodation: action.accommodation};
         case ROOM_FETCH_START:
-            return { ...state, roomsLoading: true };
+            return { ...state, roomsStatus: Status.LOADING};
         case ROOM_FETCH_FAILED:
-            return { ...state, roomsLoading: false };
+            return { ...state, roomsStatus: Status.EMPTY};
         case ROOM_FETCH_SUCCESS:
-            return {...state, roomsLoading: false };
+            return {...state, roomsStatus: Status.SUCCESS};
         case ROOM_UPDATE:
             return {...state, rooms: action.rooms};
         default:

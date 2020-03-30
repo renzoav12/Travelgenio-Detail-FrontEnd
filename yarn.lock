@@ -1214,6 +1214,27 @@
     react-scripts "3.4.0"
     typescript "~3.7.2"
 
+"@hotels/search-empty@0.0.1":
+  version "0.0.1"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-empty/-/search-empty-0.0.1.tgz#73d1a1847b42a632f1643589e6f52b11b7ea59ba"
+  integrity sha512-/wYPRJshHMM8SsD6pMHfFsEWMgbBWe6Xf0AR7hGxAvnZfslHofjuIsNdDD8rAktO5mEPkhBKjskRhmRv/c2Isw==
+  dependencies:
+    "@material-ui/core" "4.9.0"
+    "@material-ui/icons" "4.5.1"
+    "@material-ui/lab" "4.0.0-alpha.46"
+    "@testing-library/jest-dom" "^4.2.4"
+    "@testing-library/react" "^9.3.2"
+    "@testing-library/user-event" "^7.1.2"
+    "@types/jest" "^24.0.0"
+    "@types/node" "^12.0.0"
+    "@types/react" "^16.9.0"
+    "@types/react-dom" "^16.9.0"
+    moment "^2.24.0"
+    react "^16.12.0"
+    react-dom "^16.12.0"
+    react-scripts "3.4.0"
+    typescript "~3.7.2"
+
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@jest/console/-/console-24.9.0.tgz#79b1bc06fb74a8cfb01cbdedf945584b1b9707f0"
@@ -1431,6 +1452,17 @@
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@material-ui/utils" "^4.7.1"
+    clsx "^1.0.4"
+    prop-types "^15.7.2"
+    react-is "^16.8.0"
+
+"@material-ui/lab@4.0.0-alpha.46":
+  version "4.0.0-alpha.46"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@material-ui/lab/-/lab-4.0.0-alpha.46.tgz#453546d58d3a0064263c198dedb6a1c54d24d1a4"
+  integrity sha512-JGgZmj1UNP8bbYNAGvndipjXRK3x2+9mFBzbX7MyCj+WpfnJbeqTmJK2No9MXvPj/EZJ1piaKif46FdDc4U93A==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    "@material-ui/utils" "^4.9.6"
     clsx "^1.0.4"
     prop-types "^15.7.2"
     react-is "^16.8.0"
@@ -9810,6 +9842,16 @@ react-dom@16.13.0:
     prop-types "^15.6.2"
     scheduler "^0.19.0"
 
+react-dom@^16.12.0:
+  version "16.13.1"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
+  integrity sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.19.1"
+
 react-error-overlay@^6.0.7:
   version "6.0.7"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/react-error-overlay/-/react-error-overlay-6.0.7.tgz#1dcfb459ab671d53f660a991513cb2f0a0553108"
@@ -10063,6 +10105,15 @@ react@16.13.0:
   version "16.13.0"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/react/-/react-16.13.0.tgz#d046eabcdf64e457bbeed1e792e235e1b9934cf7"
   integrity sha512-TSavZz2iSLkq5/oiE7gnFzmURKZMltmi193rm5HEoUDAXpzT9Kzw6oNZnGoai/4+fUnm7FqS5dwgUL34TujcWQ==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+
+react@^16.12.0:
+  version "16.13.1"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
+  integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -10621,7 +10672,7 @@ saxes@^3.1.9:
   dependencies:
     xmlchars "^2.1.1"
 
-scheduler@^0.19.0:
+scheduler@^0.19.0, scheduler@^0.19.1:
   version "0.19.1"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
   integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
