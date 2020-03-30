@@ -2,11 +2,12 @@ import React, {FunctionComponent} from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import Room, { RoomDetail } from './Room/Room';
 import { SearchBoxOccupancyState } from '@hotels/search-box';
+import { Status } from '../../../model/search';
 
 interface AvailabilityProps {
   rooms: Array<RoomDetail>;
   occupancy: SearchBoxOccupancyState;
-  loading: boolean;
+  roomStatus: Status;
   onSelect: (id: string) => void;
 }
 
@@ -14,9 +15,9 @@ const Availability: FunctionComponent<AvailabilityProps> = props => {
   const rooms = () => (props.rooms && props.rooms.length > 0) 
       ? props.rooms.map((room, index) => 
           <Grid item xs={12} key={index}>
-            <Room room={room} occupancy={props.occupancy} onSelect={props.onSelect} loading={props.loading}/>
+            <Room room={room} occupancy={props.occupancy} onSelect={props.onSelect} status={props.roomStatus}/>
           </Grid>) 
-      : <Room occupancy={props.occupancy}/>;
+      : <Room occupancy={props.occupancy} status={props.roomStatus}/>;
   
   return <Paper>
     <Grid container spacing={2}>
@@ -29,3 +30,4 @@ const Availability: FunctionComponent<AvailabilityProps> = props => {
 }
 
 export default Availability;
+

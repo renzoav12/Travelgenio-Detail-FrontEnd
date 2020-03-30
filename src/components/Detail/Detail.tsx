@@ -1,18 +1,19 @@
 import React, {FunctionComponent} from 'react';
-import { Grid, Paper } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import Accommodation, { AccommodationProps } from './Accommodation/Accommodation';
 import Map from './Map/Map';
 import Availability from './Availability/Availability';
 import { RoomDetail } from './Availability/Room/Room';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { SearchBoxOccupancyState } from '@hotels/search-box';
+import { Status } from '../../model/search';
 
 export interface DetailProps {
   accommodation: AccommodationProps;
   rooms: Array<RoomDetail>;
   occupancy: SearchBoxOccupancyState;
-  accommodationLoading: boolean;
-  roomsLoading: boolean;
+  accommodationStatus: Status;
+  roomsStatus: Status;
   onSelect: (id: string) => void;
 }
 
@@ -35,16 +36,20 @@ const Detail: FunctionComponent<DetailProps> = props => {
 
   const classes = useStyles();
 
+  const availability = props.roomsStatus !== Status.EMPTY ?
+    <Grid item xs={12} className={classes.availabilities}>
+      <Availability rooms={props.rooms} occupancy={props.occupancy} roomStatus={props.roomsStatus} onSelect={props.onSelect} />
+    </Grid> : null;
+
   return <Grid container>
+
            <Grid item xs={12} className={classes.accommodation}>
-            <Accommodation accommodation={props.accommodation} loading={props.accommodationLoading}/>
+            <Accommodation accommodation={props.accommodation} accommodationStatus={props.accommodationStatus}/>
           </Grid>
           <Grid item xs={12} className={classes.map}>
-            <Map accommodation={props.accommodation} loading={props.accommodationLoading}/>
+            <Map accommodation={props.accommodation} status={props.accommodationStatus}/>
           </Grid>
-          <Grid item xs={12} className={classes.availabilities}>
-            <Availability rooms={props.rooms} occupancy={props.occupancy} loading={props.roomsLoading} onSelect={props.onSelect}/>
-          </Grid>
+          {availability}
         </Grid>;
 }
 

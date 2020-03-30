@@ -7,10 +7,11 @@ import Img from 'react-image';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import Image from '../Image/Image';
+import { Status } from '../../model/search';
 
 export interface GalleryProps {
   images: Array<Image>;
-  loading: boolean;
+  loading: Status;
 }
 
 export interface Image {
@@ -158,7 +159,7 @@ const Gallery: FunctionComponent<GalleryProps> = props => {
     />;
   
   return <Box className={classes.gallery}>
-      {props.loading ? loadingImage : gallery}
+      {(props.loading === Status.LOADING) ? loadingImage : gallery}
     </Box>;
 }
 
