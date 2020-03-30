@@ -1,12 +1,10 @@
 import React, {useState, FunctionComponent} from 'react';
-import { Grid, Box, PopperPlacementType, Typography } from '@material-ui/core';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
+import { Grid, Box, Typography } from '@material-ui/core';
+import MapDialog, {MapDialogProps} from '@hotels/map-dialog';
+import { Place } from '@hotels/map';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ExploreIcon from '@material-ui/icons/Explore';
-import LocationMap from './LocationMap/LocationMap';
 
 export interface Location {
   location: LocationProps;
@@ -84,20 +82,25 @@ const Location: FunctionComponent<Location> = props => {
   const city = (street.length > 1 ? ", ": "") + props.location.address.city.name;
   const address = <Box><LocationOnIcon fontSize="small" className={classes.verticalCentered}/> {street} {city}</Box>;
   
+  const place: Place = {title : street+" "+city, geoPosition: props.location.geoPosition};
+  
+  const dialogProps: MapDialogProps = {
+    title: props.accommodationName,
+    address: street + city,
+    map: {
+      places: [place],
+      zoom: 14
+    },
+    open,
+    onClose: closeMap
+  }
+
   return <Box>
       <Grid container item xs={12}>
         {address}
         <Box className={classes.mapLink} onClick={showMap}><ExploreIcon fontSize="small" className={classes.verticalCentered}/> Ver mapa</Box>
       </Grid>
-      <Dialog maxWidth={'md'} fullWidth={true} className={classes.mapDialog} open={open} onClose={closeMap} aria-labelledby="map-title">
-        <DialogTitle id="simple-dialog-title">
-          <Typography variant="h1">{props.accommodationName}</Typography>
-          {address}
-        </DialogTitle>
-        <DialogContent>
-          <LocationMap location={props.location} zoom={14}/>
-        </DialogContent>
-      </Dialog>
+      <MapDialog {...dialogProps}/>
     </Box>;
 }
 
