@@ -65,7 +65,8 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
         onChange={props.onSearchBoxChange} 
         onChangeSuggestionHint={props.onChangeSuggestionHint}
         horizontal = {true}
-        suggestions = {props.suggestions}/>
+        suggestions = {props.suggestions}
+        title = {"Modifica tu destino"}/>
     </Box>
     {props.rooms.length === 0 && props.roomsStatus === Status.SUCCESS ? <SearchEmpty type="info" dates={props.search.stay}></SearchEmpty>: null}
     <Detail 
