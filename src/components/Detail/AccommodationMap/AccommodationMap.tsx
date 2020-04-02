@@ -14,6 +14,7 @@ export interface Props {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     map: {
+      width: '100%',
       height: '70vh',
       maxHeight: 500
     }
