@@ -1209,6 +1209,25 @@
     react-scripts "3.4.0"
     typescript "~3.7.2"
 
+"@hotels/occupancy@0.0.1":
+  version "0.0.1"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/occupancy/-/occupancy-0.0.1.tgz#37fb6399468fdffab12bf51d86e32b688d348938"
+  integrity sha512-hVQGfkyfn0LNtGNwPhB2Dgdit1qGGY0mL/sRi2VqIo+PoAzvcSjiPsYi6+i6vb0dsTVSFHBcHtJFEejX3cecxg==
+  dependencies:
+    "@material-ui/core" "^4.9.5"
+    "@material-ui/icons" "^4.9.1"
+    "@testing-library/jest-dom" "^4.2.4"
+    "@testing-library/react" "^9.3.2"
+    "@testing-library/user-event" "^7.1.2"
+    "@types/classnames" "^2.2.10"
+    "@types/jest" "^24.0.0"
+    "@types/node" "^12.0.0"
+    "@types/react" "^16.9.0"
+    "@types/react-dom" "^16.9.0"
+    classnames "^2.2.6"
+    react-scripts "3.4.0"
+    typescript "~3.7.2"
+
 "@hotels/search-box@0.0.8":
   version "0.0.8"
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.8.tgz#62080b3a2225bb6a332cf7cd464a6041479ddfb1"

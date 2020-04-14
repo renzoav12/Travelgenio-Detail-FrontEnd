@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: theme.shape.borderRadius
     },
     occupancy: {
-      paddingTop: 20
+      paddingTop: 10
     },
     cancelPolicy: {
       paddingTop: 20,
@@ -73,11 +73,11 @@ const Pricing: FunctionComponent<PricingProps> = props => {
       <Grid item xs={12}>
         <MealPlan {...props.rate.mealPlan}/>
       </Grid>
-      <Grid item xs={12} className={classes.occupancy}>
-        <OccupancyDistribution {...props}/>
-      </Grid>
       <Grid item xs={12} className={classes.cancelPolicy}>
         {cancelPolicies}
+      </Grid>
+      <Grid item xs={12} className={classes.occupancy}>
+        <OccupancyDistribution {...props}/>
       </Grid>
     </Grid>
     <Grid container item xs={12} sm={8} md={4} justify="flex-end" alignContent="flex-start">
