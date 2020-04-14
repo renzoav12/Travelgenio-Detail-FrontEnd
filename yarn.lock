@@ -1211,8 +1211,8 @@
 
 "@hotels/occupancy@0.0.1":
   version "0.0.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/occupancy/-/occupancy-0.0.1.tgz#3d577cf045209a00923687be2630fe2040640306"
-  integrity sha512-Ypp2oD217h4r9r1EkQn+CA2bUqonbTeD9BguRo1f1/OR/Xp+AgtCDzeVcGyjvdfINn6FHUZFebBLAXpn/XTjSQ==
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/occupancy/-/occupancy-0.0.1.tgz#37fb6399468fdffab12bf51d86e32b688d348938"
+  integrity sha512-hVQGfkyfn0LNtGNwPhB2Dgdit1qGGY0mL/sRi2VqIo+PoAzvcSjiPsYi6+i6vb0dsTVSFHBcHtJFEejX3cecxg==
   dependencies:
     "@material-ui/core" "^4.9.5"
     "@material-ui/icons" "^4.9.1"
@@ -1225,8 +1225,6 @@
     "@types/react" "^16.9.0"
     "@types/react-dom" "^16.9.0"
     classnames "^2.2.6"
-    moment "^2.24.0"
-    react-autosuggest "^9.4.3"
     react-scripts "3.4.0"
     typescript "~3.7.2"
 

@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: theme.shape.borderRadius
     },
     occupancy: {
-      paddingTop: 20
+      paddingTop: 10
     },
     cancelPolicy: {
       paddingTop: 20,
