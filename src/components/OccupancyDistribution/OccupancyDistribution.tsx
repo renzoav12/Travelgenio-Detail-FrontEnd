@@ -34,7 +34,8 @@ const OccupancyDistribution: FunctionComponent<OccupancyProps> = props => {
     <Grid item xs={12} key={index}> 
        <Occupancy  adults={room.adults}
         childrenAges={room.childrenAges}
-        description={props.bedGroup.description}>
+        description={props.bedGroup.description}
+        showText= {false}>
       </Occupancy>
     </Grid>)} </Grid>;
 }
