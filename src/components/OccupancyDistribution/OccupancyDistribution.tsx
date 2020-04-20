@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { SearchBoxOccupancyState } from '@hotels/search-box';
-import { Grid, Box } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { BedGroup } from '../Detail/Availability/Room/Room';
 import Occupancy from '@hotels/occupancy';
 

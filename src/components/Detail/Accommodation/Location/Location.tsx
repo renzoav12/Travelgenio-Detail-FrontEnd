@@ -1,5 +1,5 @@
 import React, {useState, FunctionComponent} from 'react';
-import { Grid, Box, Typography } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 import MapDialog, {MapDialogProps} from '@hotels/map-dialog';
 import { Place } from '@hotels/map';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';

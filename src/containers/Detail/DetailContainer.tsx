@@ -3,7 +3,7 @@ import { RootState } from '../../store';
 import { connect } from 'react-redux';
 import { AccommodationProps } from '../../components/Detail/Accommodation/Accommodation';
 import { thunkSearchUpdate } from '../../actions/detail/detail.action';
-import SearchBox, {SearchBoxState, SearchBoxOccupancyState, SearchBoxStayState} from '@hotels/search-box';
+import SearchBox, {SearchBoxState} from '@hotels/search-box';
 import { SuggestionHint, SuggestionEntry } from '@hotels/search-box/dist/Autocomplete/Autocomplete';
 import { Search, Status } from '../../model/search';
 import { thunkRoomSelect } from '../../actions/room/room.action';
