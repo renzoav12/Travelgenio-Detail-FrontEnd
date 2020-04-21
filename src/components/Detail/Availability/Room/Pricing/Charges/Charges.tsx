@@ -11,7 +11,7 @@ const Charges: FunctionComponent<Props> = props => {
   const otherCharges: Array<BreakdownCharge> = props.rate.breakdown.charges.filter(charge => charge.type !== "BASE_RATE" );
 
   const baseRate: JSX.Element | null =  baseRateCharge ? <Box>
-  <Typography variant="subtitle2" >Tarifa ({props.rate.nights} noches) {baseRateCharge.price.amount} {baseRateCharge.price.currency}</Typography>
+  <Typography variant="subtitle2" >Tarifa ({props.rate.nights} noches): {baseRateCharge.price.amount} {baseRateCharge.price.currency}</Typography>
 </Box> : null;
 
 const charges: Array<JSX.Element> = otherCharges.map((charge, index) => { return <Box key={index}>
