@@ -16,6 +16,8 @@ import { thunkSearchBoxChange } from '../../actions/searchBox/searchBox.action';
 import SearchEmpty from '@hotels/search-empty';
 import { parseOccupancy } from '../../components/OccupancyDistribution/OccupancyDistribution';
 import { parseStay } from '../../utils/stay';
+import { loadI18n } from '../../actions/i18n/i18n.action';
+
 
 interface DetailContainerProps {
   search: Search;
@@ -25,6 +27,7 @@ interface DetailContainerProps {
   roomsStatus: Status;
   onSearch: (search: Search) => void;
   onSelect: (id: string) => void;
+  loadI18n: () => void;
   suggestionName: string;
   suggestions: SuggestionEntry[];
   onChangeSuggestionHint: (suggestionHint: SuggestionHint) => void;
@@ -44,6 +47,7 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
   useEffect(() => {
     props.onSearch(props.search);
     props.searchSuggestionName({code: props.search.accommodationId, type: "ACCOMMODATION"});
+    props.loadI18n();
   }, []);
 
   const classes = useStyles();
@@ -105,6 +109,7 @@ export default connect(
     onSelect: thunkRoomSelect,
     onChangeSuggestionHint: fetchSuggestionSearch,
     searchSuggestionName: fetchSuggestionSearchName,
+    loadI18n: loadI18n,
     onSearchBoxChange:thunkSearchBoxChange
   }
 )(DetailContainer);
