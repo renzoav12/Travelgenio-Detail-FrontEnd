@@ -13,9 +13,6 @@ import Skeleton from 'react-loading-skeleton';
 import { Status } from '../../../model/search';
 import PropTypes from "prop-types";
 import Keys from "@hotels/translation-keys";
-import { capitalCase } from "change-case";
-
-
 
 
 export interface Props {
@@ -61,7 +58,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Accommodation: FunctionComponent<Props> = (props, context) => {
   const classes = useStyles();
-  console.log(context.t(Keys.detail.accommodation_information));
   return <Paper>
     <Grid container spacing={2}>
       {props.accommodationStatus === Status.LOADING ? <Grid item xs={12}><Skeleton height={30}/></Grid> :
@@ -90,7 +86,7 @@ const Accommodation: FunctionComponent<Props> = (props, context) => {
         </Grid>}
       </Grid>
       <Grid item xs={12} className={classes.sectionBorder}>
-        <Amenities amenities={props.accommodation.amenities} status={props.accommodationStatus} title={capitalCase(context.t(Keys.detail.accommodation_title))}/>
+        <Amenities amenities={props.accommodation.amenities} status={props.accommodationStatus} title={context.t(Keys.detail.accommodation_amenities_more_popular)}/>
       </Grid>
       <Grid item xs={12} className={classes.sectionBorder}>
         <CheckInOut checkInOut={props.accommodation.checkInOut} status={props.accommodationStatus}/>
