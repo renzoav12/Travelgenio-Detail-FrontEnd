@@ -101,7 +101,7 @@ const Room: FunctionComponent<RoomProps> = props => {
       <Grid container spacing={2}>
         <Grid item xs={12} className={classes.roomName}>
           {props.room
-            ? <Typography variant="h1">{props.room.content.name}</Typography>
+            ? <Typography variant="h2">{props.room.content.name}</Typography>
             : <Skeleton height={30} />}
         </Grid>
         <Grid item xs={12} sm={6} md={5} lg={4} className={classes.images}>

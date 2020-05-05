@@ -4,6 +4,10 @@ import Description from '../../../Description/Description';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Skeleton from 'react-loading-skeleton';
 import { Status } from '../../../../model/search';
+import Keys from "@hotels/translation-keys";
+import PropTypes from "prop-types";
+
+
 
 export interface CheckInOutLoadingProps {
   checkInOut: CheckInOutProps;
@@ -41,23 +45,23 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = props => {
+const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = (props, context) => {
   const begin24Hours = "00:00";
   const end24Hours = "23:59";
-  const noneCheckinHour = "El alojamiento no informa sobre hora de checkin.";
-  const noneCheckoutHour = "El alojamiento no informa sobre hora de checkout.";
+  const noneCheckinHour = context.t(Keys.detail.accommodation_inf_checkin);
+  const noneCheckoutHour = context.t(Keys.detail.accommodation_inf_checkout);
 
   const classes = useStyles();
 
   const checkInHour = () => {
     if(props.checkInOut.checkIn.beginTime === begin24Hours && props.checkInOut.checkIn.endTime === end24Hours) {
-      return <Box> Las 24 Hs.</Box>;  
+    return <Box> {context.t(Keys.detail.check_all_hours)}</Box>;  
     } else if(props.checkInOut.checkIn.beginTime && props.checkInOut.checkIn.endTime && props.checkInOut.checkIn.beginTime !== props.checkInOut.checkIn.endTime) {
-      return <Box>A partir de {props.checkInOut.checkIn.beginTime} Hs. a {props.checkInOut.checkIn.endTime} Hs.</Box>;
+      return <Box>{context.t(Keys.detail.check_from)} {props.checkInOut.checkIn.beginTime} Hs. a {props.checkInOut.checkIn.endTime} Hs.</Box>;
     } else if(props.checkInOut.checkIn.beginTime) {
-      return <Box>A partir de {props.checkInOut.checkIn.beginTime} Hs.</Box>
+      return <Box>{context.t(Keys.detail.check_from)} {props.checkInOut.checkIn.beginTime} Hs.</Box>
     } else if(props.checkInOut.checkIn.endTime) {
-      return <Box>Hasta las {props.checkInOut.checkIn.endTime} Hs.</Box>
+    return <Box>{context.t(Keys.detail.check_until)} {props.checkInOut.checkIn.endTime} Hs.</Box>
     } else {
       return <Box>{noneCheckinHour}</Box>;
     }
@@ -70,7 +74,7 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = props => {
 
   return <Grid container item spacing={2} alignItems="flex-start">
     <Grid item xs={12} className="otravo-title">
-      <Typography variant="h1">Condiciones del alojamiento</Typography>
+<Typography variant="h1">{context.t(Keys.detail.check_conditions_accommodation)}</Typography>
     </Grid>
     <Grid item xs={3} md={2} lg={1} className={classes.checkIn}>
       Check In:
@@ -89,5 +93,7 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = props => {
     </Grid>
   </Grid>;
 }
+
+CheckInCheckOut.contextTypes = { t: PropTypes.func };
 
 export default CheckInCheckOut;

@@ -7,6 +7,8 @@ import { SearchBoxOccupancyState } from '@hotels/search-box';
 import { BedGroup } from '../Room';
 import  MealPlan, { MealPlanProps } from '@hotels/mealplan';
 import Charges from './Charges/Charges';
+import Keys from "@hotels/translation-keys";
+import PropTypes from "prop-types";
 
 export interface PricingProps {
   rate: Rate;
@@ -69,7 +71,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Pricing: FunctionComponent<PricingProps> = props => {
+const Pricing: FunctionComponent<PricingProps> = (props, context) => {
 
   const classes = useStyles();
 
@@ -95,9 +97,11 @@ const Pricing: FunctionComponent<PricingProps> = props => {
       </Grid>
     </Grid>
     <Grid item xs={12} sm={4} md={2}>
-      <Button variant="contained" color="primary" fullWidth onClick={() => props.onSelect(props.rate.id)}>Reservar</Button>
+      <Button variant="contained" color="primary" fullWidth onClick={() => props.onSelect(props.rate.id)}>{context.t(Keys.detail.pricing_reserve)}</Button>
     </Grid>
   </Grid>
 }
+
+Pricing.contextTypes = { t: PropTypes.func };
 
 export default Pricing;
