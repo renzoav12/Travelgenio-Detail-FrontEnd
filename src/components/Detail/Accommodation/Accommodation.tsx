@@ -13,7 +13,6 @@ import Skeleton from 'react-loading-skeleton';
 import { Status } from '../../../model/search';
 import PropTypes from "prop-types";
 import Keys from "@hotels/translation-keys";
-import { pascalCase } from "change-case";
 import { capitalCase } from "change-case";
 
 
