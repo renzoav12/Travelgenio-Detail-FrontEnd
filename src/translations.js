@@ -1,7 +1,5 @@
 export default {
     es: {
-        rate_nights: "noches",
-        rate_night: "noche",
         rate: "Tarifa ({n} noche)",
         rate_pl: "Tarifa ({n} noches)",
         room_rate_select: "Reservar",
