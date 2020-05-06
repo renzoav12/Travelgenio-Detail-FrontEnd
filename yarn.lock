@@ -1243,8 +1243,8 @@
 
 "@hotels/translation-keys@^0.0.1":
   version "0.0.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation-keys/-/translation-keys-0.0.1.tgz#dc85fb38c453ac7e4ee244d7411b52a099c749ec"
-  integrity sha512-8iE6vO+D3eI4dgMw+Jzk0685bD6VH48Uugl8XWCBjjj95bBwjTVOml+ltmRh+J5+X5/Dpqcdj+Ua6JNC6cfP1g==
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation-keys/-/translation-keys-0.0.1.tgz#6cf1fd1484bc3d74a9c4a67f9d171a774dae8cb3"
+  integrity sha512-mLuMF5bd9CaaWO9HZMKjsa6EzZ0ciUrZWLpfQEor2MIw+pn2pnPHHV9s+WSobc0G5sOuVNC1oVcq0lof8vgBjQ==
   dependencies:
     typescript "~3.7.2"
 
