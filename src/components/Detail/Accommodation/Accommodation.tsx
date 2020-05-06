@@ -11,8 +11,8 @@ import Description from '../../Description/Description';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Skeleton from 'react-loading-skeleton';
 import { Status } from '../../../model/search';
-import PropTypes from "prop-types";
 import Keys from "@hotels/translation-keys";
+import Translation from "@hotels/translation";
 
 
 export interface Props {
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Accommodation: FunctionComponent<Props> = (props, context) => {
+const Accommodation: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
   return <Paper>
     <Grid container spacing={2}>
@@ -78,7 +78,7 @@ const Accommodation: FunctionComponent<Props> = (props, context) => {
       </Grid>
       <Grid item container xs={12} spacing={2} className={classes.section}>
         <Grid item xs={12}>
-          <Typography variant="h1">{context.t(Keys.detail.accommodation_information)}</Typography>
+          <Typography variant="h1"><Translation tkey={Keys.detail.accommodation_information}></Translation></Typography>
         </Grid>
         {props.accommodationStatus === Status.LOADING ? <Grid item xs={12} className = {classes.skeleton}><Skeleton count={5} height={50}/></Grid> :
         <Grid item xs={12}>
@@ -86,7 +86,7 @@ const Accommodation: FunctionComponent<Props> = (props, context) => {
         </Grid>}
       </Grid>
       <Grid item xs={12} className={classes.sectionBorder}>
-        <Amenities amenities={props.accommodation.amenities} status={props.accommodationStatus} title={context.t(Keys.detail.accommodation_amenities_more_popular)}/>
+        <Amenities amenities={props.accommodation.amenities} status={props.accommodationStatus} title={Keys.detail.accommodation_amenities_more_popular}/>
       </Grid>
       <Grid item xs={12} className={classes.sectionBorder}>
         <CheckInOut checkInOut={props.accommodation.checkInOut} status={props.accommodationStatus}/>
@@ -95,6 +95,5 @@ const Accommodation: FunctionComponent<Props> = (props, context) => {
   </Paper>;
 }
 
-Accommodation.contextTypes = { t: PropTypes.func };
 
 export default Accommodation;

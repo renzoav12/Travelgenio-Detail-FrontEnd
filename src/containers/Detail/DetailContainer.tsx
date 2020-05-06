@@ -18,7 +18,6 @@ import { parseOccupancy } from '../../components/OccupancyDistribution/Occupancy
 import { parseStay } from '../../utils/stay';
 import { loadI18n } from '../../actions/i18n/i18n.action';
 import Keys from "@hotels/translation-keys";
-import PropTypes from "prop-types";
 
 
 interface DetailContainerProps {
@@ -45,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const DetailContainer: FunctionComponent<DetailContainerProps> = (props, context) => {
+const DetailContainer: FunctionComponent<DetailContainerProps> = (props) => {
   useEffect(() => {
     props.onSearch(props.search);
     props.searchSuggestionName({code: props.search.accommodationId, type: "ACCOMMODATION"});
@@ -72,7 +71,7 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = (props, context
         onChangeSuggestionHint={props.onChangeSuggestionHint}
         horizontal = {true}
         suggestions = {props.suggestions}
-        title = {context.t(Keys.common.modify_your_destination)}/>
+        title = {Keys.detail.search_change_destination}/>
     </Box>
     {props.rooms.length === 0 && props.roomsStatus === Status.SUCCESS ? <SearchEmpty type="info" dates={props.search.stay}></SearchEmpty>: null}
     <Detail 
@@ -103,8 +102,6 @@ const mapStateToProps = (rootState: RootState, ownProps) => {
       suggestionName: rootState.searchSuggestion.suggestionName,
   };
 };
-
-DetailContainer.contextTypes = { t: PropTypes.func };
 
 export default connect(
   mapStateToProps,
