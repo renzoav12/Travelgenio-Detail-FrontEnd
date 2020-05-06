@@ -2,18 +2,19 @@ import React, {FunctionComponent, useState} from 'react';
 import { Box, Typography } from '@material-ui/core';
 import { Rate, BreakdownCharge } from '../Pricing';
 import Keys from "@hotels/translation-keys";
-import PropTypes from "prop-types";
+import Translation from "@hotels/translation";
 
 export interface Props {
   rate: Rate;
 }
 
-const Charges: FunctionComponent<Props> = (props, context) => {
+const Charges: FunctionComponent<Props> = (props) => {
   const baseRateCharge: BreakdownCharge = props.rate.breakdown.charges.filter(charge => charge.type === "BASE_RATE" )[0];
   const otherCharges: Array<BreakdownCharge> = props.rate.breakdown.charges.filter(charge => charge.type !== "BASE_RATE" );
 
   const baseRate: JSX.Element | null =  baseRateCharge ? <Box>
-  <Typography variant="subtitle2" >{context.t(Keys.detail.rate)} ({props.rate.nights} {context.t(Keys.detail.rate_nights)})
+  <Typography variant="subtitle2" > {props.rate.nights > 1 ? <Translation tkey={Keys.detail.rate_pl} values={{n:props.rate.nights}}/> 
+                                                            : <Translation tkey={Keys.detail.rate} values={{n:props.rate.nights}}/>} 
       : {baseRateCharge.price.amount} {baseRateCharge.price.currency}</Typography>
 </Box> : null;
 
@@ -26,7 +27,5 @@ const charges: Array<JSX.Element> = otherCharges.map((charge, index) => { return
     {charges}
   </Box>;
 }
-
-Charges.contextTypes = { t: PropTypes.func };
 
 export default Charges;
