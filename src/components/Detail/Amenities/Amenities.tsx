@@ -6,7 +6,7 @@ import { Status } from '../../../model/search';
 
 export interface Amenities {
   amenities: Array<AmenityProps>;
-  title: string;
+  title: JSX.Element;
   status: Status;
 }
 

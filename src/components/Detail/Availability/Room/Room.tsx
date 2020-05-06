@@ -9,7 +9,7 @@ import Gallery from '../../../Gallery/Gallery';
 import { SearchBoxOccupancyState } from '@hotels/search-box';
 import { Status } from '../../../../model/search';
 import Keys from "@hotels/translation-keys";
-import Translation from "@hotels/translation";
+import Translate from "@hotels/translation";
 
 export interface RoomProps {
   room?: RoomDetail;
@@ -116,7 +116,7 @@ const Room: FunctionComponent<RoomProps> = props => {
         </Grid>
         {(props.room && props.room.content.amenities.length > 0) ?
           <Grid item xs={12} className={classes.amenities}>
-            <Amenities amenities={props.room.content.amenities} status={props.status ? props.status : Status.LOADING} title={Keys.detail.accommodation_amenities_services} />
+            <Amenities amenities={props.room.content.amenities} status={props.status ? props.status : Status.LOADING} title={<Translate tkey={Keys.detail.accommodation_amenities_services}/>} />
           </Grid>
           : null}
         <Grid item xs={12}>{pricing}</Grid>
