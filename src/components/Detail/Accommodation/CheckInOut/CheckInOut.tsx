@@ -5,7 +5,6 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Skeleton from 'react-loading-skeleton';
 import { Status } from '../../../../model/search';
 import Keys from "@hotels/translation-keys";
-import PropTypes from "prop-types";
 import Translation from "@hotels/translation";
 
 
@@ -45,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = (props, context) => {
+const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = (props) => {
   const begin24Hours = "00:00";
   const end24Hours = "23:59";
   const noneCheckinHour = <Translation tkey={Keys.common.accommodation_not_checkin}/>;
@@ -70,8 +69,9 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = (props, conte
   }
   
   const checkOutHour = () => {
-    let checkoutTime = props.checkInOut.checkOut && props.checkInOut.checkOut.time ? 
-                       context.t(Keys.detail.accommodation_check_in_until,{ n: props.checkInOut.checkOut.time}) : noneCheckoutHour;
+    let checkoutTime = props.checkInOut.checkOut && props.checkInOut.checkOut.time ?
+                      <Translation tkey={Keys.detail.accommodation_check_in_until} values={{n:props.checkInOut.checkOut.time}}/>
+                       : noneCheckoutHour;
     return <Box>{checkoutTime}</Box>;
   }
 
@@ -97,6 +97,5 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = (props, conte
   </Grid>;
 }
 
-CheckInCheckOut.contextTypes = { t: PropTypes.func };
 
 export default CheckInCheckOut;
