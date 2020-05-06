@@ -25,7 +25,7 @@ const Availability: FunctionComponent<AvailabilityProps> = (props) => {
   return <Paper>
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <Typography variant="h1"> <Translation tkey={Keys.detail.rooms}/></Typography>
+        <Typography variant="h1"> <Translation tkey={Keys.common.room_pl}/></Typography>
       </Grid>
       {rooms()}
     </Grid>

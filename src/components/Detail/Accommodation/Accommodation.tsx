@@ -78,7 +78,7 @@ const Accommodation: FunctionComponent<Props> = (props) => {
       </Grid>
       <Grid item container xs={12} spacing={2} className={classes.section}>
         <Grid item xs={12}>
-          <Typography variant="h1"><Translation tkey={Keys.detail.accommodation_information}></Translation></Typography>
+          <Typography variant="h1"><Translation tkey={Keys.detail.accommodation_information}/></Typography>
         </Grid>
         {props.accommodationStatus === Status.LOADING ? <Grid item xs={12} className = {classes.skeleton}><Skeleton count={5} height={50}/></Grid> :
         <Grid item xs={12}>
