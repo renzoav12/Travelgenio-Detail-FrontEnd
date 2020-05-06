@@ -18,6 +18,8 @@ import { parseOccupancy } from '../../components/OccupancyDistribution/Occupancy
 import { parseStay } from '../../utils/stay';
 import { loadI18n } from '../../actions/i18n/i18n.action';
 import Keys from "@hotels/translation-keys";
+import Translation from "@hotels/translation";
+
 
 
 interface DetailContainerProps {
@@ -71,7 +73,7 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = (props) => {
         onChangeSuggestionHint={props.onChangeSuggestionHint}
         horizontal = {true}
         suggestions = {props.suggestions}
-        title = {Keys.common.search_change_destination}/>
+        title = {<Translation tkey={Keys.common.search_change_destination}/>}/>
     </Box>
     {props.rooms.length === 0 && props.roomsStatus === Status.SUCCESS ? <SearchEmpty type="info" dates={props.search.stay}></SearchEmpty>: null}
     <Detail 
