@@ -17,6 +17,7 @@ export default {
         accommodation_check_in_until: "Hasta las {n} Hs.",
         accommodation_checkin_24hs: "Las 24 Hs.",
         accommodation_amenities_more_popular: "Servicios más populares",
+        accommodation_amenities_services: "Servicios",
         accommodation_checkin: "Entrada",
         accommodation_checkout: "Salida"
     },
