@@ -9,7 +9,8 @@ import Gallery from '../../../Gallery/Gallery';
 import { SearchBoxOccupancyState } from '@hotels/search-box';
 import { Status } from '../../../../model/search';
 import Keys from "@hotels/translation-keys";
-import Translate from "@hotels/translation";
+import {translate} from "@hotels/translation";
+import PropTypes from "prop-types";
 
 export interface RoomProps {
   room?: RoomDetail;
@@ -89,7 +90,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Room: FunctionComponent<RoomProps> = props => {
+const Room: FunctionComponent<RoomProps> = (props, context) => {
   const classes = useStyles();
 
   const pricing = props.room ? props.room.pricing.map((rate, index) => {
@@ -116,12 +117,14 @@ const Room: FunctionComponent<RoomProps> = props => {
         </Grid>
         {(props.room && props.room.content.amenities.length > 0) ?
           <Grid item xs={12} className={classes.amenities}>
-            <Amenities amenities={props.room.content.amenities} status={props.status ? props.status : Status.LOADING} title={<Translate tkey={Keys.detail.accommodation_amenities_services}/>} />
+            <Amenities amenities={props.room.content.amenities} status={props.status ? props.status : Status.LOADING} title={translate(context,Keys.detail.accommodation_amenities_services)} />
           </Grid>
           : null}
         <Grid item xs={12}>{pricing}</Grid>
       </Grid>
       : null);
 }
+
+Room.contextTypes = { t: PropTypes.func };
 
 export default Room;

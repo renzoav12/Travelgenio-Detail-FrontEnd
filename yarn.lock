@@ -1248,10 +1248,10 @@
   dependencies:
     typescript "~3.7.2"
 
-"@hotels/translation@0.0.1":
-  version "0.0.1"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation/-/translation-0.0.1.tgz#29c0d425df2323fe76b273547bc94c12d507ee21"
-  integrity sha512-IJovWRl+t5P+xAU3ptwaJOUIf0c7kL8H8JgLheNuSKD4Z9j13Fwl0zpD5d+hb73wBTiXLS2XroXolGllq3f78Q==
+"@hotels/translation@0.0.2":
+  version "0.0.2"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation/-/translation-0.0.2.tgz#e910374192218cb7e980381df6eb2d1d22eb5272"
+  integrity sha512-7EPX2MtEpBT32txaauHBtg1RdehRVWns6jyUXX9yWr5QTRNO3Pjx35tLddZb6hsplI2EGU61Czk0XjjGjJ7C7g==
 
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
