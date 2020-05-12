@@ -117,7 +117,7 @@ const Room: FunctionComponent<RoomProps> = (props, context) => {
         </Grid>
         {(props.room && props.room.content.amenities.length > 0) ?
           <Grid item xs={12} className={classes.amenities}>
-            <Amenities amenities={props.room.content.amenities} status={props.status ? props.status : Status.LOADING} title={translate(context,Keys.detail.accommodation_amenities_services)} />
+            <Amenities amenities={props.room.content.amenities} status={props.status ? props.status : Status.LOADING} title={translate(context,Keys.detail.amenity_pl)} />
           </Grid>
           : null}
         <Grid item xs={12}>{pricing}</Grid>

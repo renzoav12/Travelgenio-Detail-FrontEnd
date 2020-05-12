@@ -47,22 +47,22 @@ const useStyles = makeStyles((theme: Theme) =>
 const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = (props) => {
   const begin24Hours = "00:00";
   const end24Hours = "23:59";
-  const noneCheckinHour = <Translation tkey={Keys.common.accommodation_not_checkin}/>;
-  const noneCheckoutHour = <Translation tkey={Keys.common.accommodation_not_checkout}/>;
+  const noneCheckinHour = <Translation tkey={Keys.common.accommodation_not_check_in}/>;
+  const noneCheckoutHour = <Translation tkey={Keys.common.accommodation_not_check_out}/>;
 
   const classes = useStyles();
 
   const checkInHour = () => {
     if(props.checkInOut.checkIn.beginTime === begin24Hours && props.checkInOut.checkIn.endTime === end24Hours) {
-    return <Box><Translation tkey={Keys.detail.accommodation_checkin_24hs}/></Box>;  
+    return <Box><Translation tkey={Keys.common.accommodation_check_in_24hs}/></Box>;  
     } else if(props.checkInOut.checkIn.beginTime && props.checkInOut.checkIn.endTime && props.checkInOut.checkIn.beginTime !== props.checkInOut.checkIn.endTime) {
       return <Box>
-            <Translation tkey={Keys.detail.accommodation_check_in_from_to} values={{n:props.checkInOut.checkIn.beginTime ,m:props.checkInOut.checkIn.endTime}}/>
+            <Translation tkey={Keys.common.accommodation_check_in_from_to} values={{n:props.checkInOut.checkIn.beginTime ,m:props.checkInOut.checkIn.endTime}}/>
             </Box>;
     } else if(props.checkInOut.checkIn.beginTime) {
-      return <Box><Translation tkey={Keys.detail.accommodation_check_in_from} values={{n:props.checkInOut.checkIn.beginTime}}/></Box>
+      return <Box><Translation tkey={Keys.common.accommodation_check_in_from} values={{n:props.checkInOut.checkIn.beginTime}}/></Box>
     } else if(props.checkInOut.checkIn.endTime) {
-    return <Box><Translation tkey={Keys.detail.accommodation_check_in_until} values={{n:props.checkInOut.checkIn.endTime}}/> </Box>
+    return <Box><Translation tkey={Keys.common.accommodation_check_in_until} values={{n:props.checkInOut.checkIn.endTime}}/> </Box>
     } else {
       return <Box>{noneCheckinHour}</Box>;
     }
@@ -70,7 +70,7 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = (props) => {
   
   const checkOutHour = () => {
     let checkoutTime = props.checkInOut.checkOut && props.checkInOut.checkOut.time ?
-                      <Translation tkey={Keys.detail.accommodation_check_in_until} values={{n:props.checkInOut.checkOut.time}}/>
+                      <Translation tkey={Keys.common.accommodation_check_in_until} values={{n:props.checkInOut.checkOut.time}}/>
                        : noneCheckoutHour;
     return <Box>{checkoutTime}</Box>;
   }
@@ -80,13 +80,13 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = (props) => {
 <Typography variant="h1"><Translation tkey={Keys.detail.accommodation_check_in_out_conditions}/></Typography>
     </Grid>
     <Grid item xs={3} md={2} lg={1} className={classes.checkIn}>
-      <Translation tkey={Keys.common.accommodation_checkin}/>
+      <Translation tkey={Keys.common.accommodation_check_in}/>:
     </Grid>
     <Grid item xs={9} md={10} lg={11}>
       {props.status === Status.LOADING ? <Skeleton height={20}/> : checkInHour()}
     </Grid>
     <Grid item xs={3} md={2} lg={1} className={classes.checkOut}>
-      <Translation tkey={Keys.common.accommodation_checkout}/>
+      <Translation tkey={Keys.common.accommodation_check_out}/>:
     </Grid>
     <Grid item xs={9} md={10} lg={11}>
       {props.status === Status.LOADING ? <Skeleton height={20}/> : checkOutHour()}

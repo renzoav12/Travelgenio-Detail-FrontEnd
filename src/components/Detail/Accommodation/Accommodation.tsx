@@ -12,7 +12,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Skeleton from 'react-loading-skeleton';
 import { Status } from '../../../model/search';
 import Keys from "@hotels/translation-keys";
-import Translate, {translate} from "@hotels/translation";
+import Translation, {translate} from "@hotels/translation";
 import PropTypes from "prop-types";
 
 export interface Props {
@@ -78,7 +78,7 @@ const Accommodation: FunctionComponent<Props> = (props, context) => {
       </Grid>
       <Grid item container xs={12} spacing={2} className={classes.section}>
         <Grid item xs={12}>
-          <Typography variant="h1"><Translate tkey={Keys.detail.accommodation_information}/></Typography>
+          <Typography variant="h1"><Translation tkey={Keys.detail.accommodation_information}/></Typography>
         </Grid>
         {props.accommodationStatus === Status.LOADING ? <Grid item xs={12} className = {classes.skeleton}><Skeleton count={5} height={50}/></Grid> :
         <Grid item xs={12}>
