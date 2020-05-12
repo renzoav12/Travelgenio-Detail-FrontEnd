@@ -80,13 +80,14 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = (props) => {
 <Typography variant="h1"><Translation tkey={Keys.detail.accommodation_check_in_out_conditions}/></Typography>
     </Grid>
     <Grid item xs={3} md={2} lg={1} className={classes.checkIn}>
-      <Translation tkey={Keys.common.accommodation_check_in}/>
+      <Translation tkey={Keys.common.accommodation_check_in}/>:
     </Grid>
     <Grid item xs={9} md={10} lg={11}>
       {props.status === Status.LOADING ? <Skeleton height={20}/> : checkInHour()}
     </Grid>
     <Grid item xs={3} md={2} lg={1} className={classes.checkOut}>
-      <Translation tkey={Keys.common.accommodation_check_out}/>
+
+      <Translation tkey={Keys.common.accommodation_check_out}/>:
     </Grid>
     <Grid item xs={9} md={10} lg={11}>
       {props.status === Status.LOADING ? <Skeleton height={20}/> : checkOutHour()}

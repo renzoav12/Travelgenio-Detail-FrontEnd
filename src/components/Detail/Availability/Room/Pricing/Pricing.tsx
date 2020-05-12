@@ -8,7 +8,7 @@ import { BedGroup } from '../Room';
 import  MealPlan, { MealPlanProps } from '@hotels/mealplan';
 import Charges from './Charges/Charges';
 import Keys from "@hotels/translation-keys";
-import Translation from "@hotels/translation";
+import Translate from "@hotels/translation";
 
 export interface PricingProps {
   rate: Rate;
@@ -98,7 +98,7 @@ const Pricing: FunctionComponent<PricingProps> = (props) => {
     </Grid>
     <Grid item xs={12} sm={4} md={2}>
       <Button variant="contained" color="primary" fullWidth onClick={() => props.onSelect(props.rate.id)}>
-        <Translation tkey={Keys.detail.room_rate_select}/></Button>
+        <Translate tkey={Keys.detail.reserve}/></Button>
     </Grid>
   </Grid>
 }
