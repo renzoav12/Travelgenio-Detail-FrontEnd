@@ -8,6 +8,9 @@ import Skeleton from 'react-loading-skeleton';
 import Gallery from '../../../Gallery/Gallery';
 import { SearchBoxOccupancyState } from '@hotels/search-box';
 import { Status } from '../../../../model/search';
+import Keys from "@hotels/translation-keys";
+import {translate} from "@hotels/translation";
+import PropTypes from "prop-types";
 
 export interface RoomProps {
   room?: RoomDetail;
@@ -87,7 +90,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Room: FunctionComponent<RoomProps> = props => {
+const Room: FunctionComponent<RoomProps> = (props, context) => {
   const classes = useStyles();
 
   const pricing = props.room ? props.room.pricing.map((rate, index) => {
@@ -101,7 +104,7 @@ const Room: FunctionComponent<RoomProps> = props => {
       <Grid container spacing={2}>
         <Grid item xs={12} className={classes.roomName}>
           {props.room
-            ? <Typography variant="h1">{props.room.content.name}</Typography>
+            ? <Typography variant="h2">{props.room.content.name}</Typography>
             : <Skeleton height={30} />}
         </Grid>
         <Grid item xs={12} sm={6} md={5} lg={4} className={classes.images}>
@@ -114,12 +117,14 @@ const Room: FunctionComponent<RoomProps> = props => {
         </Grid>
         {(props.room && props.room.content.amenities.length > 0) ?
           <Grid item xs={12} className={classes.amenities}>
-            <Amenities amenities={props.room.content.amenities} status={props.status ? props.status : Status.LOADING} title="Servicios" />
+            <Amenities amenities={props.room.content.amenities} status={props.status ? props.status : Status.LOADING} title={translate(context,Keys.detail.amenity_pl)} />
           </Grid>
           : null}
         <Grid item xs={12}>{pricing}</Grid>
       </Grid>
       : null);
 }
+
+Room.contextTypes = { t: PropTypes.func };
 
 export default Room;

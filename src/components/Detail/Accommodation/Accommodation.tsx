@@ -11,6 +11,9 @@ import Description from '../../Description/Description';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Skeleton from 'react-loading-skeleton';
 import { Status } from '../../../model/search';
+import Keys from "@hotels/translation-keys";
+import Translation, {translate} from "@hotels/translation";
+import PropTypes from "prop-types";
 
 export interface Props {
   accommodation: AccommodationProps;
@@ -53,9 +56,8 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Accommodation: FunctionComponent<Props> = props => {
+const Accommodation: FunctionComponent<Props> = (props, context) => {
   const classes = useStyles();
-
   return <Paper>
     <Grid container spacing={2}>
       {props.accommodationStatus === Status.LOADING ? <Grid item xs={12}><Skeleton height={30}/></Grid> :
@@ -76,7 +78,7 @@ const Accommodation: FunctionComponent<Props> = props => {
       </Grid>
       <Grid item container xs={12} spacing={2} className={classes.section}>
         <Grid item xs={12}>
-          <Typography variant="h1">Información</Typography>
+          <Typography variant="h1"><Translation tkey={Keys.detail.accommodation_information}/></Typography>
         </Grid>
         {props.accommodationStatus === Status.LOADING ? <Grid item xs={12} className = {classes.skeleton}><Skeleton count={5} height={50}/></Grid> :
         <Grid item xs={12}>
@@ -84,7 +86,7 @@ const Accommodation: FunctionComponent<Props> = props => {
         </Grid>}
       </Grid>
       <Grid item xs={12} className={classes.sectionBorder}>
-        <Amenities amenities={props.accommodation.amenities} status={props.accommodationStatus} title="Servicios más populares"/>
+        <Amenities amenities={props.accommodation.amenities} status={props.accommodationStatus} title={translate(context,Keys.detail.accommodation_amenity_more_popular)}/>
       </Grid>
       <Grid item xs={12} className={classes.sectionBorder}>
         <CheckInOut checkInOut={props.accommodation.checkInOut} status={props.accommodationStatus}/>
@@ -92,5 +94,7 @@ const Accommodation: FunctionComponent<Props> = props => {
     </Grid>
   </Paper>;
 }
+
+Accommodation.contextTypes = { t: PropTypes.func };
 
 export default Accommodation;

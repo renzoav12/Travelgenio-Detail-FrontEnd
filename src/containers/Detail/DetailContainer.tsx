@@ -16,6 +16,11 @@ import { thunkSearchBoxChange } from '../../actions/searchBox/searchBox.action';
 import SearchEmpty from '@hotels/search-empty';
 import { parseOccupancy } from '../../components/OccupancyDistribution/OccupancyDistribution';
 import { parseStay } from '../../utils/stay';
+import { loadI18n } from '../../actions/i18n/i18n.action';
+import Keys from "@hotels/translation-keys";
+import {translate} from "@hotels/translation";
+import PropTypes from "prop-types";
+
 
 interface DetailContainerProps {
   search: Search;
@@ -25,6 +30,7 @@ interface DetailContainerProps {
   roomsStatus: Status;
   onSearch: (search: Search) => void;
   onSelect: (id: string) => void;
+  loadI18n: () => void;
   suggestionName: string;
   suggestions: SuggestionEntry[];
   onChangeSuggestionHint: (suggestionHint: SuggestionHint) => void;
@@ -40,10 +46,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
+const DetailContainer: FunctionComponent<DetailContainerProps> = (props, context) => {
   useEffect(() => {
     props.onSearch(props.search);
     props.searchSuggestionName({code: props.search.accommodationId, type: "ACCOMMODATION"});
+    props.loadI18n();
   }, []);
 
   const classes = useStyles();
@@ -66,7 +73,7 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = props => {
         onChangeSuggestionHint={props.onChangeSuggestionHint}
         horizontal = {true}
         suggestions = {props.suggestions}
-        title = {"Modifica tu destino"}/>
+        title = {translate(context, Keys.common.change_your_destination)}/>
     </Box>
     {props.rooms.length === 0 && props.roomsStatus === Status.SUCCESS ? <SearchEmpty type="info" dates={props.search.stay}></SearchEmpty>: null}
     <Detail 
@@ -97,6 +104,7 @@ const mapStateToProps = (rootState: RootState, ownProps) => {
       suggestionName: rootState.searchSuggestion.suggestionName,
   };
 };
+DetailContainer.contextTypes = { t: PropTypes.func };
 
 export default connect(
   mapStateToProps,
@@ -105,6 +113,7 @@ export default connect(
     onSelect: thunkRoomSelect,
     onChangeSuggestionHint: fetchSuggestionSearch,
     searchSuggestionName: fetchSuggestionSearchName,
+    loadI18n: loadI18n,
     onSearchBoxChange:thunkSearchBoxChange
   }
 )(DetailContainer);
