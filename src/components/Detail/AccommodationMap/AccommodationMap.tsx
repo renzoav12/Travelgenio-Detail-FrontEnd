@@ -5,6 +5,7 @@ import Map, { Place } from '@hotels/map';
 import { AccommodationProps } from '../Accommodation/Accommodation';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Status } from '../../../model/search';
+import config from '../../../config';
 
 export interface Props {
   accommodation: AccommodationProps;
@@ -31,7 +32,7 @@ const AccommodationMap: FunctionComponent<Props> = props => {
   return <Paper className={classes.map}>
       {props.status === Status.LOADING 
       ? <Skeleton height={"100%"}/> 
-      : <Map {...{places: [place], zoom: 16}}/>}
+      : <Map {...{places: [place], zoom: 16, googleMapsKey: config.GOOGLE_MAP_KEY}}/>}
   </Paper>;
 }
 

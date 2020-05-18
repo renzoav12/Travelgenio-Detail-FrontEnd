@@ -5,6 +5,7 @@ import { Place } from '@hotels/map';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ExploreIcon from '@material-ui/icons/Explore';
+import config from '../../../../config';
 
 export interface Location {
   location: LocationProps;
@@ -89,7 +90,8 @@ const Location: FunctionComponent<Location> = props => {
     address: street + city,
     map: {
       places: [place],
-      zoom: 14
+      zoom: 14,
+      googleMapsKey: config.GOOGLE_MAP_KEY
     },
     open,
     onClose: closeMap
