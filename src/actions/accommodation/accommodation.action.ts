@@ -45,7 +45,7 @@ export const accommodationFetch = (action: (accommodation: AccommodationProps) =
     
     try {
         const response: AxiosResponse<AccommodationProps> = await accommodation.get(
-            '/accommodation/' + getState().detail.search.accommodationId,
+            '/accommodations/' + getState().detail.search.accommodationId,
             { 
                 params: {
                     locale: 'es-ES'
