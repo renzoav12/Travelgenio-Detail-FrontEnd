@@ -4,7 +4,6 @@ import Images, { ImageProps } from './Images/Images';
 import Amenities from '../Amenities/Amenities';
 import { AmenityProps } from '../Amenities/Amenities';
 import CheckInOut from './CheckInOut/CheckInOut';
-import Category from '../../Category/Category';
 import Location, { LocationProps } from './Location/Location';
 import { CheckInOutProps } from './CheckInOut/CheckInOut';
 import Description from '../../Description/Description';
@@ -14,6 +13,7 @@ import { Status } from '../../../model/search';
 import Keys from "@hotels/translation-keys";
 import Translation, {translate} from "@hotels/translation";
 import PropTypes from "prop-types";
+import Category from "@hotels/category";
 
 export interface Props {
   accommodation: AccommodationProps;
