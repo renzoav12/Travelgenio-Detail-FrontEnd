@@ -9,7 +9,7 @@
     "@hotels/search-box": "0.0.14",
     "@hotels/search-empty": "0.0.3",
     "@hotels/occupancy":"0.0.3",
-    "@hotels/mealplan":"0.0.3",
+    "@hotels/mealplan":"0.0.5",
     "@hotels/translation-keys": "^0.0.1",
     "@hotels/translation": "0.0.6",
     "@hotels/map-dialog": "0.0.6",
