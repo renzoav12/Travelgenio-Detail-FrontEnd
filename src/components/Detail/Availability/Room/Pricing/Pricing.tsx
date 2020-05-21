@@ -5,7 +5,7 @@ import ExtraCharges, { ExtraChargesProps } from './ExtraCharges/ExtraCharges';
 import OccupancyDistribution from '../../../../OccupancyDistribution/OccupancyDistribution';
 import { SearchBoxOccupancyState } from '@hotels/search-box';
 import { BedGroup } from '../Room';
-import  MealPlan, { MealPlanProps } from '@hotels/mealplan';
+import  MealPlan, { MealPlanProps} from '@hotels/mealplan';
 import Charges from './Charges/Charges';
 import Keys from "@hotels/translation-keys";
 import Translate from "@hotels/translation";
@@ -18,7 +18,7 @@ export interface PricingProps {
 }
 export interface Rate {
   id: string;
-  mealPlan: MealPlanProps;
+  mealPlan?: MealPlanProps | undefined;
   cancelPolicy: Array<string>;
   nights: number;
   nightlyPrice: Price;
@@ -80,7 +80,7 @@ const Pricing: FunctionComponent<PricingProps> = (props) => {
   return <Grid container className={classes.priceSection}>
     <Grid container item xs={12} sm={12} md={6}>
       <Grid  item xs={12}>
-          <MealPlan {...props.rate.mealPlan}/>      
+          <MealPlan {...props.rate.mealPlan} />                
       </Grid>
       <Grid item xs={12} className={classes.cancelPolicy}>
         {cancelPolicies}
