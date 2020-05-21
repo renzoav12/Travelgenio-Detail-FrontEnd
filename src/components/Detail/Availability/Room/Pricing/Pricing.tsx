@@ -2,7 +2,6 @@ import React, {FunctionComponent} from 'react';
 import { Grid, Button, Box} from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import ExtraCharges, { ExtraChargesProps } from './ExtraCharges/ExtraCharges';
-//import MealPlanTest from './ExtraCharges/MealPlan';
 import OccupancyDistribution from '../../../../OccupancyDistribution/OccupancyDistribution';
 import { SearchBoxOccupancyState } from '@hotels/search-box';
 import { BedGroup } from '../Room';
