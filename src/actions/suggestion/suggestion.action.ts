@@ -56,7 +56,7 @@ export const fetchSuggestionSearch = (queryParameters: SearchSuggestionParameter
     handleFetchSuggestionSearch(dispatch);
 
     try {
-        const response: AxiosResponse<Array<SuggestionEntry>> = await search.get('/autocomplete', {
+        const response: AxiosResponse<Array<SuggestionEntry>> = await search.get('', {
             params: queryParameters
         });
         handleSuggestionSearchSuccess(dispatch, response.data);
@@ -69,7 +69,7 @@ export const fetchSuggestionSearchName = (queryParameters: SearchNameSuggestionP
   handleFetchSuggestionSearchName(dispatch);
 
   try {
-      const response: AxiosResponse<SuggestionEntry> = await search.get('/autocomplete/' + queryParameters.code , {
+      const response: AxiosResponse<SuggestionEntry> = await search.get('/' + queryParameters.code , {
           params: {
               'type': queryParameters.type
           }
