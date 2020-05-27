@@ -1208,10 +1208,10 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/occupancy/-/occupancy-0.0.3.tgz#de171dd131030741ca496a99cbc07c730fedb809"
   integrity sha512-0VJupCrCSpz9DIfQzxWhcCXDHUT4XwaTS2v8vrv4rSlWKmbQk9EVL4IkWwZfj4b562K3scKrhHL5Zz/zUZftTA==
 
-"@hotels/search-box@0.0.14":
-  version "0.0.14"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.14.tgz#5b595de4e961c914a0550e7b3ed936b17e9758e1"
-  integrity sha512-bTVKmb5aPgeCoSJGNwp+ZvWNeBmpu7cy7rkGe4+XsZxAmwQQw5Wpl4p5McCeQh640pMkguwJThduWY+NpF6ZTQ==
+"@hotels/search-box@0.0.16":
+  version "0.0.16"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/search-box/-/search-box-0.0.16.tgz#6daca88409bb29cbbfcfa3e50d3979393fe2794c"
+  integrity sha512-fZHehmNq+sPM0zlQpCPIkMWLsuK6rRja6q445uHHfE2clUkcJtC60LbVw26sAw6SH2XWO7F3WCtJaDBFy2ONFg==
   dependencies:
     "@types/react-autosuggest" "^9.3.13"
     "@types/react-dates" "^17.1.10"
