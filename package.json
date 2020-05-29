@@ -7,7 +7,7 @@
     "@hotels/category": "0.0.1",
     "@hotels/footer": "0.0.6",
     "@hotels/header": "0.0.5",
-    "@hotels/search-box": "0.0.17",
+    "@hotels/search-box": "0.0.18",
     "@hotels/search-empty": "0.0.3",
     "@hotels/occupancy":"0.0.3",
     "@hotels/mealplan":"0.0.5",

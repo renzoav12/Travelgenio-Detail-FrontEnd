@@ -11,8 +11,8 @@ export const thunkSearchBoxChange = (searchBoxState: SearchBoxState): ThunkResul
   dispatch
 ) => {
     const occupancy: string = serializeOccupancy(searchBoxState.occupancy);
-    const from: string = serializeDate(searchBoxState.stay.from);
-    const to: string = serializeDate(searchBoxState.stay.to);
+    const from: string | undefined = serializeDate(searchBoxState.stay.from);
+    const to: string | undefined = serializeDate(searchBoxState.stay.to);
 
     let url: string;
 
