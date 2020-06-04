@@ -1,6 +1,9 @@
-import axios from 'axios';
-import config from '../../config';
+import axios from "axios";
+import config from "../../config";
 
 export default axios.create({
-    baseURL: config.AUTOCOMPLETE_API
+  baseURL: config.AUTOCOMPLETE_API,
+  headers: {
+    "OT-Origin-Host": window.location.hostname,
+  },
 });
