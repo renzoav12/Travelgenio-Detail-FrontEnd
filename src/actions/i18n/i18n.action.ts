@@ -7,6 +7,7 @@ import {
 import axios, { AxiosResponse } from 'axios';
 import config from './../../config';
 import { ThunkAction } from 'redux-thunk';
+import { OriginHostHeader } from "../../api/headers";
 
 export const loadI18n = () : ThunkAction<any, IreduxI18nState, any, any> => async (dispatch) => {
   let translations = await resolveTranslations();
@@ -17,11 +18,14 @@ export const loadI18n = () : ThunkAction<any, IreduxI18nState, any, any> => asyn
 
 const resolveTranslations = async () => {
   const axiosInstance = axios.create({
-    baseURL: config.TRANSLATION_API
+    baseURL: config.TRANSLATION_API,
+    headers: {
+      ...OriginHostHeader,
+    },
   });
   let translations: ITranslations = {};
   const key = "translations";
-  const storage = window.localStorage;
+  const storage = window.sessionStorage;
 
   if (storage.getItem(key)) {
     translations = JSON.parse(storage.getItem(key) || "");
