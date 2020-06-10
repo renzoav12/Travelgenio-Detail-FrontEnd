@@ -17,9 +17,9 @@ export const thunkSearchBoxChange = (searchBoxState: SearchBoxState): ThunkResul
     let url: string;
 
     if(searchBoxState.location.type === "ACCOMMODATION") {
-      url = `/hotels/detail/Hotel-${searchBoxState.location.code}/${from}/${to}/${occupancy}/es`;
+      url = `/hotels/detail/Hotel-${searchBoxState.location.code}/${from}/${to}/${occupancy}`;
     } else { 
-      url = `/hotels/search/${searchBoxState.location.type}/${searchBoxState.location.code}/${from}/${to}/${occupancy}/es`;
+      url = `/hotels/search/${searchBoxState.location.type}/${searchBoxState.location.code}/${from}/${to}/${occupancy}`;
     }
 
     window.location.href = url;
