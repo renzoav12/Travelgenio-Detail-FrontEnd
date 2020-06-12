@@ -6,6 +6,8 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ExploreIcon from '@material-ui/icons/Explore';
 import config from '../../../../config';
+import Keys from '@hotels/translation-keys';
+import Translate from '@hotels/translation';
 
 export interface Location {
   location: LocationProps;
@@ -100,7 +102,8 @@ const Location: FunctionComponent<Location> = props => {
   return <Box>
       <Grid container item xs={12}>
         {address}
-        <Box className={classes.mapLink} onClick={showMap}><ExploreIcon fontSize="small" className={classes.verticalCentered}/> Ver mapa</Box>
+        <Box className={classes.mapLink} onClick={showMap}><ExploreIcon fontSize="small" className={classes.verticalCentered}/> 
+        <Translate tkey={Keys.search.see_map} /></Box>
       </Grid>
       <MapDialog {...dialogProps}/>
     </Box>;
