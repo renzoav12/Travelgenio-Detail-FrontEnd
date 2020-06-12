@@ -7,11 +7,12 @@ import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { history } from './history';
 import { RootAction } from './actions/action';
 import { i18nState } from 'redux-i18n';
-
+import { localeReducer, LocaleState } from './reducers/localeReducer';
 
 export interface RootState {
     readonly detail: Detail;
     readonly searchSuggestion: SearchSuggestion;
+    readonly locale: LocaleState;
     readonly router: any;
     readonly i18nState: any;
 }
@@ -19,6 +20,7 @@ export interface RootState {
 const rootReducer = combineReducers<RootState>({
     detail: detailReducer,
     searchSuggestion: searchSuggestionReducer,
+    locale: localeReducer,
     router: connectRouter(history),
     i18nState: i18nState
 });

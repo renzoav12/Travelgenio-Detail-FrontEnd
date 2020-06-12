@@ -20,6 +20,7 @@ import { loadI18n } from '../../actions/i18n/i18n.action';
 import Keys from "@hotels/translation-keys";
 import {translate} from "@hotels/translation";
 import PropTypes from "prop-types";
+import { LocaleState } from '../../reducers/localeReducer';
 
 
 interface DetailContainerProps {
@@ -36,6 +37,7 @@ interface DetailContainerProps {
   onChangeSuggestionHint: (suggestionHint: SuggestionHint) => void;
   searchSuggestionName: (params: SearchNameSuggestionParameters) => void;
   onSearchBoxChange: (state: SearchBoxState) => void;
+  locale: LocaleState;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -48,10 +50,15 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const DetailContainer: FunctionComponent<DetailContainerProps> = (props, context) => {
   useEffect(() => {
-    props.onSearch(props.search);
     props.searchSuggestionName({code: props.search.accommodationId, type: "ACCOMMODATION"});
     props.loadI18n();
   }, []);
+
+  useEffect(() => {
+    if(props.locale.code !== null){
+      props.onSearch(props.search);
+    }
+  }, [props.locale.code]);
 
   const classes = useStyles();
     
@@ -102,6 +109,7 @@ const mapStateToProps = (rootState: RootState, ownProps) => {
       roomsStatus: rootState.detail.roomsStatus,
       suggestions: rootState.searchSuggestion.suggestions,
       suggestionName: rootState.searchSuggestion.suggestionName,
+      locale: rootState.locale,
   };
 };
 DetailContainer.contextTypes = { t: PropTypes.func };

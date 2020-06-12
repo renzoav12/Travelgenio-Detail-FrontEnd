@@ -48,7 +48,7 @@ export const accommodationFetch = (action: (accommodation: AccommodationProps) =
             '/accommodations/' + getState().detail.search.accommodationId,
             { 
                 params: {
-                    locale: 'es-ES'
+                    locale: getState().locale.code
                 }
             }
         );
