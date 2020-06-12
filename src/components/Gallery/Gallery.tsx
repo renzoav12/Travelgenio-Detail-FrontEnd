@@ -128,7 +128,7 @@ const Gallery: FunctionComponent<GalleryProps> = props => {
         className={classes.fullscreenButton}
         onClick={onClick}>
           {isFullscreen ? <Translate tkey={Keys.detail.back} caseType={Case.UPPER}/> 
-                        : <Translate tkey={Keys.detail.view_gallery} caseType={Case.UPPER}/>}
+                        : <Translate tkey={Keys.detail.gallery_view} caseType={Case.UPPER}/>}
           </Button>;
   };
 
