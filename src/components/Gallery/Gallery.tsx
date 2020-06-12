@@ -8,6 +8,8 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import Image from '../Image/Image';
 import { Status } from '../../model/search';
+import Translate, { Case } from '@hotels/translation';
+import Keys from '@hotels/translation-keys';
 
 export interface GalleryProps {
   images: Array<Image>;
@@ -125,7 +127,8 @@ const Gallery: FunctionComponent<GalleryProps> = props => {
         color="primary"
         className={classes.fullscreenButton}
         onClick={onClick}>
-          {isFullscreen ? "Volver" : "Ver Galería"}
+          {isFullscreen ? <Translate tkey={Keys.detail.back} caseType={Case.UPPER}/> 
+                        : <Translate tkey={Keys.detail.gallery_view} caseType={Case.UPPER}/>}
           </Button>;
   };
 
