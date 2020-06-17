@@ -21,6 +21,8 @@ import Keys from "@hotels/translation-keys";
 import {translate} from "@hotels/translation";
 import PropTypes from "prop-types";
 import { LocaleState } from '../../reducers/localeReducer';
+import { initCobrand } from "@hotels/header-footer";
+import config from "../../config";
 
 
 interface DetailContainerProps {
@@ -38,6 +40,7 @@ interface DetailContainerProps {
   searchSuggestionName: (params: SearchNameSuggestionParameters) => void;
   onSearchBoxChange: (state: SearchBoxState) => void;
   locale: LocaleState;
+  initCobrand?: (url: string, emailSubscriptionUrl: string) => void;  
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -52,6 +55,7 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = (props, context
   useEffect(() => {
     props.searchSuggestionName({code: props.search.accommodationId, type: "ACCOMMODATION"});
     props.loadI18n();
+    props.initCobrand && props.initCobrand(config.COBRAND, config.EMAIL_SUBSCRIPTION);
   }, []);
 
   useEffect(() => {
@@ -122,6 +126,7 @@ export default connect(
     onChangeSuggestionHint: fetchSuggestionSearch,
     searchSuggestionName: fetchSuggestionSearchName,
     loadI18n: loadI18n,
-    onSearchBoxChange:thunkSearchBoxChange
+    onSearchBoxChange:thunkSearchBoxChange,
+    initCobrand: initCobrand    
   }
 )(DetailContainer);

@@ -1,4 +1,3 @@
-import search from "../../api/suggestions/suggestions";
 import { ThunkAction } from "redux-thunk";
 import { Dispatch } from "redux";
 import { RootState } from "../../store";
@@ -15,9 +14,9 @@ interface SetLocale {
   locale: string;
 }
 
-export const setLocale = (
-  locale: string
-): ThunkResult<void> => async (dispatch) => {
+export const setLocale = (locale: string): ThunkResult<void> => async (
+  dispatch
+) => {
   handleSetLocale(dispatch, locale);
 };
 
