@@ -1,17 +1,16 @@
 import React, {useState, FunctionComponent} from 'react';
 import { Grid, Box } from '@material-ui/core';
-import MapDialog, {MapDialogProps} from '@hotels/map-dialog';
-import { Place } from '@hotels/map';
+import { MapDialog, MapDialogProps } from "@hotels/map";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ExploreIcon from '@material-ui/icons/Explore';
 import config from '../../../../config';
 import Keys from '@hotels/translation-keys';
 import Translate from '@hotels/translation';
+import { AccommodationProps } from "../Accommodation";
 
 export interface Location {
-  location: LocationProps;
-  accommodationName: string;
+  accommodation: AccommodationProps;
 }
 export interface LocationProps {
   address: AddressProps;
@@ -81,22 +80,21 @@ const Location: FunctionComponent<Location> = props => {
     setOpen(false);
   };
 
-  const street = props.location.address.street.name + " " + props.location.address.street.number;
-  const city = (street.length > 1 ? ", ": "") + props.location.address.city.name;
+  const street = props.accommodation.location.address.street.name + " " + props.accommodation.location.address.street.number;
+  const city = (street.length > 1 ? ", ": "") + props.accommodation.location.address.city.name;
   const address = <Box><LocationOnIcon fontSize="small" className={classes.verticalCentered}/> {street} {city}</Box>;
   
-  const place: Place = {title : street+" "+city, geoPosition: props.location.geoPosition};
-  
   const dialogProps: MapDialogProps = {
-    title: props.accommodationName,
+    title: props.accommodation.name,
     address: street + city,
     map: {
-      places: [place],
+      places: [{geoPosition: {...props.accommodation.location.geoPosition}}],
       zoom: 14,
-      googleMapsKey: config.GOOGLE_MAP_KEY
+      googleMapsKey: config.GOOGLE_MAP_KEY,
+      onlyMark: true
     },
     open,
-    onClose: closeMap
+    onClose: closeMap,
   }
 
   return <Box>
