@@ -71,7 +71,7 @@ const Accommodation: FunctionComponent<Props> = (props, context) => {
       </Grid>}
       {props.accommodationStatus === Status.LOADING ? <Grid item xs={12}><Skeleton height={20}/></Grid> :
         <Grid item xs={12}>
-          <Location location = {props.accommodation.location} accommodationName={props.accommodation.name}/>
+          <Location accommodation={props.accommodation}/>
         </Grid>}
       <Grid item xs={12}>
         <Images images={props.accommodation.images} loading={props.accommodationStatus}/>

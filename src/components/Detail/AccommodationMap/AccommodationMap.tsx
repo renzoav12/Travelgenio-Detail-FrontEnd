@@ -27,12 +27,12 @@ const AccommodationMap: FunctionComponent<Props> = props => {
 
   const street = props.accommodation.location.address.street.name + " " + props.accommodation.location.address.street.number;
   const city = (street.length > 1 ? ", ": "") + props.accommodation.location.address.city.name;
-  const place: Place = {title : street+" "+city, geoPosition: props.accommodation.location.geoPosition};
+  const place: Place = {geoPosition: props.accommodation.location.geoPosition};
 
   return <Paper className={classes.map}>
       {props.status === Status.LOADING 
       ? <Skeleton height={"100%"}/> 
-      : <Map {...{places: [place], zoom: 16, googleMapsKey: config.GOOGLE_MAP_KEY}}/>}
+      : <Map {...{places: [place], zoom: 16, googleMapsKey: config.GOOGLE_MAP_KEY, onlyMark: true}}/>}
   </Paper>;
 }
 
