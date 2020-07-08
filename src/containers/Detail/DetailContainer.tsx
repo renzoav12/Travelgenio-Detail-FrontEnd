@@ -53,13 +53,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const DetailContainer: FunctionComponent<DetailContainerProps> = (props, context) => {
   useEffect(() => {
-    props.searchSuggestionName({code: props.search.accommodationId, type: "ACCOMMODATION"});
     props.loadI18n();
     props.initCobrand && props.initCobrand(config.COBRAND, config.EMAIL_SUBSCRIPTION);
   }, []);
 
   useEffect(() => {
     if(props.locale.code !== null){
+      props.searchSuggestionName({code: props.search.accommodationId, type: "ACCOMMODATION"});
       props.onSearch(props.search);
     }
   }, [props.locale.code]);
