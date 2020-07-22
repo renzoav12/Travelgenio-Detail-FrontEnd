@@ -84,7 +84,8 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = (props, context
         onChangeSuggestionHint={props.onChangeSuggestionHint}
         horizontal = {true}
         suggestions = {props.suggestions}
-        title = {translate(context, Keys.common.change_your_destination)}/>
+        title = {translate(context, Keys.common.change_your_destination)}
+        locale = {props.locale.code === null ? "": props.locale.code}/>
     </Box>
     {props.rooms.length === 0 && props.roomsStatus === Status.SUCCESS ? <SearchEmpty type="info" dates={props.search.stay}></SearchEmpty>: null}
     <Detail 
