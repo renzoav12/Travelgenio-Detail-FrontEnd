@@ -97,7 +97,7 @@ const Pricing: FunctionComponent<PricingProps> = (props) => {
       </Grid>
     </Grid>
     <Grid item xs={12} sm={4} md={2}>
-      <Button variant="contained" color="primary" fullWidth onClick={() => props.onSelect(props.rate.id)}>
+      <Button variant="contained" color="primary" fullWidth onClick={() => props.onSelect(props.rate.id)} qa-id="booking-button">
         <Translate tkey={Keys.detail.reserve}/></Button>
     </Grid>
   </Grid>
