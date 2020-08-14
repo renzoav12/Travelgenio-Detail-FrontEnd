@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import { Grid, Typography, Box } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import Description from '../../../Description/Description';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Skeleton from 'react-loading-skeleton';
@@ -30,12 +30,22 @@ export interface CheckOutProps {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    checkIn: {
-      fontWeight: "bold"
+    container: {
+      display: "flex",
+      flexDirection: "column",
+      marginBottom: "20px",
     },
-    checkOut: {
-      fontWeight: "bold"
-    }, 
+    title: {
+      marginBottom: "20px",
+    },
+    checkContainer: {
+      display: "flex",
+      marginBottom: "20px",
+    },
+    checkTitle: {
+      fontWeight: "bold",
+      marginRight: "10px",
+    },
     skeleton: {
       '& span': {
         marginTop: 10
@@ -75,27 +85,30 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = (props) => {
     return <Box>{checkoutTime}</Box>;
   }
 
-  return <Grid container item spacing={2} alignItems="flex-start">
-    <Grid item xs={12} className="otravo-title">
-<Typography variant="h1"><Translation tkey={Keys.detail.accommodation_check_in_out_conditions}/></Typography>
-    </Grid>
-    <Grid item xs={3} md={2} lg={1} className={classes.checkIn}>
-      <Translation tkey={Keys.common.accommodation_check_in}/>:
-    </Grid>
-    <Grid item xs={9} md={10} lg={11}>
-      {props.status === Status.LOADING ? <Skeleton height={20}/> : checkInHour()}
-    </Grid>
-    <Grid item xs={3} md={2} lg={1} className={classes.checkOut}>
-
-      <Translation tkey={Keys.common.accommodation_check_out}/>:
-    </Grid>
-    <Grid item xs={9} md={10} lg={11}>
-      {props.status === Status.LOADING ? <Skeleton height={20}/> : checkOutHour()}
-    </Grid>
-    <Grid item xs={12}>
-      {props.status === Status.LOADING ? <Box className={classes.skeleton}><Skeleton height={20} count={3}/></Box> : <Description text={props.checkInOut.instructions}/>}
-    </Grid>
-  </Grid>;
+  return<Box className={classes.container}>
+      <Box className={classes.title}>
+        <Typography variant="h1"><Translation tkey={Keys.detail.accommodation_check_in_out_conditions}/></Typography>
+      </Box>
+      <Box className={classes.checkContainer}>
+        <Box className={classes.checkTitle}>
+          <Translation tkey={Keys.common.accommodation_check_in}/>:  
+        </Box>
+        <Box>
+          {props.status === Status.LOADING ? <Skeleton height={20}/> : checkInHour()}
+        </Box>
+      </Box>
+      <Box className={classes.checkContainer}>
+        <Box className={classes.checkTitle}>
+          <Translation tkey={Keys.common.accommodation_check_out}/>:  
+        </Box>
+        <Box>
+          {props.status === Status.LOADING ? <Skeleton height={20}/> : checkOutHour()}
+        </Box>
+      </Box>
+      <Box>
+        {props.status === Status.LOADING ? <Box className={classes.skeleton}><Skeleton height={20} count={3}/></Box> : <Description text={props.checkInOut.instructions}/>}
+      </Box>
+    </Box>
 }
 
 
