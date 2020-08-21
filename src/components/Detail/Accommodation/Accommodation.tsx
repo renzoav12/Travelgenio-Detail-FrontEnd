@@ -18,6 +18,7 @@ import Category from "@hotels/category";
 export interface Props {
   accommodation: AccommodationProps;
   accommodationStatus: Status;
+  locale: string;
 }
 
 export interface AccommodationProps {
@@ -89,7 +90,7 @@ const Accommodation: FunctionComponent<Props> = (props, context) => {
         <Amenities amenities={props.accommodation.amenities} status={props.accommodationStatus} title={translate(context,Keys.detail.accommodation_amenity_more_popular)}/>
       </Grid>
       <Grid item xs={12} className={classes.sectionBorder}>
-        <CheckInOut checkInOut={props.accommodation.checkInOut} status={props.accommodationStatus}/>
+        <CheckInOut checkInOut={props.accommodation.checkInOut} status={props.accommodationStatus} locale={props.locale}/>
       </Grid>
     </Grid>
   </Paper>;

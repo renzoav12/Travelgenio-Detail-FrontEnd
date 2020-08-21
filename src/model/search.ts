@@ -35,4 +35,5 @@ export interface Detail {
     accommodationStatus: Status;
     roomsStatus: Status;
     error: String | null;
+    locale: string;
 }
