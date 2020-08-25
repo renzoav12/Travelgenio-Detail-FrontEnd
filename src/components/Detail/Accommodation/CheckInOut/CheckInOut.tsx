@@ -54,9 +54,7 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = (props) => {
   const classes = useStyles();
 
   const checkInHour = () => {
-
-    const split = props.locale.includes("EN") || props.locale.includes("ES") ;
-
+    const split = props.locale.includes("en") || props.locale.includes("ES") ;
     if(props.checkInOut.checkIn.beginTime === begin24Hours && props.checkInOut.checkIn.endTime === end24Hours) {
     return <Box><Translation tkey={Keys.common.accommodation_check_in_24hs}/></Box>;  
     } else if(props.checkInOut.checkIn.beginTime && props.checkInOut.checkIn.endTime && props.checkInOut.checkIn.beginTime !== props.checkInOut.checkIn.endTime) {
@@ -73,28 +71,28 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = (props) => {
   }
   
   const checkOutHour = () => {
-    const split = props.locale.includes("EN") || props.locale.includes("ES") ;
-
+    const split = props.locale.includes("en") || props.locale.includes("ES") ;
     if (split){
-    let checkoutTime = props.checkInOut.checkOut && props.checkInOut.checkOut.time ? 
-    <Translation tkey={Keys.common.accommodation_check_in_until} values={{n:props.checkInOut.checkOut.time}}/>
-                      : noneCheckoutHour;
-    return <Box>{checkoutTime}</Box>;}else {return null}
+        let checkoutTime = props.checkInOut.checkOut && props.checkInOut.checkOut.time ? 
+        <Translation tkey={Keys.common.accommodation_check_in_until} values={{n:props.checkInOut.checkOut.time}}/>
+                          : noneCheckoutHour;
+        return <Box>{checkoutTime}</Box>;
+    }
+    return <Box>{props.checkInOut.checkOut.time}</Box>;
   }
-
   return <Grid container item spacing={2} alignItems="flex-start">
     <Grid item xs={12} className="otravo-title">
 <Typography variant="h1"><Translation tkey={Keys.detail.accommodation_check_in_out_conditions}/></Typography>
     </Grid>
     <Grid item xs={3} md={2} lg={1} className={classes.checkIn}>
-      <Translation tkey={Keys.common.accommodation_check_in}/>:
+      <Translation tkey={Keys.detail.accommodation_check_in_hour}/>:
     </Grid>
     <Grid item xs={9} md={10} lg={11}>
       {props.status === Status.LOADING ? <Skeleton height={20}/> : checkInHour()}
     </Grid>
     <Grid item xs={3} md={2} lg={1} className={classes.checkOut}>
 
-      <Translation tkey={Keys.common.accommodation_check_out}/>:
+      <Translation tkey={Keys.detail.accommodation_check_out_hour}/>:
     </Grid>
     <Grid item xs={9} md={10} lg={11}>
       {props.status === Status.LOADING ? <Skeleton height={20}/> : checkOutHour()}
