@@ -94,7 +94,8 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = (props, context
       occupancy={parseOccupancy(props.search.occupancy)}
       accommodationStatus = {props.accommodationStatus} 
       roomsStatus = {props.roomsStatus} 
-      onSelect={props.onSelect}/>
+      onSelect={props.onSelect}
+      locale={props.locale.code === null ? "": props.locale.code}/>
   </Container>;
 }
 

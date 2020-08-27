@@ -71,7 +71,8 @@ const initialState: Detail = {
     rooms: [],
     accommodationStatus: Status.LOADING,
     roomsStatus: Status.LOADING,
-    error: null
+    error: null,
+    locale: ''
 };
 
 export const detailReducer: Reducer<Detail, RootAction> = (
