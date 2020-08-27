@@ -1339,10 +1339,10 @@
   resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/styles/-/styles-0.0.2.tgz#19733442338652a52e292bd0f313ffe8d31f45fc"
   integrity sha512-/YEGzOBLaqPpJsOk7dkNEmOrtg43oEhQ/PxesEzYEwpBI1XJHhQDV+hKvXOHEb3l/z/XqV09/NglFC4/JwA4zQ==
 
-"@hotels/translation-keys@0.0.2":
-  version "0.0.2"
-  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation-keys/-/translation-keys-0.0.2.tgz#1fa30095571026f81c8b693462a90b5ef55df180"
-  integrity sha512-7HFBvMTqEN7Vx7se/eMIDgP0frcYrX5uoOVpaQoaYnCOB5JUbRpK5E4ByjZBncoumGM51fm9kbEsIPogjWPi0g==
+"@hotels/translation-keys@0.0.4":
+  version "0.0.4"
+  resolved "https://nexus.travelgenio.com/repository/travelgenio-npm/@hotels/translation-keys/-/translation-keys-0.0.4.tgz#50b472dddeca2855fb4510149c655b8155e8474e"
+  integrity sha512-qwK7kLQzKmPZlhlWF1NcGx4hhlnuSP0821R8u3UusNMsV3k+6PwNqfO0OeJ822oZR21u8dcNxeaovPzFY4DXUg==
 
 "@hotels/translation@0.0.8":
   version "0.0.8"

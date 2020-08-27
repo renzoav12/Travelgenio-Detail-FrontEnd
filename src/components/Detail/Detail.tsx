@@ -15,6 +15,7 @@ export interface DetailProps {
   accommodationStatus: Status;
   roomsStatus: Status;
   onSelect: (id: string) => void;
+  locale: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -44,7 +45,7 @@ const Detail: FunctionComponent<DetailProps> = props => {
   return <Grid container>
 
            <Grid item xs={12} className={classes.accommodation}>
-            <Accommodation accommodation={props.accommodation} accommodationStatus={props.accommodationStatus}/>
+            <Accommodation accommodation={props.accommodation} accommodationStatus={props.accommodationStatus} locale={props.locale}/>
           </Grid>
           <Grid item xs={12} className={classes.map}>
             <AccommodationMap accommodation={props.accommodation} status={props.accommodationStatus}/>
