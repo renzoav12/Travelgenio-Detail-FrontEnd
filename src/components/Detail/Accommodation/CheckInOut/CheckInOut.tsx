@@ -63,8 +63,9 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = (props) => {
 
   const classes = useStyles();
 
+  const checkInAllows = props.locale.includes("en") || props.locale.includes("es");
+
   const checkInHour = () => {
-    const allows = props.locale.includes("en") || props.locale.includes("ES") ;
     if(props.checkInOut.checkIn.beginTime === begin24Hours && props.checkInOut.checkIn.endTime === end24Hours) {
     return <Box><Translation tkey={Keys.common.accommodation_check_in_24hs}/></Box>;  
     } else if(props.checkInOut.checkIn.beginTime && props.checkInOut.checkIn.endTime && props.checkInOut.checkIn.beginTime !== props.checkInOut.checkIn.endTime) {
@@ -72,17 +73,16 @@ const CheckInCheckOut: FunctionComponent<CheckInOutLoadingProps> = (props) => {
             <Translation tkey={Keys.common.accommodation_check_in_from_to} values={{n:props.checkInOut.checkIn.beginTime ,m:props.checkInOut.checkIn.endTime}}/>
             </Box>;
     } else if(props.checkInOut.checkIn.beginTime) {
-    return <Box> {allows ? <Translation tkey={Keys.common.accommodation_check_in_from} values={{n:props.checkInOut.checkIn.beginTime}}/> : props.checkInOut.checkIn.beginTime}</Box>
+    return <Box> {checkInAllows ? <Translation tkey={Keys.common.accommodation_check_in_from} values={{n:props.checkInOut.checkIn.beginTime}}/> : props.checkInOut.checkIn.beginTime}</Box>
     } else if(props.checkInOut.checkIn.endTime) {
-    return <Box> {allows ? <Translation tkey={Keys.common.accommodation_check_in_until} values={{n:props.checkInOut.checkIn.endTime}}/>: null}</Box>
+    return <Box> {checkInAllows ? <Translation tkey={Keys.common.accommodation_check_in_until} values={{n:props.checkInOut.checkIn.endTime}}/>: null}</Box>
     } else {
       return <Box>{noneCheckinHour}</Box>;
     }
   }
   
   const checkOutHour = () => {
-    const allows = props.locale.includes("en") || props.locale.includes("ES") ;
-    if (allows){
+    if (checkInAllows){
         let checkoutTime = props.checkInOut.checkOut && props.checkInOut.checkOut.time ? 
         <Translation tkey={Keys.common.accommodation_check_in_until} values={{n:props.checkInOut.checkOut.time}}/>
                           : noneCheckoutHour;
