@@ -21,7 +21,7 @@ import Keys from "@hotels/translation-keys";
 import {translate} from "@hotels/translation";
 import PropTypes from "prop-types";
 import { LocaleState } from '../../reducers/localeReducer';
-import { initCobrand } from "@hotels/header-footer";
+import { initCobrand, isLocalHero } from "@hotels/header-footer";
 import config from "../../config";
 
 
@@ -54,7 +54,9 @@ const useStyles = makeStyles((theme: Theme) =>
 const DetailContainer: FunctionComponent<DetailContainerProps> = (props, context) => {
   useEffect(() => {
     props.loadI18n();
-    props.initCobrand && props.initCobrand(config.COBRAND, config.EMAIL_SUBSCRIPTION);
+    if(!isLocalHero()) {
+      props.initCobrand && props.initCobrand(config.COBRAND, config.EMAIL_SUBSCRIPTION);
+    }
   }, []);
 
   useEffect(() => {
