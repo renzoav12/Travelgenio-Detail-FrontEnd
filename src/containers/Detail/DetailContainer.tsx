@@ -48,7 +48,9 @@ interface DetailContainerProps {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     searchBox: {
-      marginTop: 0,
+      [theme.breakpoints.up("lg")]:{
+        marginTop: 20,
+      },
     },
     searchPortal: {
       marginTop: 2,
