@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { RootState } from '../../store';
 import { connect } from 'react-redux';
 import { AccommodationProps } from '../../components/Detail/Accommodation/Accommodation';
@@ -7,10 +7,10 @@ import SearchBox, {SearchBoxState} from '@hotels/search-box';
 import { SuggestionHint, SuggestionEntry } from '@hotels/search-box/dist/Autocomplete/Autocomplete';
 import { Search, Status } from '../../model/search';
 import { thunkRoomSelect } from '../../actions/room/room.action';
-import { Container, Box } from "@material-ui/core";
+import { Grid,Container, Box } from "@material-ui/core";
 import Detail from '../../components/Detail/Detail';
 import { RoomDetail } from '../../components/Detail/Availability/Room/Room';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme, createMuiTheme } from '@material-ui/core/styles';
 import { fetchSuggestionSearch, fetchSuggestionSearchName, SearchNameSuggestionParameters } from '../../actions/suggestion/suggestion.action';
 import { thunkSearchBoxChange } from '../../actions/searchBox/searchBox.action';
 import SearchEmpty from '@hotels/search-empty';
@@ -23,6 +23,8 @@ import PropTypes from "prop-types";
 import { LocaleState } from '../../reducers/localeReducer';
 import { initCobrand, isLocalHero } from "@hotels/header-footer";
 import config from "../../config";
+import { useMediaQuery } from "@material-ui/core";
+import { SearchBoxPortal } from "@hotels/search-box";
 
 
 interface DetailContainerProps {
@@ -46,12 +48,47 @@ interface DetailContainerProps {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     searchBox: {
-      marginTop: 20,
-    }
+      [theme.breakpoints.up("lg")]:{
+        marginTop: 20,
+      },
+    },
+    searchPortal: {
+      marginTop: 2,
+      width: "100%",
+      display: "flex",
+      justifyContent: "flex-end"
+    },
+    ".MuiContainer-root": {
+        paddingLeft: "0 important!",
+        paddingRight: "0 important!"
+    },
+    container: {
+      marginBottom: 0,
+      [theme.breakpoints.down("sm")]:{
+        paddingLeft: "0 !important",
+        paddingRight: "0 !important"
+      }, 
+    },
   })
 );
 
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 760,
+      md: 1024,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+});
+
 const DetailContainer: FunctionComponent<DetailContainerProps> = (props, context) => {
+
+  const xs_down = useMediaQuery(theme.breakpoints.down("sm"));
+  const [display, setDisplay] = useState<boolean>(false);
+
   useEffect(() => {
     props.loadI18n();
     if(!isLocalHero()) {
@@ -67,15 +104,49 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = (props, context
   }, [props.locale.code]);
 
   const classes = useStyles();
+
+  const onChangeDisplay = () => {
+    setDisplay(!display);
+  }
+
+
+
+  const showSearchBox = (       
+    <Box className={classes.searchPortal}>
+      {SearchBoxPortal(
+          props.suggestionName, 
+          {
+            location: {
+                code: props.search.accommodationId,
+                type: 'ACCOMMODATION',
+                name: ''
+            },
+            occupancy: parseOccupancy(props.search.occupancy),
+            stay: parseStay(props.search.stay.from, props.search.stay.to)
+          },          
+          props.onSearchBoxChange,
+          props.onChangeSuggestionHint,
+          props.suggestions,
+          translate(context, Keys.common.change_your_destination),
+          props.locale.code === null ? "": props.locale.code,
+          display,
+          onChangeDisplay,
+          false
+      )}
+  </Box>
+);
     
-  return <Container maxWidth="lg">
+  return (
+   <Container   className={classes.container}>
+    {xs_down ?  showSearchBox :
     <Box className = {classes.searchBox}>
       <SearchBox
         init={
           {
             location: {
                 code: props.search.accommodationId,
-                type: 'ACCOMMODATION'
+                type: 'ACCOMMODATION',
+                name: ''
             },
             occupancy: parseOccupancy(props.search.occupancy),
             stay: parseStay(props.search.stay.from, props.search.stay.to)
@@ -89,6 +160,7 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = (props, context
         title = {translate(context, Keys.common.change_your_destination)}
         locale = {props.locale.code === null ? "": props.locale.code}/>
     </Box>
+    }
     {props.rooms.length === 0 && props.roomsStatus === Status.SUCCESS ? <SearchEmpty type="info" dates={props.search.stay}></SearchEmpty>: null}
     <Detail 
       accommodation= {props.accommodation} 
@@ -98,7 +170,8 @@ const DetailContainer: FunctionComponent<DetailContainerProps> = (props, context
       roomsStatus = {props.roomsStatus} 
       onSelect={props.onSelect}
       locale={props.locale.code === null ? "": props.locale.code}/>
-  </Container>;
+  </Container>
+  )
 }
 
 const mapStateToProps = (rootState: RootState, ownProps) => {
