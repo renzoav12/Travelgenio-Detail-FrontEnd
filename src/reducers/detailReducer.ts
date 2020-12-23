@@ -66,7 +66,8 @@ const initialState: Detail = {
             },
             instructions: ''
         },
-        description: ''
+        description: '',
+        spokenLanguages: []
     },
     rooms: [],
     accommodationStatus: Status.LOADING,
