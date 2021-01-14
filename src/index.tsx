@@ -24,8 +24,6 @@ const theme = createMuiTheme({
 
 function App() {
 
-  const xs_down = useMediaQuery(theme.breakpoints.down("sm"));
-
   return (
     <MuiThemeProvider theme={createTheme()}>
       <CssBaseline />

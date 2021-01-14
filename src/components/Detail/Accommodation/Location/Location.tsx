@@ -8,6 +8,7 @@ import config from '../../../../config';
 import Keys from '@hotels/translation-keys';
 import Translate from '@hotels/translation';
 import { AccommodationProps } from "../Accommodation";
+import RatingGuest from '../Rating/RatingGuest';
 
 export interface Location {
   accommodation: AccommodationProps;
@@ -99,6 +100,8 @@ const Location: FunctionComponent<Location> = props => {
 
   return <Box>
       <Grid container item xs={12}>
+      {props.accommodation.guestRating? 
+         <RatingGuest ratingGuest={props.accommodation.guestRating} /> : null}
         {address}
         <Box className={classes.mapLink} onClick={showMap}><ExploreIcon fontSize="small" className={classes.verticalCentered}/> 
         <Translate tkey={Keys.search.see_map} /></Box>

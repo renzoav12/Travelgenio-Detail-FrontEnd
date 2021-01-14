@@ -31,6 +31,12 @@ export interface AccommodationProps {
   images: Array<ImageProps>;
   checkInOut: CheckInOutProps;
   spokenLanguages: Array<SpokenLanguagesProps>;
+  guestRating: RatingProps;
+}
+
+export interface RatingProps {
+  rating: number;
+  votes: number;
 }
 
 export interface CategoryProps {
