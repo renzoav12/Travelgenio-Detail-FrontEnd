@@ -35,8 +35,8 @@ export interface AccommodationProps {
 }
 
 export interface RatingProps {
-  value: number;
-  count: number;
+  rating: number;
+  votes: number;
 }
 
 export interface CategoryProps {
