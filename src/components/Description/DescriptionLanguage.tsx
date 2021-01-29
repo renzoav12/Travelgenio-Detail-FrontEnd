@@ -13,8 +13,7 @@ export interface DescriptionLanguageProps {
 }
 
 export interface SpokenLanguagesProps {
-    id: string;
-    name: string;
+    value: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -42,7 +41,7 @@ const DescriptionLanguage: FunctionComponent<DescriptionLanguageProps> = (props)
     const classes = useStyles();
 
   const spokenLanguages = props.languages.map(languages => 
-    <Grid item xs={12} sm={6} md={4} lg={3} key={languages.id}>{languages.name}.</Grid>);    
+    <Grid item xs={12} sm={6} md={4} lg={3}>{languages.value}.</Grid>);    
     return (
         <Grid container justify="flex-start" spacing={2}>
               <Grid item xs={12} className={classes.checkTitle}><Translation tkey={Keys.detail.accommodation_languages_spoken}/></Grid>
