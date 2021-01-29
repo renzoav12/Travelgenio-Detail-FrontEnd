@@ -14,6 +14,7 @@ import Keys from "@hotels/translation-keys";
 import Translation, {translate} from "@hotels/translation";
 import PropTypes from "prop-types";
 import Category from "@hotels/category";
+import DescriptionLanguage, { SpokenLanguagesProps } from '../../Description/DescriptionLanguage';
 
 export interface Props {
   accommodation: AccommodationProps;
@@ -29,6 +30,13 @@ export interface AccommodationProps {
   amenities: Array<AmenityProps>;
   images: Array<ImageProps>;
   checkInOut: CheckInOutProps;
+  spokenLanguages: Array<SpokenLanguagesProps>;
+  guestRating: RatingProps;
+}
+
+export interface RatingProps {
+  rating: number;
+  votes: number;
 }
 
 export interface CategoryProps {
@@ -83,8 +91,10 @@ const Accommodation: FunctionComponent<Props> = (props, context) => {
         </Grid>
         {props.accommodationStatus === Status.LOADING ? <Grid item xs={12} className = {classes.skeleton}><Skeleton count={5} height={50}/></Grid> :
         <Grid item xs={12}>
-          <Description text={props.accommodation.description}/>
-        </Grid>}
+          <Description text={props.accommodation.description}/>    
+          {props.accommodation.spokenLanguages? <DescriptionLanguage languages={props.accommodation.spokenLanguages} status={props.accommodationStatus}/> : null}
+       </Grid>
+        }
       </Grid>
       <Grid item xs={12} className={classes.sectionBorder}>
         <Amenities amenities={props.accommodation.amenities} status={props.accommodationStatus} title={translate(context,Keys.detail.accommodation_amenity_more_popular)}/>
