@@ -92,7 +92,7 @@ const Accommodation: FunctionComponent<Props> = (props, context) => {
         {props.accommodationStatus === Status.LOADING ? <Grid item xs={12} className = {classes.skeleton}><Skeleton count={5} height={50}/></Grid> :
         <Grid item xs={12}>
           <Description text={props.accommodation.description}/>    
-          {props.accommodation.spokenLanguages? <DescriptionLanguage languages={props.accommodation.spokenLanguages} status={props.accommodationStatus}/> : null}
+          {props.accommodation.spokenLanguages.length === 0 ? null :  <DescriptionLanguage languages={props.accommodation.spokenLanguages} status={props.accommodationStatus}/>}
        </Grid>
         }
       </Grid>
